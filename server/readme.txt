@@ -1,5 +1,18 @@
 https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4
 
+   - download MongoDB: 
+        - https://www.mongodb.com/download-center?jmp=docs&_ga=1.168780129.1720011928.1485511740#community
+        - https://docs.mongodb.com/manual/mongo/
+        - sudo mkdir -p /data/db
+        - do: cd {mongoFolder}/ 
+        - Firstly run: ./bin/mongod 
+        - Secondly run: ./bin/mongo
+        - Connect to db test by shell: mongo ds131729.mlab.com:31729/node-db-test -u node -p node
+        - Tips: if you have problem of connection try to update [mongoose] with latest version
+   - download PostMan
+        - Tip: to send POST message use the option BODY x-www-form-urlencoded"
+        - Tip: http://stackoverflow.com/questions/24543847/req-body-empty-on-posts
+   
    - app/
     ----- models/
     ---------- bear.js  // our bear model

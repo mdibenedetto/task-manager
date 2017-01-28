@@ -1,9 +1,13 @@
+'use strict';
 // server.js
 
 // BASE SETUP
 // =============================================================================
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o'); // connect to our database
+mongoose.connect('mongodb://node:node@ds131729.mlab.com:31729/node-db-test'); // connect to our database  
+var conn = mongoose.connection;
+
+conn.on('error', console.error.bind(console, 'connection error:'));
 
 var Bear = require('./app/models/bear');
 
@@ -41,25 +45,64 @@ router.get('/', function (req, res) {
 });
 // on routes that end in /bears
 // ----------------------------------------------------
-router.route('/bears')
+router.route('/bears') // create a bear (accessed at POST http://localhost:8080/api/bears)
+    .post(function (req, res) {
+        var bear = new Bear(); // create a new instance of the Bear model
+        bear.name = req.body.name; // set the bears name (comes from the request)
+        Bear.count({}, function (err, count) {
+            bear.seq = count + 1;
+        });
+        bear.save(function (err) {
+            err && res.send(err);
 
-// create a bear (accessed at POST http://localhost:8080/api/bears)
-.post(function (req, res) {
+            res.json({
+                message: 'Bear created!'
+            });
+        });
+    })
+    .get(function (req, res) {
+        Bear.find(function (err, bears) {
+            if (err)
+                res.send(err);
 
-    var bear = new Bear(); // create a new instance of the Bear model
-    bear.name = req.body.name; // set the bears name (comes from the request)
-
-    // save the bear and check for errors
-    bear.save(function (err) {
-        if (err)
-            res.send(err);
-
-        res.json({
-            message: 'Bear created!'
+            res.json(bears);
         });
     });
 
-});
+router.route('/bears/:bear_id') // get the bear with that id (accessed at GET http://localhost:8080/api/bears/:bear_id)
+    .get(function (req, res) {
+        Bear.findById(req.params.bear_id, function (err, bear) {
+            if (err)
+                res.send(err);
+            res.json(bear);
+        });
+    })
+    .put(function (req, res) {
+        Bear.findById(req.params.bear_id, function (err, bear) {
+            if (err)
+                res.send(err);
+            bear.name = req.body.name; // update the bears info 
+            if (err)
+                res.send(err);
+            res.json({
+                message: 'Bear updated!'
+            });
+        });
+
+    })
+    .delete(function (req, res) {
+        Bear.remove({
+            _id: req.params.bear_id
+        }, function (err, bear) {
+            if (err)
+                res.send(err);
+
+            res.json({
+                message: 'Successfully deleted'
+            });
+        });
+    });
+
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
@@ -69,4 +112,6 @@ app.use('/api', router);
 // START THE SERVER
 // =============================================================================
 app.listen(port);
-console.log('Magic happens on port ' + port);
+
+
+console.log('Magic happens on port ' + port + '...');
