@@ -8,3 +8,12 @@ var BearSchema   = new Schema({
 });
 
 module.exports = mongoose.model('Bear', BearSchema);
+
+
+
+
+    // - User
+    //     - id
+    //     - name
+    //     - email
+    //     - passoword

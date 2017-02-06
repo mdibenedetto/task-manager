@@ -32,3 +32,20 @@ https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4
     /api/bears/:bear_id	GET	Get a single bear.
     /api/bears/:bear_id	PUT	Update a bear with new info.
     /api/bears/:bear_id	DELETE	Delete a bear.
+
+
+
+
+    #Model Entities
+    - Task
+        - id
+        - title
+        - description
+        - startDate
+        - endDate
+        - assigneId
+    - User
+        - id
+        - name
+        - email
+        - passoword
