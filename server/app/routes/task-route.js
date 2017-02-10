@@ -36,12 +36,12 @@ function load(router) {
         .put(function (req, res) {
             Task.findById(req.params._id, function (err, task) {
                 err && res.send(err);
-                // setTask(req, task);
+                setTask(req, task);
 
                
-                task.title = req.body.title;
-                task.description = req.body.description;
-                task.endDate = req.body.endDate;
+                // task.title = req.body.title;
+                // task.description = req.body.description;
+                // task.endDate = req.body.endDate;
 
                 err && res.send(err);
                 res.json({
