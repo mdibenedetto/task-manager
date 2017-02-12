@@ -1,9 +1,9 @@
 <p>
   task works!
 </p>
-<form>
+<form >
   <label>Title
-    <input type="text">
+    <input type="text" [(ngModel)]="task.title"  [ngModelOptions]="{standalone: true}">
   </label>
   <label>Description
     <input type="text">
@@ -17,4 +17,5 @@
   <label>Assigne
     <input type="text">
   </label>
+  <button (click)="create()">Create</button>
 </form>
