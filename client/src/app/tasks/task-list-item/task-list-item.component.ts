@@ -7,9 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskListItemComponent implements OnInit {
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }
