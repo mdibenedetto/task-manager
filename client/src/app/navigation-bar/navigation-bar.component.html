@@ -1,3 +1,14 @@
-<p>
-  navigation-bar works!
-</p>
+<nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+        <li [routerLinkActive]="['active']">
+            <a routerLink="/tasks"> Tasks list</a>
+        </li>
+        <li [routerLinkActive]="['active']">
+            <a routerLink="/users">Users list</a>
+        </li>
+        <li [routerLinkActive]="['active']">
+            <a routerLink="/settings">Settings list</a>
+        </li>
+    </ul>
+</nav>
+<router-outlet></router-outlet>
