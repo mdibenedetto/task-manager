@@ -1,31 +1,26 @@
 <div class="container">
-  <h1>New Task</h1>
-  <form>
-    <div class="form-group">
-      <label>Title
-          <input class="form-control" type="text" [(ngModel)]="task.title"  [ngModelOptions]="{standalone: true}" />
-      </label>
-    </div>
-    <div class="form-group">
-      <label>Description
-        <input class="form-control" type="text" />
-      </label>
-    </div>
-    <div class="form-group">
-      <label>Start Date
-        <input class="form-control" type="text" />
-      </label>
-    </div>
-    <div class="form-group">
-      <label>End Date
-        <input class="form-control" type="text"/>
-      </label>
-    </div>
-    <div class="form-group">
-      <label>Assigne
-        <input class="form-control" type="text">
-      </label>
-    </div>
-    <button (click)="create()">Create</button>
-  </form>
+    <h1>New Task</h1>
+    <form>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Title </label>
+            <input class="col-10 form-control" type="text" [(ngModel)]="task.title" [ngModelOptions]="{standalone: true}" />
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Description </label>
+            <input class="col-10 form-control" type="text" />
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Start Date </label>
+            <input class="col-10 form-control" type="date" />
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">End Date</label>
+            <input class="col-10 form-control" type="date" />
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Assigne</label>
+            <input class="col-10 form-control" type="text">
+        </div>
+        <button (click)="create()">Create</button>
+    </form>
 </div>

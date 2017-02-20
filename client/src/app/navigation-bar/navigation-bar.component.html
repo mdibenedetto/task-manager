@@ -1,12 +1,14 @@
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link" [routerLinkActive]="['active']" routerLink="/tasks"> Tasks list</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" [routerLinkActive]="['active']" routerLink="/users">Users list</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" [routerLinkActive]="['active']" routerLink="/settings">Settings list</a>
-  </li>
-</ul>
+<nav class="navbar">
+    <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/tasks"> Tasks list</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/users">Users list</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/settings">Settings list</a>
+        </li>
+    </ul>
+</nav>
 <router-outlet></router-outlet>

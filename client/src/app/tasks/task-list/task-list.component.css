@@ -1,3 +1,7 @@
-.task-list{
+.task-list {
     max-width: 800ppx;
+}
+
+.row.header {
+    font-weight: bold;
 }

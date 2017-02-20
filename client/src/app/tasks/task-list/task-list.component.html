@@ -1,6 +1,35 @@
 <task-list-toolbar></task-list-toolbar>
 <div class="container task-list">
-  <task-list-item></task-list-item>
-  <task-list-item *ngFor="let task of tasks" [task]="task"></task-list-item>
+    <!--<div class="row header">
+    <td>Title</div>
+    <td>Description</div>
+    <td>Start date</div>
+    <td>End date</div>
+  </div>-->
+    <!--<task-list-item *ngFor="let task of tasks" [task]="task"></task-list-item>-->
 </div>
-<div>total tasks: {{tasks.length}}</div>
+<!--<div>total tasks: {{tasks.length}}</tr>-->
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Start date</th>
+            <th>End date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let task of tasks">
+            <td>{{index}}</td>
+            <td>{{task?.title}}</td>
+            <td>{{task?.description}}</td>
+            <td>{{task?.startDate| date: 'dd/MM/yyyy'}}</td>
+            <td>{{task?.endDate| date: 'dd/MM/yyyy'}}</td>
+            <td>{{task?.endDate| date: 'dd/MM/yyyy'}} </td>
+        </tr>
+    </tbody>
+    <footer>
+        total tasks: {{tasks.length}}
+    </footer>
+</table>
