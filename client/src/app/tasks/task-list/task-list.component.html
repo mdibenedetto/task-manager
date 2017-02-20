@@ -1,7 +1,8 @@
 <p>
   task-list works!
 </p>
-<ul>
-  <task-list-item *ngFor="let task of tasks"></task-list-item>
-  <div>total tasks: {{tasks.length}}</div>
-</ul>
+<div class="container task-list">
+  <task-list-item></task-list-item>
+  <task-list-item *ngFor="let task of tasks" [task]="task"></task-list-item>
+</div>
+<div>total tasks: {{tasks.length}}</div>
