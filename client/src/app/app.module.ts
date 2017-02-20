@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { TaskComponent } from './tasks/task/task.component';
 import { TaskListComponent } from './tasks/task-list/task-list.component';
+import { TaskListToolbarComponent } from './tasks/task-list-toolbar/task-list-toolbar.component';
 import { TaskListItemComponent } from './tasks/task-list-item/task-list-item.component';
 import { TaskService } from './services/task.service';
 import { UserComponent } from './user/user/user.component';
@@ -24,7 +25,8 @@ import { SettingComponent } from './setting/setting.component';
     NavigationBarComponent,
     UserComponent,
     UserListComponent,
-    SettingComponent
+    SettingComponent,
+    TaskListToolbarComponent
   ],
   imports: [
     // NgbModule,
@@ -32,25 +34,29 @@ import { SettingComponent } from './setting/setting.component';
     FormsModule,
     HttpModule,
     RouterModule.forRoot([{
-        path: '',
-        redirectTo: '/tasks',
-        pathMatch: 'full'
-      },
-      {
-        path: 'tasks',
-        component: TaskListComponent
-      },
-      {
-        path: 'users',
-        component: UserListComponent
-      },
-      {
-        path: 'settings',
-        component: SettingComponent
-      }
+      path: '',
+      redirectTo: '/tasks',
+      pathMatch: 'full'
+    },
+    {
+      path: 'tasks',
+      component: TaskListComponent
+    },
+    {
+      path: 'task',
+      component: TaskComponent
+    },
+    {
+      path: 'users',
+      component: UserListComponent
+    },
+    {
+      path: 'settings',
+      component: SettingComponent
+    }
     ])
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
