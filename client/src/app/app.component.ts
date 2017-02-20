@@ -10,5 +10,5 @@ import { TaskListItemComponent } from './tasks/task-list-item/task-list-item.com
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'Task Manager!';
 }
