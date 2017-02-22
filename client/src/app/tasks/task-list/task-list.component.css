@@ -5,3 +5,12 @@
 .row.header {
     font-weight: bold;
 }
+
+.table tr {
+    cursor: pointer;
+}
+
+.table tr.active td {
+    background-color: #123456 !important;
+    color: white;
+}

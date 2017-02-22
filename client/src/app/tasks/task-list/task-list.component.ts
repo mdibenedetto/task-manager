@@ -9,10 +9,15 @@ import { Task } from '../../models/models';
 })
 export class TaskListComponent implements OnInit {
   tasks: Task[];
-
-  constructor(private taskService: TaskService) { }
+  selectedRow: number = -1;
+  constructor(private taskService: TaskService) {}
 
   ngOnInit() {
     this.tasks = this.taskService.tasks;
   }
+
+  setSelectedRow(index) {
+    this.selectedRow = (index=== this.selectedRow) ? -1 : index;
+  }
 }
+

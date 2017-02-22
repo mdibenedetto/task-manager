@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'task-list-toolbar',
   templateUrl: './task-list-toolbar.component.html',
-  styleUrls: ['./task-list-toolbar.component.css']
+  styleUrls: ['./task-list-toolbar.component.css'],
+  styles: [':host{display:block}']
 })
 export class TaskListToolbarComponent implements OnInit {
+  @Input() selectedRow: number = -1;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }
