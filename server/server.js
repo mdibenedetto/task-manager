@@ -12,18 +12,26 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+    next();
+});
+
 // =============================================================================
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router();
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 // middleware to use for all requests
-router.use(function (req, res, next) {
+router.use(function(req, res, next) {
     console.log('Something is happening.');
     next(); // make sure we go to the next routes and don't stop here
 });
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function (req, res) {
+router.get('/', function(req, res) {
     res.json({
         message: 'hooray! welcome to our api!'
     });

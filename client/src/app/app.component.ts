@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { TaskComponent } from './tasks/task/task.component';
+import { TaskFormComponent } from './tasks/task-form/task-form.component';
 import { TaskListComponent } from './tasks/task-list/task-list.component';
 import { TaskListItemComponent } from './tasks/task-list-item/task-list-item.component';
 

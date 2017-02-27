@@ -1,34 +1,71 @@
 import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject, Observable } from 'rxjs';
 import { Task } from '../models/models';
-import * as rx from 'rxjs';
+
 
 @Injectable() export class TaskService {
-  task: Subject<Task> = new Subject<Task>();
-  tasks: Task[] = new Array<Task>();
+  task: Subject < Task > = new Subject < Task > ();
+  tasks: Task[] = new Array < Task > ();
+  private BASE_URL = 'http://localhost:8081/api/tasks';
 
-  create(title: string) {
-    let task = new Task();
-    task.title = title;
-    this.task.next(task);
 
-    console.log(`new task ${JSON.stringify(this.task)}`)
-    return task;
-  }
-  constructor() {
-    for (let i = 0; i < 20; i++) {
-      var task = new Task();
-      task["description"] = "this is a test " + i;
-      task["title"] = "Task-" + i;
-      task["assigneId"] = 0;
-      task["startDate"] = new Date();
-      task["endDate"] = null;
-
-      this.tasks.push(task);
-    }
-
+  constructor(private http: Http) {
     this.task.subscribe((t) => {
       this.tasks.push(t);
     });
   }
+
+  getTasks(): Observable < Task[] > {
+    return this.http.get(this.BASE_URL)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  addTask(taskBody: Task) {
+    let bodyString = JSON.stringify(taskBody); // Stringify payload
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    let options = new RequestOptions({
+      headers: headers
+    });
+
+    return this.http.post(this.BASE_URL, {
+        taskBody
+      }, options)
+      .map((res: Response) => {
+        console.log(res)
+
+
+        res.json();
+      }) 
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+
+  }
+
+  // // Update a comment
+  // updateComment(body: Object): Observable < Comment[] > {
+  //   let bodyString = JSON.stringify(body); // Stringify payload
+  //   let headers = new Headers({
+  //     'Content-Type': 'application/json'
+  //   }); // ... Set content type to JSON
+  //   let options = new RequestOptions({
+  //     headers: headers
+  //   }); // Create a request option
+
+  //   return this.http.put(`${this.commentsUrl}/${body['id']}`, body, options) // ...using put request
+  //     .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+  //     .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+  // }
+
+  // // Delete a comment
+  // removeComment(id: string): Observable < Comment[] > {
+  //   return this.http.delete(`${this.commentsUrl}/${id}`) // ...using put request
+  //     .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+  //     .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+  // }
+
+
+
 }

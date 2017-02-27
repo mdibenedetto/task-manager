@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../models/models';
-
+import { Observable } from 'rxjs'
 @Component({
   selector: 'task-list',
   templateUrl: './task-list.component.html',
@@ -13,11 +13,21 @@ export class TaskListComponent implements OnInit {
   constructor(private taskService: TaskService) {}
 
   ngOnInit() {
-    this.tasks = this.taskService.tasks;
+    this.loadTask();
+  }
+
+  loadTask() {
+    this.taskService.getTasks()
+      .subscribe(
+        tasks => {
+          this.tasks = tasks;
+        },
+        error => {
+          console.error(error)
+        });
   }
 
   setSelectedRow(index) {
-    this.selectedRow = (index=== this.selectedRow) ? -1 : index;
+    this.selectedRow = (index === this.selectedRow) ? -1 : index;
   }
 }
-

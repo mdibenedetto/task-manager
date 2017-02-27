@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { TaskComponent } from './tasks/task/task.component';
+import { TaskFormComponent } from './tasks/task-form/task-form.component';
 import { TaskListComponent } from './tasks/task-list/task-list.component';
 import { TaskListToolbarComponent } from './tasks/task-list-toolbar/task-list-toolbar.component';
 import { TaskListItemComponent } from './tasks/task-list-item/task-list-item.component';
@@ -19,7 +19,7 @@ import { SettingComponent } from './setting/setting.component';
 @NgModule({
   declarations: [
     AppComponent,
-    TaskComponent,
+    TaskFormComponent,
     TaskListComponent,
     TaskListItemComponent,
     NavigationBarComponent,
@@ -44,7 +44,7 @@ import { SettingComponent } from './setting/setting.component';
     },
     {
       path: 'task',
-      component: TaskComponent
+      component: TaskFormComponent
     },
     {
       path: 'users',

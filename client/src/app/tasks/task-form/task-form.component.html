@@ -1,0 +1,31 @@
+<div class="container">
+    <h1>New Task</h1>
+    <form (submit)="submitTask()" name="task">
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Title </label>
+            <input class="col-10 form-control" type="text" [(ngModel)]="task.title" name="title" />
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Description </label>
+            <input class="col-10 form-control" type="text" [(ngModel)]="task.description" name="description" />
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Start Date </label>
+            <input class="col-10 form-control" type="date" [(ngModel)]="task.startDate" name="startDate" />
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">End Date</label>
+            <input class="col-10 form-control" type="date" [(ngModel)]="task.endDate" name="endDate" />
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Assigne</label>
+            <input class="col-10 form-control" type="number" [(ngModel)]="task.assigneId" name="assegne">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Create</button>
+    </form>
+</div>
+
+
+<!--<button *ngIf="!editing" type="submit" class="btn btn-primary btn-block">Add</button>
+                <button *ngIf="editing" type="submit" class="btn btn-warning btn-block">Update</button>
+            </div>-->
