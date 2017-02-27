@@ -34,29 +34,33 @@ import { SettingComponent } from './setting/setting.component';
     FormsModule,
     HttpModule,
     RouterModule.forRoot([{
-      path: '',
-      redirectTo: '/tasks',
-      pathMatch: 'full'
-    },
-    {
-      path: 'tasks',
-      component: TaskListComponent
-    },
-    {
-      path: 'task',
-      component: TaskFormComponent
-    },
-    {
-      path: 'users',
-      component: UserListComponent
-    },
-    {
-      path: 'settings',
-      component: SettingComponent
-    }
+        path: '',
+        redirectTo: '/tasks',
+        pathMatch: 'full'
+      },
+      {
+        path: 'tasks',
+        component: TaskListComponent
+      },
+      {
+        path: 'task',
+        component: TaskFormComponent
+      },
+      {
+        path: 'task/:id',
+        component: TaskFormComponent
+      },
+      {
+        path: 'users',
+        component: UserListComponent
+      },
+      {
+        path: 'settings',
+        component: SettingComponent
+      }
     ])
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

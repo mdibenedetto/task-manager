@@ -10,6 +10,7 @@ import { Observable } from 'rxjs'
 export class TaskListComponent implements OnInit {
   tasks: Task[];
   selectedRow: number = -1;
+  selectedId: number = -1;
   constructor(private taskService: TaskService) {}
 
   ngOnInit() {
@@ -23,11 +24,12 @@ export class TaskListComponent implements OnInit {
           this.tasks = tasks;
         },
         error => {
-          console.error(error)
+          console.error(`Error Server: ${error}`);
         });
   }
 
   setSelectedRow(index) {
+    this.selectedId = this.tasks[index]._id;
     this.selectedRow = (index === this.selectedRow) ? -1 : index;
   }
 }

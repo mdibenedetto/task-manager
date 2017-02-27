@@ -8,6 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TaskListToolbarComponent implements OnInit {
   @Input() selectedRow: number = -1;
+  @Input() selectedId: number = -1;
+  
+  
   constructor() {}
 
   ngOnInit() {}
