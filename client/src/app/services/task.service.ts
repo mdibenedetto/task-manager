@@ -35,11 +35,8 @@ import { Task } from '../models/models';
         taskBody
       }, options)
       .map((res: Response) => {
-        console.log(res)
-
-
         res.json();
-      }) 
+      })
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
   }
@@ -59,13 +56,10 @@ import { Task } from '../models/models';
   //     .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
   // }
 
-  // // Delete a comment
-  // removeComment(id: string): Observable < Comment[] > {
-  //   return this.http.delete(`${this.commentsUrl}/${id}`) // ...using put request
-  //     .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
-  //     .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
-  // }
 
-
-
+  removeTask(id: string | number): Observable < Task[] > {
+    return this.http.delete(`${this.BASE_URL}/${id}`)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+  }
 }
