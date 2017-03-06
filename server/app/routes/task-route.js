@@ -38,24 +38,13 @@ function load(router) {
             Task.findById(req.params._id, function(err, task) {
                 err && res.send(err);
                 setTask(req, task);
-
-
-                // task.title = req.body.title;
-                // task.description = req.body.description;
-                // task.endDate = req.body.endDate;
-
-                err && res.send(err);
-                res.json({
-                    task: task,
-                    message: 'Task updated!'
+                task.save(function(err) {
+                    err && res.send(err);
+                    res.json({
+                        task: task,
+                        message: 'Task updated!'
+                    });
                 });
-                // Task.findById(req.params._id, function (err, task) {
-                //     err && res.send(err);
-                //     res.json({
-                //         message: 'Task updated!',
-                //         task: task
-                //     });
-                // });
             });
 
         })

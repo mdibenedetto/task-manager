@@ -17,8 +17,7 @@ export class TaskListComponent implements OnInit {
     this.searchTasks();
   }
 
-  searchTasks() {
-     console.log('searchTasks 2')
+  searchTasks() { 
     this.taskService.getTasks()
       .subscribe(
         tasks => {

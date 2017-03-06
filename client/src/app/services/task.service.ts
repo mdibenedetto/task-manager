@@ -16,13 +16,18 @@ import { Task } from '../models/models';
     });
   }
 
+  findTask(id: string): Observable < Task > { 
+    return this.http.get(`${this.BASE_URL}/${id}`)
+      .map((res: Response) =>   res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
   getTasks(): Observable < Task[] > {
     return this.http.get(this.BASE_URL)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  addTask(taskBody: Task) {
+  addTask(taskBody:   Task   ) {
     let bodyString = JSON.stringify(taskBody); // Stringify payload
     let headers = new Headers({
       'Content-Type': 'application/json'
@@ -41,20 +46,19 @@ import { Task } from '../models/models';
 
   }
 
-  // // Update a comment
-  // updateComment(body: Object): Observable < Comment[] > {
-  //   let bodyString = JSON.stringify(body); // Stringify payload
-  //   let headers = new Headers({
-  //     'Content-Type': 'application/json'
-  //   }); // ... Set content type to JSON
-  //   let options = new RequestOptions({
-  //     headers: headers
-  //   }); // Create a request option
-
-  //   return this.http.put(`${this.commentsUrl}/${body['id']}`, body, options) // ...using put request
-  //     .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
-  //     .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
-  // }
+  // Update a comment
+  updateTask(body: Object): Observable < Comment[] > {
+    let bodyString = JSON.stringify(body); // Stringify payload
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    let options = new RequestOptions({
+      headers: headers
+    });
+    return this.http.put(`${this.BASE_URL}/${body['_id']}`, body, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
 
 
   removeTask(id: string | number): Observable < Task[] > {
