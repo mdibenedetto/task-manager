@@ -1,7 +1,7 @@
 'use strict';
-
+var config = require('./config');
 var dbmanager = require('./app/common/dbmanager');
-dbmanager.load();
+dbmanager.load(config);
 
 var express = require('express');
 var app = express();
@@ -44,7 +44,6 @@ routeTask.load(router);
 app.use('/api', router);
 // =============================================================================
 // START THE SERVER
-// =============================================================================
-var port = process.env.PORT || 8081;
-app.listen(port);
-console.log('Magic happens on port ' + port + '...');
+// =============================================================================  
+app.listen(config.port);
+console.log('Magic happens on port ' + config.port + '...');
