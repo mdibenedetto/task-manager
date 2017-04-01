@@ -1,0 +1,36 @@
+In this chapter, we will learn how to delete a document using MongoDB.
+
+The remove() Method
+MongoDB's remove() method is used to remove a document from the collection. remove() method accepts two parameters. One is deletion criteria and second is justOne flag.
+
+deletion criteria − (Optional) deletion criteria according to documents will be removed.
+
+justOne − (Optional) if set to true or 1, then remove only one document.
+
+Syntax
+Basic syntax of remove() method is as follows −
+
+>db.COLLECTION_NAME.remove(DELLETION_CRITTERIA)
+Example
+Consider the mycol collection has the following data.
+
+{ "_id" : ObjectId(5983548781331adf45ec5), "title":"MongoDB Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec6), "title":"NoSQL Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec7), "title":"Tutorials Point Overview"}
+Following example will remove all the documents whose title is 'MongoDB Overview'.
+
+>db.mycol.remove({'title':'MongoDB Overview'})
+>db.mycol.find()
+{ "_id" : ObjectId(5983548781331adf45ec6), "title":"NoSQL Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec7), "title":"Tutorials Point Overview"}
+>
+Remove Only One
+If there are multiple records and you want to delete only the first record, then set justOne parameter in remove() method.
+
+>db.COLLECTION_NAME.remove(DELETION_CRITERIA,1)
+Remove All Documents
+If you don't specify deletion criteria, then MongoDB will delete whole documents from the collection. This is equivalent of SQL's truncate command.
+
+>db.mycol.remove()
+>db.mycol.find()
+>
