@@ -5,8 +5,8 @@ https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4
         - https://docs.mongodb.com/manual/mongo/
         - sudo mkdir -p /data/db
         - do: cd {mongoFolder}/ 
-        - Firstly run: ./bin/mongod 
-        - Secondly run: ./bin/mongo
+        - Firstly run: ./bin/mongod  with admin privilege
+        - Secondly run: ./bin/mongo with admin privilege. In this instance you can run MONGO INSTRCTIONSUS 
         - Connect to db test by shell: mongo ds131729.mlab.com:31729/node-db-test -u node -p node
         - Tips: if you have problem of connection try to update [mongoose] with latest version
    - download PostMan
