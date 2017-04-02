@@ -1,19 +1,19 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NavigationBarComponent } from './navigation-bar.component';
 
 describe('NavigationBarComponent', () => {
   let component: NavigationBarComponent;
-  let fixture: ComponentFixture<NavigationBarComponent>;
+  let fixture: ComponentFixture < NavigationBarComponent > ;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavigationBarComponent ]
-    })
-    .compileComponents();
+        declarations: [NavigationBarComponent],
+        schemas: [NO_ERRORS_SCHEMA]
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {

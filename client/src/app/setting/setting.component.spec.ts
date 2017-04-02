@@ -2,18 +2,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-
 import { SettingComponent } from './setting.component';
 
 describe('SettingComponent', () => {
   let component: SettingComponent;
-  let fixture: ComponentFixture<SettingComponent>;
+  let fixture: ComponentFixture < SettingComponent > ;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SettingComponent ]
-    })
-    .compileComponents();
+        declarations: [SettingComponent] 
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {

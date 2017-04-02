@@ -1,16 +1,18 @@
+import { CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TaskListToolbarComponent } from './task-list-toolbar.component';
+import { Component, Output, Input, EventEmitter } from '@angular/core';
 
 describe('TaskListToolbarComponent', () => {
   let component: TaskListToolbarComponent;
-  let fixture: ComponentFixture<TaskListToolbarComponent>;
+  let fixture: ComponentFixture < TaskListToolbarComponent > ;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TaskListToolbarComponent ]
-    })
-    .compileComponents();
+        declarations: [TaskListToolbarComponent],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {

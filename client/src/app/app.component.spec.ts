@@ -2,6 +2,7 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -9,6 +10,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      schemas:[CUSTOM_ELEMENTS_SCHEMA]
     });
     TestBed.compileComponents();
   });

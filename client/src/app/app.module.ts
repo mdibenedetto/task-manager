@@ -1,7 +1,7 @@
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
@@ -29,7 +29,6 @@ import { SettingComponent } from './setting/setting.component';
     TaskListToolbarComponent
   ],
   imports: [
-    // NgbModule,
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -61,6 +60,7 @@ import { SettingComponent } from './setting/setting.component';
     ])
   ],
   providers: [TaskService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class AppModule {}
