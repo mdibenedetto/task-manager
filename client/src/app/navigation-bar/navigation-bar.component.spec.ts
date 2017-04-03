@@ -1,5 +1,8 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+ 
+
+// import { RouterModule, RouterLink,RouterLinkActive ,RouterOutlet } from '@angular/router';
+import { async, ComponentFixture, TestBed ,} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NavigationBarComponent } from './navigation-bar.component';
@@ -9,7 +12,8 @@ describe('NavigationBarComponent', () => {
   let fixture: ComponentFixture < NavigationBarComponent > ;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
+    TestBed.configureTestingModule({ 
+      // imports:[RouterModule],
         declarations: [NavigationBarComponent],
         schemas: [NO_ERRORS_SCHEMA]
       })
