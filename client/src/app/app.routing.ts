@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { TaskFormComponent } from './tasks/task-form/task-form.component';
 import { TaskListComponent } from './tasks/task-list/task-list.component';
-import { TaskListToolbarComponent } from './tasks/task-list-toolbar/task-list-toolbar.component';
+// import { TaskListToolbarComponent } from './tasks/task-list-toolbar/task-list-toolbar.component';
 import { TaskListItemComponent } from './tasks/task-list-item/task-list-item.component';
 import { TaskService } from './services/task.service';
 

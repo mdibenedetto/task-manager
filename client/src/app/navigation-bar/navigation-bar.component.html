@@ -1,11 +1,45 @@
 <nav class="navbar">
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/tasks"> Tasks list</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/task">New Tasks</a>
-        </li>
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" [routerLinkActive]="['active']" routerLink="/tasks"> Tasks list</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLinkActive]="['active']" routerLink="/task">New Tasks</a>
+    </li>
+  </ul>
+    <ul class="nav navbar-nav ml-auto">
+      <li no-ngIf="authService.isLoggedIn()">
+        <a>Welcome "{{" authService.currentUser.userName </a>
+      </li>
+      <li>
+        <a>Show Messages</a>
+      </li>
+      <li no-ngIf="!authService.isLoggedIn()">
+        <a [routerLink]="['/login']">Log In</a>
+      </li>
+      <li no-ngIf="authService.isLoggedIn()">
+        <a (click)="logOut()">Log Out</a>
+      </li>
     </ul>
+  <div>
+
+    <!--<ul class="nav navbar-nav ml-auto">
+      <li no-ngIf="authService.isLoggedIn()">
+        <a>Welcome "{{" authService.currentUser.userName </a>
+      </li>
+      <li>
+        <a>Show Messages</a>
+      </li>
+      <li no-ngIf="!authService.isLoggedIn()">
+        <a [routerLink]="['/login']">Log In</a>
+      </li>
+      <li no-ngIf="authService.isLoggedIn()">
+        <a (click)="logOut()">Log Out</a>
+      </li>
+    </ul>-->
+  </div>
 </nav>
-<router-outlet></router-outlet>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
