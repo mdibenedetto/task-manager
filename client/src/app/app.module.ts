@@ -6,25 +6,27 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { TaskService } from './services/task.service';
-import { TaskListToolbarComponent } from './tasks/task-list-toolbar/task-list-toolbar.component';
+import { TasksModule } from './tasks/tasks.module'
 
+// import { TaskService } from './services/task.service';
+// import { TaskListToolbarComponent } from './tasks/task-list-toolbar/task-list-toolbar.component';
+ 
 import { RouteDefinitions, AppRoutingModule, routingComponents } from './app.routing';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavigationBarComponent,
-    TaskListToolbarComponent,
-    routingComponents
-  ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TasksModule,
   ],
-  providers: [TaskService],
+  declarations: [
+    AppComponent,
+    NavigationBarComponent,
+    routingComponents
+  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
