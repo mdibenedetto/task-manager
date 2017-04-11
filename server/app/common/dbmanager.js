@@ -1,7 +1,7 @@
  function load(config) {
     var mongoose = require('mongoose');
-    // mongoose.connect('mongodb://node:node@ds131729.mlab.com:31729/node-db-test');
-    mongoose.connect(config.database);
+    mongoose.connect('mongodb://node:node@ds131729.mlab.com:31729/node-db-test');
+    // mongoose.connect(config.database);
 
 
     var conn = mongoose.connection;

@@ -1,23 +1,13 @@
 import { Route, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
-import { UserComponent } from './user/user/user.component';
-import { UserListComponent } from './user/user-list/user-list.component';
-import { SettingComponent } from './setting/setting.component';
 
-export const RouteDefinitions: Route[] = [{
-    path: '',
-    redirectTo: '/tasks',
-    pathMatch: 'full'
-},
-{
-    path: 'users',
-    component: UserListComponent
-},
-{
-    path: 'settings',
-    component: SettingComponent
-}
+export const RouteDefinitions: Route[] = [
+    { path: 'welcome', component: WelcomeComponent },
+    { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+    { path: '**', component: PageNotFoundComponent } 
 ];
 
 @NgModule({
@@ -27,7 +17,5 @@ export const RouteDefinitions: Route[] = [{
 export class AppRoutingModule { }
 
 export const routingComponents = [
-    UserComponent,
-    UserListComponent,
-    SettingComponent
+
 ];
