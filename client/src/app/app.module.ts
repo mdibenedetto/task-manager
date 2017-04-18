@@ -1,5 +1,5 @@
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { RouterModule } from '@angular/router';
+import {  RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';

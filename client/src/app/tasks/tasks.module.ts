@@ -17,13 +17,12 @@ import { TaskListItemComponent } from './task-list-item/task-list-item.component
       {
         path: 'tasks',
         component: TaskListComponent
-      },
-      {
-        path: 'task',
+      }, {
+        path: 'tasks/:id',
         component: TaskFormComponent
-      },
+      },     
       {
-        path: 'task/:id',
+        path: 'tasks/:id/edit',
         component: TaskFormComponent
       },
     ])
@@ -32,7 +31,8 @@ import { TaskListItemComponent } from './task-list-item/task-list-item.component
     TaskListToolbarComponent,
     TaskFormComponent,
     TaskListComponent,
-    TaskListItemComponent,],
+    TaskListItemComponent,
+    TaskFormComponent,],
   providers: [TaskService]
 })
 export class TasksModule { }

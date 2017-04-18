@@ -2,6 +2,9 @@
     <task-list-toolbar class="top-border" [selectedId]="selectedId" (onSearch)="searchTasks($event)" (onDelete)="removeTask($event)"></task-list-toolbar>
 </div>
 <div class="container">
+    <input type="text" [(ngModel)]="listFilter" (change)="searchTasks($event)" placeholder="type task title">
+</div> 
+<div class="container">
     <table class="table table-hover table-striped">
         <!--<colgroup>
         <col class="col-md-1">

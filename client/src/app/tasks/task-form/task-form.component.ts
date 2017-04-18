@@ -12,19 +12,20 @@ import { Observable } from 'rxjs';
   styleUrls: ['./task-form.component.css']
 })
 export class TaskFormComponent implements OnInit {
-  @Input() task = new  Task  ();
+  @Input() task = new Task();
   editing = false;
   id = -1;
 
-  constructor(private taskService: TaskService, private activatedRoute: ActivatedRoute) {}
+  constructor(private taskService: TaskService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     // subscribe to router event
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.editing = true;
-
+    // var paramId = this.activatedRoute.snapshot.params['id'];
+     this.activatedRoute.params.subscribe((params: Params) => {
+      this.editing = (+params['id']) != 0;
       this.taskService.findTask(params['id']).subscribe(task =>
-        this.task = task || new  Task  ());
+        this.task = task || new Task());
     });
   }
 

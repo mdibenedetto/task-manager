@@ -2,10 +2,10 @@
     <li class="nav-item">
         <a class="nav-link" (click)="search()" href="javascript:void(0)">Search Tasks</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" [class.disabled]="selectedRow == -1" (click)="delete()" href="javascript:void(0)">Delete Task</a>
+    <li class="nav-item"> 
+        <a class="nav-link" [class.disabled]="selectedId == -1" (click)="delete()" href="javascript:void(0)">Delete Task</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link " [class.disabled]="selectedRow == - 1" [routerLink]="['/task',selectedId]" href="javascript:void(0)">Update Task</a>
+        <a class="nav-link " [class.disabled]="selectedId == -1" [routerLink]="['/tasks',selectedId,'edit']" href="javascript:void(0)">Update Task</a>
     </li>
 </ul>
