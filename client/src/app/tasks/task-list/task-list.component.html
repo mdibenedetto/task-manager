@@ -23,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let task of tasks;let i = index;" (click)="setSelectedRow(i)" [class.active]="i == selectedRow">
+            <tr *ngFor="let task of tasks | taskFilter:listFilter;let i = index;" (click)="setSelectedRow(i)" [class.active]="i == selectedRow">
                 <th scope="row">{{i+1}}</th>
                 <td>{{task?.title}}</td>
                 <td>{{task?.description}}</td>

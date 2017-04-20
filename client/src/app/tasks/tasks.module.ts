@@ -7,6 +7,7 @@ import { TaskListToolbarComponent } from './task-list-toolbar/task-list-toolbar.
 import { TaskFormComponent } from './task-form/task-form.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TaskListItemComponent } from './task-list-item/task-list-item.component';
+import { TaskFilterPipe } from './task-filter/task-filter.pipe';
  
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { TaskListItemComponent } from './task-list-item/task-list-item.component
     TaskFormComponent,
     TaskListComponent,
     TaskListItemComponent,
-    TaskFormComponent,],
+    TaskFormComponent,
+    TaskFilterPipe,],
   providers: [TaskService]
 })
 export class TasksModule { }
