@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { TaskFormComponent } from './task-form.component';
+import { TaskFormComponent } from './task-edit.component';
 
 // describe('TaskComponent', () => {
 //   let component: TaskFormComponent;

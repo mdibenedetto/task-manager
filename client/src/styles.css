@@ -1,3 +1,8 @@
-.top-border {
-  border-top: 1px solid #eceeef;
+.navbar {
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
+
+.navbar-light {
+    border-color: #e7e7e7;
 }

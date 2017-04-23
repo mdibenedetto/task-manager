@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject, Observable } from 'rxjs';
-import { Task } from '../models/models';
+import { Task } from '../../models/models';
 
 
 @Injectable() export class TaskService {

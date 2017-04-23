@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Route, RouterModule } from '@angular/router';
-import { TaskService } from '../services/task.service';
+import { TaskService } from './task-service/task.service';
 import { TaskListToolbarComponent } from './task-list-toolbar/task-list-toolbar.component';
-import { TaskFormComponent } from './task-form/task-form.component';
+import { TaskFormComponent } from './task-edit/task-edit.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TaskListItemComponent } from './task-list-item/task-list-item.component';
 import { TaskFilterPipe } from './task-filter/task-filter.pipe';
+import { TaskDetailComponent } from './task-detail/task-detail.component';
  
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import { TaskFilterPipe } from './task-filter/task-filter.pipe';
         component: TaskListComponent
       }, {
         path: 'tasks/:id',
-        component: TaskFormComponent
+        component: TaskDetailComponent
       },     
       {
         path: 'tasks/:id/edit',
@@ -34,7 +35,8 @@ import { TaskFilterPipe } from './task-filter/task-filter.pipe';
     TaskListComponent,
     TaskListItemComponent,
     TaskFormComponent,
-    TaskFilterPipe,],
+    TaskFilterPipe,
+    TaskDetailComponent,],
   providers: [TaskService]
 })
 export class TasksModule { }

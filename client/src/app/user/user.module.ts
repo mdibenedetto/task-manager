@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Route, RouterModule } from '@angular/router';
-import { UserComponent } from '../user/user/user.component';
-import { UserListComponent } from '../user/user-list/user-list.component';
+import { UserComponent } from './user/user.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth-service/auth.service';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild([
-      {
-        path: 'users',
-        component: UserListComponent
-      }
-    ])
+    RouterModule.forChild([{
+      path: 'users',
+      component: UserListComponent
+    }, {
+      path: 'login',
+      component: LoginComponent
+    }])
   ],
-  declarations: [UserComponent, UserListComponent]
+  declarations: [UserComponent, UserListComponent, LoginComponent],
+  providers:[AuthService]
 })
-export class UserModule { }
+export class UserModule {}

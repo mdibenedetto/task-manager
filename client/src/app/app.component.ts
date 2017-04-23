@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { TaskFormComponent } from './tasks/task-form/task-form.component';
-import { TaskListComponent } from './tasks/task-list/task-list.component';
-import { TaskListItemComponent } from './tasks/task-list-item/task-list-item.component';
+import { Router } from '@angular/router';
+import { AuthService } from './user/auth-service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +8,15 @@ import { TaskListItemComponent } from './tasks/task-list-item/task-list-item.com
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Task Manager!';
+  constructor(private authService: AuthService, private router: Router) {}
+
+  logIn() {
+    this.router.navigate(['welcolme']);
+  }
+
+  logOut(): void {
+    this.authService.logout();
+    this.router.navigateByUrl('/welcome');
+  }
+
 }

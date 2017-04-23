@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../../services/task.service';
+import { TaskService } from '../task-service/task.service';
 import { Task } from '../../models/models';
 import { Observable } from 'rxjs'
 @Component({
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs'
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
+  pageTitle: string = 'Task List';
   tasks: Task[];
   selectedRow: number = -1;
   selectedId: number = -1;

@@ -1,45 +1,65 @@
-<div class="container">
-    <task-list-toolbar class="top-border" [selectedId]="selectedId" (onSearch)="searchTasks($event)" (onDelete)="removeTask($event)"></task-list-toolbar>
-</div>
-<div class="container">
-    <input type="text" [(ngModel)]="listFilter" (change)="searchTasks($event)" placeholder="type task title">
-</div> 
-<div class="container">
-    <table class="table table-hover table-striped">
-        <!--<colgroup>
+<div class="card card-default">
+    <div class="card-header">
+        <div class="container">
+            {{pageTitle}}
+        </div>
+        <div class="container">
+            <task-list-toolbar [selectedId]="selectedId" (onSearch)="searchTasks($event)" (onDelete)="removeTask($event)"></task-list-toolbar>
+        </div>
+    </div>
+    <div class="card-block">
+        <div class="card-block row">
+            <div class="col-md-2">Filter by:</div>
+            <div class="col-md-4">
+                <input type="text" [(ngModel)]="listFilter" (change)="searchTasks($event)" placeholder="type task title">
+            </div>
+        </div>
+        <div class="container">
+            <table class="table table-hover table-striped">
+                <!--<colgroup>
         <col class="col-md-1">
         <col class="col-md-3">
         <col class="col-md-4">
         <col class="col-md-2">
         <col class="col-md-2">
     </colgroup>-->
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Start date</th>
-                <th>End date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let task of tasks | taskFilter:listFilter;let i = index;" (click)="setSelectedRow(i)" [class.active]="i == selectedRow">
-                <th scope="row">{{i+1}}</th>
-                <td>{{task?.title}}</td>
-                <td>{{task?.description}}</td>
-                <td>{{task?.startDate| date: 'dd/MM/yyyy'}}</td>
-                <td>{{task?.endDate| date: 'dd/MM/yyyy'}}</td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="5">
-                    total tasks: {{tasks?.length}}
-                </td>
-            </tr>
-        </tfoot>
-    </table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Start date</th>
+                        <th>End date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let task of tasks | taskFilter:listFilter;let i = index;" (click)="setSelectedRow(i)" [class.active]="i == selectedRow">
+                        <th scope="row">{{i+1}}</th>
+                        <td><a [routerLink]="['/tasks',task._id]">{{task?.title}}</a></td>
+                        <td>{{task?.description}}</td>
+                        <td>{{task?.startDate| date: 'dd/MM/yyyy'}}</td>
+                        <td>{{task?.endDate| date: 'dd/MM/yyyy'}}</td>
+                        <td>
+                            <a class="btn btn-primary" [routerLink]="['/tasks',task._id,'edit']">Edit</a>
+                        </td>
+                    </tr>
+                </tbody>
+                <!--<tfoot>
+                    <tr>
+                        <td colspan="5">
+                            total tasks: {{tasks?.length}}
+                        </td>
+                    </tr>
+                </tfoot>-->
+            </table>
+        </div>
+    </div>
+    <div class="card-footer"> total tasks: {{tasks?.length}}</div>
 </div>
+
+
+
 <!--<div class="container task-list">
   <div class="row header">
     <td>Title</div>

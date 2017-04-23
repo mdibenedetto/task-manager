@@ -15,8 +15,4 @@ export const RouteDefinitions: Route[] = [
     imports: [RouterModule.forRoot(RouteDefinitions)],
     exports: [RouterModule]
 })
-export class AppRoutingModule { }
-
-export const routingComponents = [
-
-];
+export class AppRoutingModule { } 
