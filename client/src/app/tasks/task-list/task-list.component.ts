@@ -13,7 +13,7 @@ export class TaskListComponent implements OnInit {
   selectedRow: number = -1;
   selectedId: number = -1;
   listFilter: string = '';
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService) {}
 
   ngOnInit() {
     this.searchTasks();
@@ -23,17 +23,18 @@ export class TaskListComponent implements OnInit {
     let filterBy = 'title=' + this.listFilter;
     this.taskService.getTasks(filterBy)
       .subscribe(
-      tasks => {
-        this.tasks = tasks;
-      },
-      error => {
-        console.error(`Error Server: ${error}`);
-      });
+        tasks => {
+          this.tasks = tasks;
+        },
+        error => {
+          console.error(`Error Server: ${error}`);
+        });
   }
 
   removeTask(id) {
-    this.taskService.removeTask(this.selectedId).subscribe(
-      x => {
+    this.taskService.removeTask(id).subscribe(
+      data => {
+        console.log(data);
         this.searchTasks();
       },
       err => {

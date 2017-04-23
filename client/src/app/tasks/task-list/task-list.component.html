@@ -1,17 +1,19 @@
 <div class="card card-default">
     <div class="card-header">
         <div class="container">
-            {{pageTitle}}
-        </div>
-        <div class="container">
-            <task-list-toolbar [selectedId]="selectedId" (onSearch)="searchTasks($event)" (onDelete)="removeTask($event)"></task-list-toolbar>
+            {{pageTitle}} - total tasks: {{tasks?.length}}
         </div>
     </div>
     <div class="card-block">
-        <div class="card-block row">
-            <div class="col-md-2">Filter by:</div>
-            <div class="col-md-4">
-                <input type="text" [(ngModel)]="listFilter" (change)="searchTasks($event)" placeholder="type task title">
+        <div class="card-block">
+            <div class="form-group row">
+                <button class="col-2 btn btn-primary" (click)="searchTasks($event)">
+                        Refresh 
+                </button>
+                <label class="col-2 col-form-label">Filter by:</label>
+                <div class="col-3">
+                    <input type="text" class="form-control" [(ngModel)]="listFilter" (change)="searchTasks($event)" placeholder="type task title">
+                </div>
             </div>
         </div>
         <div class="container">
@@ -31,6 +33,7 @@
                         <th>Start date</th>
                         <th>End date</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +45,9 @@
                         <td>{{task?.endDate| date: 'dd/MM/yyyy'}}</td>
                         <td>
                             <a class="btn btn-primary" [routerLink]="['/tasks',task._id,'edit']">Edit</a>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" (click)="removeTask(task._id)">Delete</button>
                         </td>
                     </tr>
                 </tbody>

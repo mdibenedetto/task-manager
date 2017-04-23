@@ -17,6 +17,7 @@ export class TaskFormComponent implements OnInit {
   id = -1;
 
   constructor(private taskService: TaskService,
+    private router: Router,
     private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
@@ -41,12 +42,15 @@ export class TaskFormComponent implements OnInit {
     if (!this.editing) {
       this.taskService.addTask(this.task)
         .subscribe(data => {
-          console.log(data)
+          console.log(data);
+          this.router.navigate(['tasks']);
+
         });
     } else {
       this.taskService.updateTask(this.task)
         .subscribe(data => {
-          console.log(data)
+          console.log(data);
+          this.router.navigate(['tasks']);
         });
     }
   }
@@ -55,8 +59,8 @@ export class TaskFormComponent implements OnInit {
     if (confirm(`Really delete the product: ${this.task.title}?`)) {
       this.taskService.removeTask(this.task._id).subscribe(data => {
         console.log(data)
+        this.router.navigate(['tasks']);
       });
     }
-
   }
 }

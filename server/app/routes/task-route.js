@@ -16,6 +16,7 @@ function load(router) {
                 err && res.send(err);
                 res.json({
                     status: 'ok',
+                    task: task,
                     message: 'Task created!'
                 });
             });
