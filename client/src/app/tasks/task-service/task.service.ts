@@ -29,7 +29,7 @@ import { Task } from '../../models/models';
 
     return this.http.get(this.BASE_URL)
       .map((res: Response) => res.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    .catch(this.raiseServerError); 
   }
 
   addTask(taskBody: Task) {
@@ -47,9 +47,9 @@ import { Task } from '../../models/models';
 
   }
 
-  // Update a comment
+   
   updateTask(body: Object): Observable < Comment[] > {
-    let bodyString = JSON.stringify(body); // Stringify payload
+    let bodyString = JSON.stringify(body);  
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -65,6 +65,16 @@ import { Task } from '../../models/models';
   removeTask(id: string | number): Observable < Task[] > {
     return this.http.delete(`${this.BASE_URL}/${id}`)
       .map((res: Response) => res.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+      .catch(this.raiseServerError); 
+  }
+
+  raiseServerError(error): any {
+    var message = error.json().error || 'Server error';
+    alert(`${message}: 
+          NODE server it might be stopped.
+          If it is stopped run the command 
+          "node server" in a commandline.
+    `);
+    return Observable.throw(message);
   }
 }

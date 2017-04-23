@@ -1,42 +1,38 @@
-<div class="panel panel-primary">
-    <div class="panel-heading" style="font-size:large">
-        pageTitle + ": " + product.productName
-
+<div class="card card-default">
+    <div class="card-header">
+        {{ pageTitle + ": " + task?.title}}
     </div>
+    <div class="card-block">
 
-    <div class="panel-body">
         <div class="row">
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-3">Name:</div>
-                    <div class="col-md-6">product.productName</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">Code:</div>
-                    <div class="col-md-6">product.productCode</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">Description:</div>
-                    <div class="col-md-6">product.description</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">Availability:</div>
-                    <div class="col-md-6">product.releaseDate</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">Price:</div>
-                    <div class="col-md-6">product.price|currency:"USD":true</div>
-                </div>
-            </div>
+            <div class="col-md-2">Title:</div>
+            <div class="col-md-6">{{task?.title}}</div>
         </div>
-        <div class="has-error" *ngIf="errorMessage">errorMessage</div>
-    </div>
+        <div class="row">
+            <div class="col-md-2">Description:</div>
+            <div class="col-md-6">{{task?.description}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Start Date:</div>
+            <div class="col-md-6">{{task?.startDate| date:'mediumDate'}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">End Date:</div>
+            <div class="col-md-6">{{task?.endDate| date:'mediumDate'}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Assigne:</div>
+            <div class="col-md-6">{{task?.assegne}}</div>
+        </div>
 
-    <div class="panel-footer">
-        <a class="btn btn-default" [routerLink]="['/products']" [preserveQueryParams]="true">
+    </div>
+    <div class="card-footer">
+        <a class="btn btn-secondary" [routerLink]="['/tasks']">
+            <!--[preserveQueryParams]="true"-->
             <i class="glyphicon glyphicon-chevron-left"></i> Back
         </a>
-        <a class="btn btn-primary" style="width:80px;margin-left:10px" [routerLink]="['/products', product.id, 'edit']">
+        <a class="btn btn-primary" [routerLink]="['/tasks',task._id, 'edit']" style="width:80px;margin-left:10px">
+            
             Edit
         </a>
     </div>
