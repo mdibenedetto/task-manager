@@ -8,10 +8,20 @@ var app = express();
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 var bodyParser = require('body-parser');
+// =============================================================================
+//SESSION
+// =============================================================================
+var session = require('express-session');
+
+//initialize session
+app.use(session({
+    secret: 'ssshhhhh'
+}));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(bodyParser.json());
+
 
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -20,9 +30,12 @@ app.use(function(req, res, next) {
     next();
 });
 //run static resource
-var __projectRoot = __dirname + '/../client/dist/';
-app.use(express.static(__projectRoot));
+// var __projectRoot = __dirname + '/../client/dist/';
+// app.use(express.static(__projectRoot));
 app.use(express.static(__dirname));
+
+
+
 
 // =============================================================================
 // ROUTES FOR OUR API
@@ -44,6 +57,10 @@ router.get('/', function(req, res) {
 //TASK ROUTER
 var routeTask = require('./app/routes/task-route.js');
 routeTask.load(router);
+//USER ROUTER
+var routeUser = require('./app/routes/user-route.js');
+routeUser.load(router);
+
 // REGISTER OUR ROUTES
 // all of our routes will be prefixed with /api
 app.use('/api', router);
