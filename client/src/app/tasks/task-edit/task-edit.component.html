@@ -1,61 +1,63 @@
 <div class="card card-default">
-    <div class="card-header">
-        {{pageTitle}}
-    </div>
-    <div class="card-block">
-        <div class="container">
-            <form (submit)="submitTask()" name="task">
-                <div class="form-group row">
-                    <label class="col-2 col-form-label">Title </label>
-                    <input class="col-10 form-control" type="text" [(ngModel)]="task.title" name="title" />
-                </div>
-                <div class="form-group row">
-                    <label class="col-2 col-form-label">Description </label>
-                    <input class="col-10 form-control" type="text" [(ngModel)]="task.description" name="description" />
-                </div>
-                <div class="form-group row">
-                    <label class="col-2 col-form-label">Start Date </label>
-                    <input class="col-10 form-control" type="datetime" [(ngModel)]="task.startDate" name="startDate" />
-                </div>
-                <div class="form-group row">
-                    <label class="col-2 col-form-label">End Date</label>
-                    <input class="col-10 form-control" type="datetime" [(ngModel)]="task.endDate" name="endDate" />
-                </div>
-                <div class="form-group row">
-                    <label class="col-2 col-form-label">Assigne</label>
-                    <input class="col-10 form-control" type="number" [(ngModel)]="task.assigneId" name="assegne">
-                </div>
-            </form>
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+  <div class="card-block">
+    <div class="container">
+      <form name="task" #form="ngForm">
+        <div class="form-group row" [ngClass]="{'has-danger': title.invalid && title.touched && title.dirty}">
+          <label class="col-2 col-form-label">Title </label>  
+            <input class="col-10 form-control" type="text" required [(ngModel)]="task.title" #title="ngModel" name="title"  />
+            <span class="col-10 offset-2 form-text"  *ngIf="title.invalid && title.touched && title.dirty" >Title is required</span>
         </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Description </label>
+          <input class="col-10 form-control" type="text" [(ngModel)]="task.description" name="description" />
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Start Date </label>
+          <input class="col-10 form-control" type="datetime" [(ngModel)]="task.startDate" name="startDate" />
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">End Date</label>
+          <input class="col-10 form-control" type="datetime" [(ngModel)]="task.endDate" name="endDate" />
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Assigne</label>
+          <input class="col-10 form-control" type="number" [(ngModel)]="task.assigneId" name="assegne">
+        </div>
+      </form>
     </div>
-    <div class="card-footer">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-2">
-                <span>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-2">
+        <span>
                     <button class="btn btn-primary"
                             type="button"
                             style="width:80px;margin-right:10px"
                             (click)="save()"
+                             [disabled]="form.invalid"
                             >
                         Save
                     </button>
-                            <!--[disabled]="!isValid()"-->
+                           
                     
                 </span>
-                <span>
+        <span>
                     <a class="btn btn-secondary"
                         [routerLink]="['/tasks']">
                         Cancel
                     </a>
                 </span>
-                <span *ngIf="task._id > 0">
+        <span *ngIf="task._id > 0">
                     <a class="btn btn-secondary"
                         (click)="delete()">
                         Delete
                     </a>
                 </span>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 
 </div>

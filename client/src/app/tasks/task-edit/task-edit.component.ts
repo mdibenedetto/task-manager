@@ -29,7 +29,7 @@ export class TaskFormComponent implements OnInit {
       this.taskService.findTask(params['id']).subscribe(task => {
         this.task = task || new Task();
 
-        if (this.task._id === 0) {
+        if (!this.task._id ) {
           this.pageTitle = 'Add Task';
         } else {
           this.pageTitle = `Edit Task: ${this.task.title}`;
@@ -39,24 +39,22 @@ export class TaskFormComponent implements OnInit {
   }
 
   save() {
+    let subscriber$:Observable<any> =null;
     if (!this.editing) {
-      this.taskService.addTask(this.task)
-        .subscribe(data => {
-          console.log(data);
-          this.router.navigate(['tasks']);
-
-        });
+      subscriber$=this.taskService.addTask(this.task); 
     } else {
-      this.taskService.updateTask(this.task)
-        .subscribe(data => {
+      subscriber$ = this.taskService.updateTask(this.task); 
+    }
+    subscriber$.subscribe(
+      data => {
           console.log(data);
           this.router.navigate(['tasks']);
-        });
-    }
+        }
+    );
   }
 
   delete() {
-    if (confirm(`Really delete the product: ${this.task.title}?`)) {
+    if (confirm(`Really delete the task: ${this.task.title}?`)) {
       this.taskService.removeTask(this.task._id).subscribe(data => {
         console.log(data)
         this.router.navigate(['tasks']);

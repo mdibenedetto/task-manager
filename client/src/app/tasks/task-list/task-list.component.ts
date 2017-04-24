@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TaskService } from '../task-service/task.service';
 import { Task } from '../../models/models';
 import { Observable } from 'rxjs'
@@ -13,22 +14,26 @@ export class TaskListComponent implements OnInit {
   selectedRow: number = -1;
   selectedId: number = -1;
   listFilter: string = '';
-  constructor(private taskService: TaskService) {}
+
+  constructor(private taskService: TaskService, private route: ActivatedRoute)
+  { }
 
   ngOnInit() {
     this.searchTasks();
   }
 
   searchTasks() {
-    let filterBy = 'title=' + this.listFilter;
-    this.taskService.getTasks(filterBy)
+
+    this.taskService.getTasks()
       .subscribe(
-        tasks => {
-          this.tasks = tasks;
-        },
-        error => {
-          console.error(`Error Server: ${error}`);
-        });
+      tasks => {
+        this.tasks = tasks;
+        this.listFilter = this.route.snapshot.queryParams['filterBy'] || '';
+
+      },
+      error => {
+        console.error(`Error Server: ${error}`);
+      });
   }
 
   removeTask(id) {

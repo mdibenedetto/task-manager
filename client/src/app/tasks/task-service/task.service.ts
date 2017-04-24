@@ -24,7 +24,7 @@ import { Task } from '../../models/models';
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
-  getTasks(filterBy): Observable < Task[] > {
+  getTasks(filterBy?:string): Observable < Task[] > {
     var baseUrl = filterBy ? `${this.BASE_URL}?${filterBy}` : this.BASE_URL;
 
     return this.http.get(this.BASE_URL)

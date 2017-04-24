@@ -1,0 +1,17 @@
+├── @angular/animations@4.0.3
+├── @angular/common@4.0.3
+├── @angular/compiler@4.0.3
+├─┬ @angular/compiler-cli@4.0.3  invalid
+│ └─┬ @angular/tsc-wrapped@4.0.3
+│   └── tsickle@0.21.6
+├── @angular/core@4.0.3
+├── @angular/forms@4.0.3
+├── @angular/http@4.0.3
+├── @angular/platform-browser@4.0.3
+├── @angular/platform-browser-dynamic@4.0.3
+├─┬ @angular/platform-server@4.0.3
+│ ├── parse5@3.0.2
+│ └── xhr2@0.1.4
+├── @angular/router@4.0.3
+├── typescript@2.2.2  invalid
+└── UNMET PEER DEPENDENCY zone.js@0.7.8
