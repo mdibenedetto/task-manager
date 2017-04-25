@@ -10,6 +10,7 @@ function load(router) {
     };
     router.route('/tasks')
         .post(function(req, res) {
+            console.log(req.body);
             var task = setTask(req, null);;
 
             task.save(function(err) {

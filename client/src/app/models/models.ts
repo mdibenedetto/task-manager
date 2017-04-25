@@ -6,3 +6,9 @@ export class Task {
   endDate: Date;
   assigneId: number;
 }
+
+export class User {
+  id: number;
+  userName: string;
+  isAdmin: boolean;
+}

@@ -1,4 +1,6 @@
 https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4
+https://codeforgeek.com/2014/09/manage-session-using-node-js-express-4/
+
 
    - download MongoDB: 
         - https://www.mongodb.com/download-center?jmp=docs&_ga=1.168780129.1720011928.1485511740#community
