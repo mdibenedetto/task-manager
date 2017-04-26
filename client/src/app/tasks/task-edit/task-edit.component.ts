@@ -16,7 +16,7 @@ export class TaskFormComponent implements OnInit {
 
   constructor(private taskService: TaskService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -34,7 +34,7 @@ export class TaskFormComponent implements OnInit {
   }
 
   save() {
-    let subscriber$: Observable<any> = null;
+    let subscriber$: Observable < any > = null;
     if (this.task._id === 0) {
       subscriber$ = this.taskService.addTask(this.task);
     } else {
@@ -56,8 +56,11 @@ export class TaskFormComponent implements OnInit {
       });
     }
   }
-  isValid(path: string): boolean {
-    return false;
+  isValid(path: string): boolean { 
+    if(!this.task){
+      return false;
+    }
+    return (!!this.task.title);
   }
   validate(): void {
 

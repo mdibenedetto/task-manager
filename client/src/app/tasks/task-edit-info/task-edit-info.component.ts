@@ -10,8 +10,13 @@ import { Task } from '../../models/models';
 export class TaskEditInfoComponent implements OnInit {
   @ViewChild(NgForm) taskForm: NgForm;
   task: Task;
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {}
 
+  formValuesChage(e) {
+    console.warn(e);
+    console.warn(this.taskForm.invalid);
+    
+  }
   ngOnInit() {
     this.route.parent.data.subscribe(data => {
       this.task = data['task'];
