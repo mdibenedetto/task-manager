@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Task } from '../../models/models';
-import { TaskService } from '../task-service/task.service'
+
 @Component({
   selector: 'task-detail',
   templateUrl: './task-detail.component.html',
@@ -12,15 +12,14 @@ export class TaskDetailComponent implements OnInit {
   task: Task = new Task();
 
   constructor(
-    private route: ActivatedRoute,
-    private taskService: TaskService) {}
+    private route: ActivatedRoute) { }
+
   ngOnInit(): void {
-    // this.task = this.route.snapshot.data['task'];
-    // var paramId = this.activatedRoute.snapshot.params['id'];
-    this.route.params.subscribe((params: Params) => {
-      this.taskService.findTask(params['id']).subscribe(task => {
-        this.task = task || new Task(); 
-      });
-    });
+    this.task = this.route.snapshot.data['task'];
+    if (!this.task._id) {
+      this.pageTitle = 'Add Task';
+    } else {
+      this.pageTitle = `Edit Task: ${this.task.title}`;
+    }
   }
 }

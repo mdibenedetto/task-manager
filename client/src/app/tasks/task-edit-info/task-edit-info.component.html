@@ -1,0 +1,27 @@
+<div class="card-block">
+  <div class="container">
+    <form name="task" #taskForm="ngForm">
+      <div class="form-group row" [ngClass]="{'has-danger': title.invalid && title.touched && title.dirty}">
+        <label class="col-2 col-form-label">Title </label>
+        <input class="col-10 form-control" type="text" required [(ngModel)]="task.title" #title="ngModel" name="title" />
+        <span class="col-10 offset-2 form-text" *ngIf="title.invalid && title.touched && title.dirty">Title is required</span>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Description </label>
+        <input class="col-10 form-control" type="text" [(ngModel)]="task.description" name="description" />
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Start Date </label>
+        <input class="col-10 form-control" type="datetime" [(ngModel)]="task.startDate" name="startDate" />
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">End Date</label>
+        <input class="col-10 form-control" type="datetime" [(ngModel)]="task.endDate" name="endDate" />
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Assigne</label>
+        <input class="col-10 form-control" type="number" [(ngModel)]="task.assigneId" name="assegne">
+      </div>
+    </form>
+  </div>
+</div>

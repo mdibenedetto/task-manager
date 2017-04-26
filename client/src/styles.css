@@ -1,3 +1,15 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
 .navbar {
     margin-bottom: 20px;
     border: 1px solid transparent;
@@ -5,4 +17,51 @@
 
 .navbar-light {
     border-color: #e7e7e7;
+}
+
+.wizard a:last-child {
+    -webkit-border-radius: 0 8px 0px 0;
+    -moz-border-radius: 0 8px 0px 0;
+    border-radius: 0 8px 0px 0;
+}
+ 
+.wizard a {
+    background: #efefef;
+    display: inline-block;
+    margin-right: 5px;
+    min-width: 150px;
+    outline: none;
+    padding: 10px 40px 10px;
+    position: relative;
+    text-decoration: none;
+}
+
+.wizard a:before {
+    width: 0;
+    height: 0;
+    border-top: 20px inset transparent;
+    border-bottom: 20px inset transparent;
+    border-left: 20px solid #fff;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+}
+
+.wizard a:first-child:before,
+.wizard a:last-child:after {
+    border: none;
+}
+
+.wizard a:after {
+    width: 0;
+    height: 0;
+    border-top: 20px inset transparent;
+    border-bottom: 20px inset transparent;
+    border-left: 21px solid #efefef;
+    position: absolute;
+    content: "";
+    top: 0;
+    right: -20px;
+    z-index: 2;
 }

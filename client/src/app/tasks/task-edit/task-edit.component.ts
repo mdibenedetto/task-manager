@@ -12,44 +12,39 @@ import { Observable } from 'rxjs';
 })
 export class TaskFormComponent implements OnInit {
   pageTitle: string = 'Task Edit';
-  @Input() task = new Task();
-  editing = false;
-  id = -1;
+  task: Task;
 
   constructor(private taskService: TaskService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {}
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // subscribe to router event
-    // var paramId = this.activatedRoute.snapshot.params['id'];
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.editing = (+params['id']) != 0;
-
-      this.taskService.findTask(params['id']).subscribe(task => {
-        this.task = task || new Task();
-
-        if (!this.task._id ) {
-          this.pageTitle = 'Add Task';
-        } else {
-          this.pageTitle = `Edit Task: ${this.task.title}`;
-        }
-      });
+    this.route.data.subscribe(data => {
+      this.onTaskRetrieved(data['task']);
     });
   }
 
-  save() {
-    let subscriber$:Observable<any> =null;
-    if (!this.editing) {
-      subscriber$=this.taskService.addTask(this.task); 
+  onTaskRetrieved(task: Task) {
+    this.task = this.route.snapshot.data['task'];
+    if (this.task._id === 0) {
+      this.pageTitle = 'Add Task';
     } else {
-      subscriber$ = this.taskService.updateTask(this.task); 
+      this.pageTitle = `Edit Task: ${this.task.title}`;
+    }
+  }
+
+  save() {
+    let subscriber$: Observable<any> = null;
+    if (this.task._id === 0) {
+      subscriber$ = this.taskService.addTask(this.task);
+    } else {
+      subscriber$ = this.taskService.updateTask(this.task);
     }
     subscriber$.subscribe(
       data => {
-          console.log(data);
-          this.router.navigate(['tasks']);
-        }
+        console.log(data);
+        this.router.navigate(['tasks']);
+      }
     );
   }
 
@@ -60,5 +55,11 @@ export class TaskFormComponent implements OnInit {
         this.router.navigate(['tasks']);
       });
     }
+  }
+  isValid(path: string): boolean {
+    return false;
+  }
+  validate(): void {
+
   }
 }
