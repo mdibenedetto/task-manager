@@ -1,11 +1,17 @@
  function load(config) {
      var mongoose = require('mongoose');
-     mongoose.connect('mongodb://node:node@ds131729.mlab.com:31729/node-db-test');
-     //  mongoose.connect(config.database);
+     try {
+         mongoose.connect(config.database, function (err) {
+         if (err) {
+             return  console.error('dbmanager:load():' + err.message);
+         }
+     });
+         var conn = mongoose.connection;
+         conn.on('error', console.error.bind(console, 'connection error:'));
+     } catch (err) {
+         console.log('dbmanager:load():' + err.message);
+     }
 
-
-     var conn = mongoose.connection;
-     conn.on('error', console.error.bind(console, 'connection error:'));
  }
 
  module.exports.load = load;
