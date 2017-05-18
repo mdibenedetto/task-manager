@@ -1,12 +1,14 @@
 {
-    "name": "task-manager",
-    "version": "0.0.0",
-    "license": "MIT",
-
-    "scripts": {
-        "start-client": "cd ./client && ng s",
-        "start-mongod": "sudo /X_Devs/mongodb/bin/mongod",
-        "start-mongo": "sudo /X_Devs/mongodb/bin/mongo",
-        "start": "cd ./server && node server"
-    }
+  "name": "task-manager",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start-client": "cd ./client && ng s",
+    "start-mongod": "sudo /X_Devs/mongodb/bin/mongod",
+    "start-mongo": "sudo /X_Devs/mongodb/bin/mongo",
+    "start": "cd ./server && node server"
+  },
+  "dependencies": {
+    "mongodb": "^2.2.26"
+  }
 }

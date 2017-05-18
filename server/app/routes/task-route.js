@@ -30,10 +30,9 @@ function load(router) {
         .get(function (req, res) {
             raiseErrorOnConnectionClosed(req, res);
             Task.find(function (err, tasks) {
-                    err && res.send(err);
-                    res.json(tasks);
-                },
-                _errorDBConnection);
+                err && res.send(err);
+                res.json(tasks);
+            });
         });
 
     router.route('/tasks/:_id')
