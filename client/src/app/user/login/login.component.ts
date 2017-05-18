@@ -8,13 +8,20 @@ import { AuthService } from '../auth-service/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  pageTitle: string= '';
+  pageTitle: string = '';
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
     this.authService.login('Michele', 'password');
-    setTimeout(() =>
-      this.router.navigate(['/tasks']), 1000);
-  }
 
+    setTimeout(() => this.router.navigate(['/tasks']), 1000);
+    // this.authService.httpLogin('Michele', 'password')
+    //   .subscribe(res => 
+    //   {
+    //     this.authService.currentUser. 
+    //       this.router.navigate(['/tasks']);
+    //   }
+
+    // );
+  }
 }

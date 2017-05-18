@@ -1,18 +1,19 @@
 function load(router) {
- 
+
     var Task = require('../models/task');
-    if (Task.db.readyState === 2) {
-        var _errorDBConnection = function (req, res) {
+    console.log('Task.db.readyState ' + Task.db.readyState)
+        // if (Task.db.readyState === 2) {
+    var _errorDBConnection = function(req, res) {
             res.json({
                 STATUS: "DB_CONNECTION_ERROR"
             });
         }
-        router.route('*')
-            .post(_errorDBConnection)
-            .get(_errorDBConnection);
-        return;
-    }
-    var setTask = function (req, task) {
+        //     router.route('*')
+        //         .post(_errorDBConnection)
+        //         .get(_errorDBConnection);
+        //     return;
+        // }
+    var setTask = function(req, task) {
         var task = task || new Task();
         task.title = req.body.title;
         task.description = req.body.description;
@@ -20,38 +21,40 @@ function load(router) {
         return task;
     };
     router.route('/tasks')
-        .post(function (req, res) {
+        .post(function(req, res) {
             console.log(req.body);
             var task = setTask(req, null);;
 
-            task.save(function (err) {
-                err && res.send(err);
-                res.json({
-                    status: 'ok',
-                    task: task,
-                    message: 'Task created!'
-                });
-            });
+            task.save(function(err) {
+                    err && res.send(err);
+                    res.json({
+                        status: 'ok',
+                        task: task,
+                        message: 'Task created!'
+                    });
+                },
+                _errorDBConnection);
         })
-        .get(function (req, res) {
-            Task.find(function (err, tasks) {
-                err && res.send(err);
-                res.json(tasks);
-            });
+        .get(function(req, res) {
+            Task.find(function(err, tasks) {
+                    err && res.send(err);
+                    res.json(tasks);
+                },
+                _errorDBConnection);
         });
 
     router.route('/tasks/:_id')
-        .get(function (req, res) {
-            Task.findById(req.params._id, function (err, task) {
+        .get(function(req, res) {
+            Task.findById(req.params._id, function(err, task) {
                 err && res.send(err);
                 res.json(task);
             });
         })
-        .put(function (req, res) {
-            Task.findById(req.params._id, function (err, task) {
+        .put(function(req, res) {
+            Task.findById(req.params._id, function(err, task) {
                 err && res.send(err);
                 setTask(req, task);
-                task.save(function (err) {
+                task.save(function(err) {
                     err && res.send(err);
                     res.json({
                         task: task,
@@ -61,10 +64,10 @@ function load(router) {
             });
 
         })
-        .delete(function (req, res) {
+        .delete(function(req, res) {
             Task.remove({
                 _id: req.params._id
-            }, function (err, task) {
+            }, function(err, task) {
                 err && res.send(err);
                 res.json({
                     message: 'Successfully deleted'
