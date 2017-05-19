@@ -7,9 +7,10 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { TasksModule } from './tasks/tasks.module';
 import { UserModule } from './user/user.module';
+import { MessagesModule  } from './messages/messages.module'; 
 import { RouteDefinitions, AppRoutingModule } from './app.routing';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component'; 
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   imports: [
@@ -18,12 +19,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HttpModule,
     TasksModule,
     UserModule,
+    MessagesModule,
     AppRoutingModule,
   ],
   declarations: [
     AppComponent,
     WelcomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent 
   ],
   providers: [],
   bootstrap: [AppComponent]

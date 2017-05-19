@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
 import { AuthService } from './user/auth-service/auth.service';
+import { MessageService } from './messages/message-service/message.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { AuthService } from './user/auth-service/auth.service';
 })
 export class AppComponent {
   loading: boolean = true;
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private messageService: MessageService) {
     router.events.subscribe((routerEvent: Event) => {
       this.checkRouterEvent(routerEvent);
     });
@@ -26,6 +27,18 @@ export class AppComponent {
       this.loading = false;
     }
   }
+
+  displayMessages(): void {
+    this.router.navigate([{ outlets: { popup: ['messages'] } }]);
+    this.messageService.isDisplayed = true;
+  }
+
+  hideMessages(): void {
+    this.messageService.isDisplayed = false;
+     this.router.navigate([{ outlets: { popup:null } }]);
+  }
+
+
   logIn() {
     this.router.navigate(['welcolme']);
   }

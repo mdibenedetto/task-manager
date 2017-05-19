@@ -12,7 +12,7 @@
       <li class="nav-item" [routerLinkActive]="['active']">
         <a class="nav-link" routerLink="/welcome">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" >
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
         <a class="nav-link" routerLink="/tasks">Task list</a>
       </li>
       <li class="nav-item" [routerLinkActive]="['active']">
@@ -23,10 +23,13 @@
       <li *ngIf="authService.isLoggedIn()" class="nav-item">
         <a class="nav-link">Welcome {{ authService.currentUser.userName }}</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLinkActive]="['active']" routerLink="/tasks">Show Messages</a>
+      <li class="nav-item" *ngIf="!messageService.isDisplayed">
+        <a class="nav-link" (click)="displayMessages()">Show Messages</a>
       </li>
 
+      <li class="nav-item" *ngIf="messageService.isDisplayed">
+        <a class="nav-link" (click)="hideMessages()">Hide Messages</a>
+      </li>
       <li *ngIf="!authService.isLoggedIn()" class="nav-item">
         <a class="nav-link" [routerLinkActive]="['active']" routerLink="/login">Log In</a>
       </li>
@@ -39,5 +42,12 @@
 </nav>
 
 <div class="container">
-  <router-outlet></router-outlet>
+  <div class="row">
+    <div class="col-10">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-2">
+      <router-outlet name="popup"></router-outlet>
+    </div>
+  </div>
 </div>
