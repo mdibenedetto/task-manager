@@ -7,12 +7,12 @@ import { WelcomeComponent } from './welcome/welcome.component';
 export const RouteDefinitions: Route[] = [
     { path: 'welcome', component: WelcomeComponent },
     { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-    { path: 'home', redirectTo: 'welcome', pathMatch: 'full' },    
-    { path: '**', component: PageNotFoundComponent } 
+    { path: 'home', redirectTo: 'welcome', pathMatch: 'full' },
+    { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(RouteDefinitions)],
+    imports: [RouterModule.forRoot(RouteDefinitions, { enableTracing: true })],
     exports: [RouterModule]
 })
 export class AppRoutingModule { } 
