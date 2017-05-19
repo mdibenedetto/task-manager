@@ -1,28 +1,32 @@
 <div class="card card-default">
-    <div class="card-header">
-        {{pageTitle}}
-    </div>
-    <div class="card-block">
-        <div class="wizard">
-            <a [routerLink]="['info']">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+  <div class="card-block">
+    <div class="wizard">
+      <nav class="nav nav-pills">
+        <a [routerLink]="['info']" class="nav-link" routerLinkActive="active">
         Basic Information
+       <i [ngClass]="{'fa fa-exclamation-circle text-danger' : !isValid('info')}" ></i>
       </a>
-            <a [routerLink]="['tags']">
+        <a [routerLink]="['tags']" class="nav-link" routerLinkActive="active">
         Search Tags
+          <i [ngClass]="{'fa fa-exclamation-circle text-danger' : !isValid('tags')}" ></i>
       </a>
-        </div>
-        <router-outlet></router-outlet>
+      </nav>
     </div>
-    <div class="card-footer">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="card-footer">
 
-        <div class="row">
-            <div class="col-md-6 col-md-offset-2">
-                <button class="btn btn-primary" type="button" style="width:80px;margin-right:10px" (click)="save()" [disabled]="!isValid()">Save</button>
-                <!--[disabled]="form.invalid"-->
-                <a class="btn btn-secondary" href="#" [routerLink]="['/tasks']">Cancel</a>
-                <a *ngIf="task._id > 0" class="btn btn-secondary" (click)="delete()">Delete</a>
-            </div>
-        </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-2">
+        <button class="btn btn-primary" type="button" style="width:80px;margin-right:10px" (click)="save()" [disabled]="!isValid()">Save</button>
+        <!--[disabled]="form.invalid"-->
+        <a class="btn btn-secondary" href="#" [routerLink]="['/tasks']">Cancel</a>
+        <a *ngIf="task._id > 0" class="btn btn-secondary" (click)="delete()">Delete</a>
+      </div>
     </div>
+  </div>
 
 </div>

@@ -4,6 +4,7 @@ export class Task {
   description: string;
   startDate: Date;
   endDate: Date;
+  category:string;
   assigneId: number;
 }
 

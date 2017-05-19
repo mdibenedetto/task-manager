@@ -14,8 +14,7 @@ export class TaskEditInfoComponent implements OnInit {
 
   formValuesChage(e) {
     console.warn(e);
-    console.warn(this.taskForm.invalid);
-    
+    console.warn(this.taskForm.invalid);    
   }
   ngOnInit() {
     this.route.parent.data.subscribe(data => {
@@ -23,5 +22,4 @@ export class TaskEditInfoComponent implements OnInit {
       this.taskForm && this.taskForm.reset();
     });
   }
-
 }

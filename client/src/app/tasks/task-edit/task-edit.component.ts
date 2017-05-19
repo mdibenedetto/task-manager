@@ -13,10 +13,11 @@ import { Observable } from 'rxjs';
 export class TaskFormComponent implements OnInit {
   pageTitle: string = 'Task Edit';
   task: Task;
+  private dataIsValid: { [key: string]: boolean } = {};
 
   constructor(private taskService: TaskService,
     private router: Router,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -34,7 +35,7 @@ export class TaskFormComponent implements OnInit {
   }
 
   save() {
-    let subscriber$: Observable < any > = null;
+    let subscriber$: Observable<any> = null;
     if (this.task._id === 0) {
       subscriber$ = this.taskService.addTask(this.task);
     } else {
@@ -56,13 +57,17 @@ export class TaskFormComponent implements OnInit {
       });
     }
   }
-  isValid(path: string): boolean { 
-    if(!this.task){
-      return false;
+  isValid(path: string): boolean {
+    this.validate();
+    if (path) {
+      return this.dataIsValid[path];
     }
-    return (!!this.task.title);
+    return (this.dataIsValid &&
+      Object.keys(this.dataIsValid).every(d => this.dataIsValid[d] === true));
   }
   validate(): void {
-
+    this.dataIsValid = {};
+    this.dataIsValid['info'] = this.task.title && (this.task.title !== '' && !this.task.title.startsWith(' '));
+    this.dataIsValid['tags'] = this.task.category && this.task.category !== '';
   }
 }
