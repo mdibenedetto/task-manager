@@ -21,29 +21,35 @@ import { TaskEditTagsComponent } from './task-edit-tags/task-edit-tags.component
     RouterModule.forChild([
       {
         path: 'tasks',
-        component: TaskListComponent
-      }, {
-        path: 'tasks/:id',
-        component: TaskDetailComponent,
-        resolve: { task: TaskResolver }
-      },
-      {
-        path: 'tasks/:id/edit',
-        component: TaskFormComponent,
-        resolve: { task: TaskResolver },
-        children: [{
-          path: '',
-          redirectTo: 'info',
-          pathMatch: 'full'
-        },
-        {
-          path: 'info',
-          component: TaskEditInfoComponent
-        },
-        {
-          path: 'tags',
-          component: TaskEditTagsComponent
-        }]
+        children: [
+          {
+            path: '',
+            component: TaskListComponent
+          },
+          {
+            path: ':id',
+            component: TaskDetailComponent,
+            resolve: { task: TaskResolver }
+          },
+          {
+            path: ':id/edit',
+            component: TaskFormComponent,
+            resolve: { task: TaskResolver },
+            children: [{
+              path: '',
+              redirectTo: 'info',
+              pathMatch: 'full'
+            },
+            {
+              path: 'info',
+              component: TaskEditInfoComponent
+            },
+            {
+              path: 'tags',
+              component: TaskEditTagsComponent
+            }]
+          }
+        ]
       },
     ])
   ],
