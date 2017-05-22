@@ -1,30 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject, Observable } from 'rxjs';
-import { Task } from '../../models/models';
+import { ITask } from '../task';
 
 
-@Injectable() export class TaskService {
-  task: Subject<Task> = new Subject<Task>();
-  tasks: Task[] = new Array<Task>();
-  private BASE_URL = 'http://localhost:8081/api/tasks';
-
+@Injectable() export class ITaskService {
+  ITask: Subject<ITask> = new Subject<ITask>();
+  ITasks: ITask[] = new Array<ITask>();
+  private BASE_URL = 'http://localhost:8081/api/ITasks';
 
   constructor(private http: Http) {
-    this.task.subscribe((t) => {
-      this.tasks.push(t);
+    this.ITask.subscribe((t) => {
+      this.ITasks.push(t);
     });
   }
 
-  findTask(id: number): Observable<Task> {
+  findITask(id: number): Observable<ITask> {
     if (id === 0) {
-      return  Observable.of(new Task());
+      return  Observable.of(new ITask());
     }
     return this.http.get(`${this.BASE_URL}/${id}`)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
-  getTasks(filterBy?: string): Observable<Task[]> {
+  getITasks(filterBy?: string): Observable<ITask[]> {
     var baseUrl = filterBy ? `${this.BASE_URL}?${filterBy}` : this.BASE_URL;
 
     return this.http.get(this.BASE_URL)
@@ -32,8 +31,9 @@ import { Task } from '../../models/models';
       .catch(this.raiseServerError);
   }
 
-  addTask(taskBody: Task) {
-    let bodyString = JSON.stringify(taskBody); // Stringify payload
+saveITask()
+  addTask(ITaskBody: ITask) {
+    let bodyString = JSON.stringify(ITaskBody); // Stringify payload
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -41,14 +41,14 @@ import { Task } from '../../models/models';
       headers: headers
     });
 
-    return this.http.post(this.BASE_URL, taskBody, options)
+    return this.http.post(this.BASE_URL, ITaskBody, options)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
   }
 
 
-  updateTask(body: Object): Observable<Comment[]> {
+  updateTask(body: Object): Observable<Response> {
     let bodyString = JSON.stringify(body);
     let headers = new Headers({
       'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ import { Task } from '../../models/models';
   }
 
 
-  removeTask(id: string | number): Observable<Task[]> {
+  removeITask(id: string | number): Observable<ITask[]> {
     return this.http.delete(`${this.BASE_URL}/${id}`)
       .map((res: Response) => res.json())
       .catch(this.raiseServerError);

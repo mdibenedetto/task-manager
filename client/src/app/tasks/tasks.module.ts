@@ -6,13 +6,14 @@ import { TaskService } from './task-service/task.service';
 import { TaskFilterPipe } from './task-filter/task-filter.pipe';
 import { TaskResolver } from './task-resolver/task-resolver.service';
 import { TaskListToolbarComponent } from './task-list-toolbar/task-list-toolbar.component';
-import { TaskFormComponent } from './task-edit/task-edit.component';
+import { TaskEditComponent } from './task-edit/task-edit.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TaskListItemComponent } from './task-list-item/task-list-item.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { TaskEditInfoComponent } from './task-edit-info/task-edit-info.component';
-import { TaskEditTagsComponent } from './task-edit-tags/task-edit-tags.component';
-
+import { TaskEditTagsComponent } from './task-edit-tags/task-edit-tags.component';  
+import { AuthGuardService } from '../user/auth-guard/auth-guard.service';
+import { TaskEditGuardService } from './task-edit-guard/task-edit-guard.service';
 @NgModule({
   imports: [
     RouterModule,
@@ -21,6 +22,7 @@ import { TaskEditTagsComponent } from './task-edit-tags/task-edit-tags.component
     RouterModule.forChild([
       {
         path: 'tasks',
+        canActivate:[AuthGuardService],
         children: [
           {
             path: '',
@@ -33,7 +35,8 @@ import { TaskEditTagsComponent } from './task-edit-tags/task-edit-tags.component
           },
           {
             path: ':id/edit',
-            component: TaskFormComponent,
+            component: TaskEditComponent,
+            canDeactivate:[TaskEditGuardService],
             resolve: { task: TaskResolver },
             children: [{
               path: '',
@@ -55,14 +58,14 @@ import { TaskEditTagsComponent } from './task-edit-tags/task-edit-tags.component
   ],
   declarations: [
     TaskListToolbarComponent,
-    TaskFormComponent,
+    TaskEditComponent,
     TaskListComponent,
     TaskListItemComponent,
-    TaskFormComponent,
+    TaskEditComponent,
     TaskDetailComponent,
     TaskEditInfoComponent,
     TaskEditTagsComponent,
     TaskFilterPipe],
-  providers: [TaskService, TaskResolver]
+  providers: [TaskService, TaskResolver,TaskEditGuardService]
 })
 export class TasksModule { }
