@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Task } from '../../models/models';
+import { ITask } from '../task';
 
 @Component({
   selector: 'task-detail',
@@ -9,7 +9,7 @@ import { Task } from '../../models/models';
 })
 export class TaskDetailComponent implements OnInit {
   pageTitle: string = 'Task Detail';
-  task: Task = new Task();
+  task: ITask;
 
   constructor(
     private route: ActivatedRoute) { }

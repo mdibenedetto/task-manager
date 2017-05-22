@@ -13,8 +13,10 @@ import { MessageService } from '../../messages/message-service/message.service';
 })
 export class TaskEditComponent implements OnInit {
   pageTitle: string = 'Task Edit';
-
-  private dataIsValid: { [key: string]: boolean } = {};
+  errorMessage: string = '';
+  private dataIsValid: {
+    [key: string]: boolean
+  } = {};
   private currentTask: ITask;
   private originalTask: ITask;
 
@@ -28,7 +30,7 @@ export class TaskEditComponent implements OnInit {
   constructor(private taskService: TaskService,
     private messageService: MessageService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) {}
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -64,48 +66,34 @@ export class TaskEditComponent implements OnInit {
     this.originalTask = null;
   }
 
-
-  // saveProduct(): void {
-  //   if (this.isValid(null)) {
-  //     this.productService.saveProduct(this.product)
-  //       .subscribe(
-  //       () => this.onSaveComplete(`${this.product.productName} was saved`),
-  //       (error: any) => this.errorMessage = <any>error
-  //       );
-  //   } else {
-  //     this.errorMessage = 'Please correct the validation errors.';
-  //   }
-  // }
-
-
-  save() {
-    let subscriber$: Observable<any> = null;
-    if (this.task._id === 0) {
-      subscriber$ = this.taskService.addTask(this.task);
+  save(): void {
+    if (this.isValid(null)) {
+      this.taskService.saveTask(this.task)
+        .subscribe(
+          () => this.onSaveComplete(`${this.task.title} was saved`),
+          (error: any) => this.errorMessage = < any > error
+        );
     } else {
-      subscriber$ = this.taskService.updateTask(this.task);
-    }
-
-    this.router.navigate(['tasks']);
-    // subscriber$.subscribe(
-    //   data => {
-    //     console.log(data);
-    //     this.router.navigate(['tasks']);
-    //   }
-    // );
-  }
-
-  delete() {
-    if (confirm(`Really delete the task: ${this.task.title}?`)) {
-      this.taskService.removeTask(this.task._id).subscribe(data => {
-        console.log(data)
-        this.router.navigate(['tasks']);
-      });
+      this.errorMessage = 'Please correct the validation errors.';
     }
   }
 
+  delete(): void {
+    if (this.task._id === 0) {
+      // Don't delete, it was never saved.
+      this.onSaveComplete();
+    } else {
+      if (confirm(`Really delete the task: ${this.task.title}?`)) {
+        this.taskService.removeTask(this.task._id )
+          .subscribe(
+            () => this.onSaveComplete(`${this.task.title} was deleted`),
+            (error: any) => this.errorMessage = < any > error
+          );
+      }
+    }
+  }
 
-  onSaveComplete(message?: string): void {
+  onSaveComplete(message ? : string): void {
     if (message) {
       this.messageService.addMessage(message);
     }
@@ -119,40 +107,3 @@ export class TaskEditComponent implements OnInit {
     this.dataIsValid['tags'] = this.task.category && this.task.category !== '';
   }
 }
-
-
-
-// deleteProduct(): void {
-// if (this.product.id === 0) {
-//     // Don't delete, it was never saved.
-//     this.onSaveComplete();
-// } else {
-//     if (confirm(`Really delete the product: ${this.product.productName}?`)) {
-//         this.productService.deleteProduct(this.product.id)
-//             .subscribe(
-//                 () => this.onSaveComplete(`${this.product.productName} was deleted`),
-//                 (error: any) => this.errorMessage = <any>error
-//             );
-//     }
-// }
-// }
-
-    // saveProduct(): void {
-    //     if (true === true) {
-    //         this.productService.saveProduct(this.product)
-    //             .subscribe(
-    //                 () => this.onSaveComplete(`${this.product.productName} was saved`),
-    //                 (error: any) => this.errorMessage = <any>error
-    //             );
-    //     } else {
-    //         this.errorMessage = 'Please correct the validation errors.';
-    //     }
-    // }
-
-    // onSaveComplete(message?: string): void {
-    //     if (message) {
-    //         this.messageService.addMessage(message);
-    //     }
-
-    //     // Navigate back to the product list
-    // }

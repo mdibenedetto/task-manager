@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { Task } from '../../models/models';
+import { ITask } from '../task';
 
 @Component({
   selector: 'task-edit-tags',
@@ -10,7 +10,7 @@ import { Task } from '../../models/models';
 })
 export class TaskEditTagsComponent implements OnInit {
  @ViewChild(NgForm) taskForm: NgForm;
-  task: Task;
+  task: ITask;
   constructor(private route: ActivatedRoute) {}
 
   formValuesChage(e) {

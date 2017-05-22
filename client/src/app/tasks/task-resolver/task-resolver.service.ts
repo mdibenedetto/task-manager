@@ -5,17 +5,17 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { Task } from '../../models/models';
+import { ITask } from '../task';
 import { TaskService } from '../task-service/task.service';
 
 
 @Injectable()
-export class TaskResolver implements Resolve<Task> {
+export class TaskResolver implements Resolve<ITask> {
 
   constructor(private taskService: TaskService, private router: Router) {
 
   }
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Task> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ITask> {
     let id = route.params['id'];
     if (isNaN(id)) {
       console.warn(`Task id is not a number:${id}`);

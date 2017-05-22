@@ -3,52 +3,54 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject, Observable } from 'rxjs';
 import { ITask } from '../task';
 
-
-@Injectable() export class ITaskService {
-  ITask: Subject<ITask> = new Subject<ITask>();
-  ITasks: ITask[] = new Array<ITask>();
-  private BASE_URL = 'http://localhost:8081/api/ITasks';
+@Injectable() export class TaskService {
+  task: Subject < ITask > = new Subject < ITask > ();
+  tasks: ITask[] = new Array < ITask > ();
+  private BASE_URL = 'http://localhost:8081/api/tasks';
 
   constructor(private http: Http) {
-    this.ITask.subscribe((t) => {
-      this.ITasks.push(t);
+    this.task.subscribe((t) => {
+      this.tasks.push(t);
     });
-  }
+  } 
 
-  findITask(id: number): Observable<ITask> {
+  findTask(id: number): Observable < ITask > {
     if (id === 0) {
-      return  Observable.of(new ITask());
+      return Observable.of < ITask > ();
     }
     return this.http.get(`${this.BASE_URL}/${id}`)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
-  getITasks(filterBy?: string): Observable<ITask[]> {
-    var baseUrl = filterBy ? `${this.BASE_URL}?${filterBy}` : this.BASE_URL;
 
+  getTasks(filterBy ? : string): Observable < ITask[] > {
+    var baseUrl = filterBy ? `${this.BASE_URL}?${filterBy}` : this.BASE_URL;
     return this.http.get(this.BASE_URL)
       .map((res: Response) => res.json())
       .catch(this.raiseServerError);
   }
 
-saveITask()
-  addTask(ITaskBody: ITask) {
-    let bodyString = JSON.stringify(ITaskBody); // Stringify payload
-    let headers = new Headers({
-      'Content-Type': 'application/json'
-    });
+  saveTask(task): Observable < Response > {
+    return (task._id === 0) ?
+      this.addTask(task) : this.updateTask(task);
+  }
+
+  addTask(task: ITask): Observable < Response > {
+    // let bodyString = JSON.stringify(task); 
     let options = new RequestOptions({
-      headers: headers
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
     });
 
-    return this.http.post(this.BASE_URL, ITaskBody, options)
+    return this.http.post(this.BASE_URL, task, options)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
   }
 
 
-  updateTask(body: Object): Observable<Response> {
+  updateTask(body: ITask): Observable < Response > {
     let bodyString = JSON.stringify(body);
     let headers = new Headers({
       'Content-Type': 'application/json'
@@ -62,7 +64,7 @@ saveITask()
   }
 
 
-  removeITask(id: string | number): Observable<ITask[]> {
+  removeTask(id: string | number): Observable < ITask[] > {
     return this.http.delete(`${this.BASE_URL}/${id}`)
       .map((res: Response) => res.json())
       .catch(this.raiseServerError);

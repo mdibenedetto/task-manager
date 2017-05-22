@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TaskService } from '../task-service/task.service';
-import { Task } from '../../models/models';
+import { ITask } from '../task';
 import { Observable } from 'rxjs'
 @Component({
   selector: 'task-list',
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs'
 })
 export class TaskListComponent implements OnInit {
   pageTitle: string = 'Task List';
-  tasks: Task[];
+  tasks: ITask[];
   selectedRow: number = -1;
   selectedId: number = -1;
   listFilter: string = '';

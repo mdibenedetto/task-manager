@@ -1,13 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Task } from '../../models/models';
+import { ITask } from '../task';
 @Pipe({
   name: 'taskFilter'
 })
 export class TaskFilterPipe implements PipeTransform {
 
-  transform(value: Task[], filterBy: string): Task[] {
+  transform(value: ITask[], filterBy: string): ITask[] {
     filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;
-    return filterBy ? value.filter((task: Task) =>
+    return filterBy ? value.filter((task: ITask) =>
       (task.title||'').toLocaleLowerCase().indexOf(filterBy) !== -1) : value;
   }
 
