@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 // import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppComponent } from './app.component';
-import { TasksModule } from './tasks/tasks.module';
+// import { TasksModule } from './tasks/tasks.module';
 import { UserModule } from './user/user.module';
 import { MessagesModule  } from './messages/messages.module'; 
 import { RouteDefinitions, AppRoutingModule } from './app.routing';
@@ -17,7 +17,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BrowserModule,
     // InMemoryWebApiModule.forRoot(dbcreator, { delay: 1000 }),
     HttpModule,
-    TasksModule,
+    // TasksModule,
     UserModule,
     MessagesModule,
     AppRoutingModule,

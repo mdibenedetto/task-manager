@@ -8,12 +8,10 @@ import 'rxjs/add/operator/map';
 import { ITask } from '../task';
 import { TaskService } from '../task-service/task.service';
 
-
 @Injectable()
 export class TaskResolver implements Resolve<ITask> {
 
   constructor(private taskService: TaskService, private router: Router) {
-
   }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ITask> {
     let id = route.params['id'];
@@ -22,9 +20,7 @@ export class TaskResolver implements Resolve<ITask> {
       this.router.navigate(['/tasks']);
       return Observable.of(null);
     }
-    // if (+id === 0) { 
-    //   return new Observable<Task>();
-    // }
+   
     return this.taskService.findTask(+id)
       .map(task => {
         if (task) {
