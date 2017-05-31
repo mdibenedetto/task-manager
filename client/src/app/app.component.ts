@@ -17,7 +17,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.checkLoggedInStatus();
+     this.authService.checkLoggedInStatus().subscribe(user => {
+        if (this.authService.redirectUrl) {
+          this.router.navigateByUrl(this.authService.redirectUrl)
+        } else {
+          this.router.navigate(['/tasks']);
+        }
+      });
   }
   checkRouterEvent(routerEvent: Event): void {
     if (routerEvent instanceof NavigationStart) {
