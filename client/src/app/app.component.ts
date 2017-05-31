@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
 import { AuthService } from './user/auth-service/auth.service';
 import { MessageService } from './messages/message-service/message.service';
@@ -8,7 +8,7 @@ import { MessageService } from './messages/message-service/message.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   loading: boolean = true;
   constructor(private authService: AuthService, private router: Router, private messageService: MessageService) {
     router.events.subscribe((routerEvent: Event) => {
@@ -16,6 +16,9 @@ export class AppComponent {
     });
   }
 
+  ngOnInit() {
+    this.authService.checkLoggedInStatus();
+  }
   checkRouterEvent(routerEvent: Event): void {
     if (routerEvent instanceof NavigationStart) {
       this.loading = true;
@@ -29,23 +32,32 @@ export class AppComponent {
   }
 
   displayMessages(): void {
-    this.router.navigate([{ outlets: { popup: ['messages'] } }]);
+    this.router.navigate([{
+      outlets: {
+        popup: ['messages']
+      }
+    }]);
     this.messageService.isDisplayed = true;
   }
 
   hideMessages(): void {
     this.messageService.isDisplayed = false;
-     this.router.navigate([{ outlets: { popup:null } }]);
+    this.router.navigate([{
+      outlets: {
+        popup: null
+      }
+    }]);
   }
-
 
   logIn() {
     this.router.navigate(['welcolme']);
   }
 
   logOut(): void {
-    this.authService.logout();
-    this.router.navigateByUrl('/welcome');
+    // this.authService.fakeLogout();
+    //  this.router.navigateByUrl('/welcome');
+    this.authService.logout().subscribe(() =>
+      this.router.navigateByUrl('/welcome'));
   }
 
 }

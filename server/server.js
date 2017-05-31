@@ -15,20 +15,33 @@ var session = require('express-session');
 
 //initialize session
 app.use(session({
+    cookie: {
+        maxAge: 36000000,
+        httpOnly: false //grant access to xhr requests
+    },
+    cookieName: 'session',
     secret: 'ssshhhhh',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    duration: 30 * 60 * 1000,
+    activeDuration: 5 * 60 * 1000,
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+// app.all('*', function(req, res, next) {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+//     next();
+// });
 
 app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
 //run static resource
