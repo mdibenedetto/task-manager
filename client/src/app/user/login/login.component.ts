@@ -12,19 +12,22 @@ export class LoginComponent {
   pageTitle = 'Log In';
 
   constructor(private authService: AuthService,
-    private router: Router) {}
+    private router: Router) { }
 
   login(loginForm: NgForm) {
     if (loginForm && loginForm.valid) {
       let userName = loginForm.form.value.userName;
       let password = loginForm.form.value.password;
-      this.authService.login(userName, password).subscribe(user => {
-        if (this.authService.redirectUrl) {
-          this.router.navigateByUrl(this.authService.redirectUrl)
-        } else {
-          this.router.navigate(['/tasks']);
-        }
-      });
+      this.authService.login(userName, password).subscribe(
+        (user) => {
+          if (this.authService.redirectUrl) {
+            this.router.navigateByUrl(this.authService.redirectUrl)
+          } else {
+            this.router.navigate(['/tasks']);
+          }
+        },
+        (error) => alert(error)
+      );
 
       // this.authService.fakeLogin(userName, password);
       // if (this.authService.redirectUrl) {
