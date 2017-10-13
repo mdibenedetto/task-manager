@@ -20,22 +20,27 @@ export class AuthService {
     withCredentials: true
   });
 
-  constructor(private messageService: MessageService, private http: Http) {}
+  serverError(error: Response) {
+    var errorMessage = error.json().error ||
+      ('Server error' + ((error.status === 0) ? ': The server might be stopped or your network might have problem.' : ''))
+    return Observable.throw(errorMessage);
+  }
+  constructor(private messageService: MessageService, private http: Http) { }
 
   isLoggedIn(): boolean {
     return !!this.currentUser;
   }
 
-  checkLoggedInStatus(): Observable < any > {
-   return this.http.get(`${this.BASE_URL}/login`, this.options)
+  checkLoggedInStatus(): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/login`, this.options)
       .map((res: Response) => {
-         console.log(res)
+        console.log(res)
         this.currentUser = res.json().user;
         return res.json();
       })
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error')); 
+      .catch((error: Response) => this.serverError(error));
   }
-  login(userName: string, passWord: string): Observable < any > {
+  login(userName: string, passWord: string): Observable<any> {
     if (!userName || !passWord) {
       this.messageService.addMessage('Please enter your userName and password');
       return;
@@ -53,7 +58,7 @@ export class AuthService {
         console.log(res.json());
         return res.json().user;
       })
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+      .catch((error: Response) => this.serverError(error));
   }
 
   logout() {
@@ -61,7 +66,7 @@ export class AuthService {
       .map((res: Response) => {
         this.currentUser = null;
       })
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+      .catch((error: Response) => this.serverError(error));
   }
 
   fakeLogout() {

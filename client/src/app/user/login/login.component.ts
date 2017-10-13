@@ -12,7 +12,7 @@ export class LoginComponent {
   pageTitle = 'Log In';
 
   constructor(private authService: AuthService,
-    private router: Router) {}
+    private router: Router) { }
 
   login(loginForm: NgForm) {
     if (loginForm && loginForm.valid) {
@@ -24,7 +24,7 @@ export class LoginComponent {
       //   } else {
       //     this.router.navigate(['/tasks']);
       //   }
-      // });
+      // },(error) => alert(error));
 
       this.authService.fakeLogin(userName, password);
       if (this.authService.redirectUrl) {

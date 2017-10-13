@@ -17,13 +17,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-     this.authService.checkLoggedInStatus().subscribe(user => {
-        if (this.authService.redirectUrl) {
-          this.router.navigateByUrl(this.authService.redirectUrl)
-        } else {
-          this.router.navigate(['/tasks']);
-        }
-      });
+    this.authService.checkLoggedInStatus().subscribe(user => {
+      if (this.authService.redirectUrl) {
+        this.router.navigateByUrl(this.authService.redirectUrl)
+      } else {
+        this.router.navigate(['/tasks']);
+      }
+    });
   }
   checkRouterEvent(routerEvent: Event): void {
     if (routerEvent instanceof NavigationStart) {
@@ -62,8 +62,9 @@ export class AppComponent implements OnInit {
   logOut(): void {
     // this.authService.fakeLogout();
     //  this.router.navigateByUrl('/welcome');
-    this.authService.logout().subscribe(() =>
-      this.router.navigateByUrl('/welcome'));
+    this.authService.logout().subscribe(
+      () => this.router.navigateByUrl('/welcome'),
+      (error) => alert(error));
   }
 
 }
