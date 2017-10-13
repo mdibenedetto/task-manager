@@ -18,20 +18,20 @@ export class LoginComponent {
     if (loginForm && loginForm.valid) {
       let userName = loginForm.form.value.userName;
       let password = loginForm.form.value.password;
-      this.authService.login(userName, password).subscribe(user => {
-        if (this.authService.redirectUrl) {
-          this.router.navigateByUrl(this.authService.redirectUrl)
-        } else {
-          this.router.navigate(['/tasks']);
-        }
-      });
+      // this.authService.login(userName, password).subscribe(user => {
+      //   if (this.authService.redirectUrl) {
+      //     this.router.navigateByUrl(this.authService.redirectUrl)
+      //   } else {
+      //     this.router.navigate(['/tasks']);
+      //   }
+      // });
 
-      // this.authService.fakeLogin(userName, password);
-      // if (this.authService.redirectUrl) {
-      //   this.router.navigateByUrl(this.authService.redirectUrl)
-      // } else {
-      //   this.router.navigate(['/tasks']);
-      // }
+      this.authService.fakeLogin(userName, password);
+      if (this.authService.redirectUrl) {
+        this.router.navigateByUrl(this.authService.redirectUrl)
+      } else {
+        this.router.navigate(['/tasks']);
+      }
 
     } else {
       this.errorMessage = 'Please enter a user name and password.';
