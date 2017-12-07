@@ -1,3 +1,5 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
@@ -153,4 +155,16 @@ app-root div.card.card-default {
         -webkit-transform: rotate(359deg);
         transform: rotate(359deg);
     }
+}
+
+
+mat-form-field .mat-form-field-wrapper {
+    padding-bottom: 0; 
+}
+ 
+mat-form-field .mat-form-field-underline{
+    height:0;
+}
+mat-form-field .mat-form-field-infix{
+    border-top:0;
 }

@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
       if (this.authService.redirectUrl) {
         this.router.navigateByUrl(this.authService.redirectUrl)
       } else {
-        this.router.navigate(['/tasks']);
+        this.router.navigate(['/welcome']);
       }
     });
   }
@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
     if (routerEvent instanceof NavigationStart) {
       this.loading = true;
     }
-
     if (routerEvent instanceof NavigationEnd ||
       routerEvent instanceof NavigationCancel ||
       routerEvent instanceof NavigationError) {

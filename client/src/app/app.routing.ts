@@ -5,7 +5,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { AuthGuardService } from './user/auth-guard/auth-guard.service';
 
 
-export const RouteDefinitions: Route[] = [{
+export const RouteDefinitions: Route[] = [
+   
+  {
     path: 'welcome',
     component: WelcomeComponent,
     data: {

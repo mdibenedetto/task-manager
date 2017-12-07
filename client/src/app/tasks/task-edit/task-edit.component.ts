@@ -33,7 +33,7 @@ export class TaskEditComponent implements OnInit {
     private router: Router) {}
 
   ngOnInit() {
-    this.route.data.subscribe(data => {
+    this.route.data.subscribe(data => { 
       this.onTaskRetrieved(data['task']);
     });
   }

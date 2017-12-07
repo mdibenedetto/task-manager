@@ -14,8 +14,11 @@ import { TaskEditInfoComponent } from './task-edit-info/task-edit-info.component
 import { TaskEditTagsComponent } from './task-edit-tags/task-edit-tags.component';
 // import { AuthGuardService } from '../user/auth-guard/auth-guard.service';
 import { TaskEditGuardService } from './task-edit-guard/task-edit-guard.service';
+import { NGMaterialModule } from '../common/ng-material.module';
+
 @NgModule({
   imports: [
+    NGMaterialModule,
     RouterModule,
     FormsModule,
     CommonModule,

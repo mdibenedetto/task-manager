@@ -20,6 +20,8 @@ export class TaskResolver implements Resolve<ITask> {
       this.router.navigate(['/tasks']);
       return Observable.of(null);
     }
+
+  
    
     return this.taskService.findTask(+id)
       .map(task => {
