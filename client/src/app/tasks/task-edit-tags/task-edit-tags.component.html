@@ -2,25 +2,29 @@
   <div class="container">
     <form name="task" #form="ngForm">
       <fieldset>
-        <legend>Task Search Tags</legend> 
-        
+        <legend>Task Search Tags</legend>
+
         <div class="form-group row" [ngClass]="{'has-danger': task.categoryId==0}">
           <label class="col-2 col-form-label">Category</label>
-          <mat-form-field class="col-4 form-control" required>
-            <mat-select name="category" [(ngModel)]="task.categoryId">
-              <mat-option value="0">None</mat-option>
-              <mat-option *ngFor="let item of categories" [value]="item.id">
-                {{ item.description }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field> 
+          <div class="col-4">
+            <mat-form-field class="form-control" required>
+              <mat-select name="category" [(ngModel)]="task.categoryId">
+                <mat-option value="0">None</mat-option>
+                <mat-option *ngFor="let item of categories" [value]="item.id">
+                  {{ item.description }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
           <span class="col-8 offset-2 form-text" *ngIf="task.categoryId==''">Category is required</span>
         </div>
 
         <div class="form-group row">
           <label class="col-2 col-form-label">Search Tags </label>
-          <input class="col-4 form-control" type="text" name="tags" />
-          <button class="col-1 offset-1 btn btn-secondary">Add</button>
+          <div class="col-4">
+            <input class="form-control" type="text" name="tags" />
+          </div>
+          <button class="btn btn-secondary">Add</button>          
         </div>
       </fieldset>
     </form>
