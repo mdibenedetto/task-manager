@@ -1,0 +1,11 @@
+db.collection.update(
+  { nameField: { $exists: false }},
+  { $set: { nameField: #defaultValue }},
+  { multi: true }
+)
+or
+
+db.your_collection.update({},
+    {$set : {"new_field":1}},
+    {upsert:false,
+    multi:true}) 

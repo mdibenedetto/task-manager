@@ -1,5 +1,5 @@
 In this chapter, we will see how to create a collection using MongoDB.
-
+ 
 The createCollection() Method
 MongoDB db.createCollection(name, options) is used to create collection.
 

@@ -13,6 +13,10 @@ var TaskSchema = new Schema(
     assigneId: {
       type: Number,
       default: 0
+    },
+    categoryId: {
+      type: Number,
+      default: 0
     }
   },
   {

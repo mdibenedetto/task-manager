@@ -11,7 +11,8 @@ function load(router) {
         var task = task || new Task();
         task.title = req.body.title;
         task.description = req.body.description;
-        task.endDate = req.body.endDate;
+        task.categoryId = req.body.category;
+        task.endDate = req.body.endDate; 
         return task;
     };
     router.route('/tasks')
