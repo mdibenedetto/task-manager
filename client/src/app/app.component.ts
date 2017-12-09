@@ -58,9 +58,7 @@ export class AppComponent implements OnInit {
     this.router.navigate(['welcolme']);
   }
 
-  logOut(): void {
-    // this.authService.fakeLogout();
-    //  this.router.navigateByUrl('/welcome');
+  logOut(): void {   
     this.authService.logout().subscribe(
       () => this.router.navigateByUrl('/welcome'),
       (error) => alert(error));

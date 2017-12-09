@@ -24,13 +24,12 @@
       <li *ngIf="authService.isLoggedIn()" class="nav-item">
         <a class="nav-link">Welcome {{ authService.currentUser.userName }}</a>
       </li>
-      <li class="nav-item" *ngIf="!messageService.isDisplayed">
-        <a class="nav-link" (click)="displayMessages()" href="javascript:void(0)">Show Messages</a>
-      </li>
 
-      <li class="nav-item" *ngIf="messageService.isDisplayed">
-        <a class="nav-link" (click)="hideMessages()" href="javascript:void(0)">Hide Messages</a>
-      </li>
+      <li class="nav-item" *ngIf="authService.isLoggedIn()">
+        <a class="nav-link" *ngIf="!messageService.isDisplayed" (click)="displayMessages()" href="javascript:void(0)">Show Messages</a>
+        <a class="nav-link" *ngIf="messageService.isDisplayed" (click)="hideMessages()" href="javascript:void(0)">Hide Messages</a>
+      </li> 
+      
       <li *ngIf="!authService.isLoggedIn()" class="nav-item">
         <a class="nav-link" [routerLinkActive]="['active']" routerLink="/login">Log In</a>
       </li>
