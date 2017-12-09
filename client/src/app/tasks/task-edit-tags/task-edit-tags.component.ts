@@ -28,6 +28,8 @@ export class TaskEditTagsComponent implements OnInit {
     this.route.parent.data.subscribe(data => {
       this.task = data["task"];
       this.taskForm && this.taskForm.reset();
+
+      console.log(this.task)
     });
   }
 }

@@ -4,7 +4,7 @@ export interface ITask {
   description: string;
   startDate: Date;
   endDate: Date;
-  category:string;
+  categoryId:number;
   assigneId: number;
 }
 

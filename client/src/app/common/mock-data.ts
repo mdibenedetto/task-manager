@@ -23,7 +23,7 @@ export class MockData implements InMemoryDbService, InMemoryBackendConfig {
         description: "description test - " + id,
         startDate,
         endDate,
-        category: null,
+        categoryId: null,
         assigneId: null
       };
       tasks.push(task);

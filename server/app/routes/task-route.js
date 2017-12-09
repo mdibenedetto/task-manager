@@ -11,7 +11,7 @@ function load(router) {
         var task = task || new Task();
         task.title = req.body.title;
         task.description = req.body.description;
-        task.categoryId = req.body.category;
+        task.categoryId = req.body.categoryId;
         task.endDate = req.body.endDate; 
         return task;
     };
