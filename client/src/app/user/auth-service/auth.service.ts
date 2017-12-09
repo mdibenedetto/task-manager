@@ -45,8 +45,8 @@ export class AuthService extends CommonService<IUser> {
     return this.http
       .get(`${this.URL}/login`, this.options)
       .map((res: Response) => {
-        this.currentUser = this.parseResponse(res).user;
-        return this.parseResponse(res);
+        this.currentUser = this.parseResponse(res, 'user');
+        return  this.currentUser ;
       })
       .catch((error: Response) => this.serverError(error));
   }
@@ -64,9 +64,8 @@ export class AuthService extends CommonService<IUser> {
 
     return this.http
       .post(`${this.URL}/login/`, user, this.options)
-      .map((res: Response) => {
-        console.log(res);
-        this.currentUser = this.parseResponse(res);
+      .map((res: Response) => { 
+        this.currentUser = this.parseResponse(res,'user');
         this.messageService.addMessage(
           `User: ${this.currentUser.userName} logged in`
         );

@@ -47,7 +47,7 @@ export class TaskListComponent implements OnInit {
       });
   }
   setSelectedRow(index) {
-    this.selectedId = this.tasks[index]._id;
+    this.selectedId = this.tasks[index].id;
     this.selectedRow = (index === this.selectedRow) ? -1 : index;
   }
 }

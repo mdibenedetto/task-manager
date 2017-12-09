@@ -53,7 +53,7 @@ export class TaskEditComponent implements OnInit {
 
   onTaskRetrieved(task: ITask) {
     this.task = this.route.snapshot.data['task'];
-    if (this.task._id === 0) {
+    if (this.task.id === 0) {
       this.pageTitle = 'Add Task';
     } else {
       this.pageTitle = `Edit Task: ${this.task.title}`;
@@ -79,12 +79,12 @@ export class TaskEditComponent implements OnInit {
   }
 
   delete(): void {
-    if (this.task._id === 0) {
+    if (this.task.id === 0) {
       // Don't delete, it was never saved.
       this.onSaveComplete();
     } else {
       if (confirm(`Really delete the task: ${this.task.title}?`)) {
-        this.taskService.removeTask(this.task._id )
+        this.taskService.removeTask(this.task.id )
           .subscribe(
             () => this.onSaveComplete(`${this.task.title} was deleted`),
             (error: any) => this.errorMessage = < any > error

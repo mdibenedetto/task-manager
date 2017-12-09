@@ -1,6 +1,5 @@
 export interface ITask {
-  id: number;
-  _id: number;
+  id: number; 
   title: string;
   description: string;
   startDate: Date;

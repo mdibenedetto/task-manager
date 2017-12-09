@@ -1,11 +1,10 @@
 import { Injectable } from "@angular/core";
-import { Response, Headers, RequestOptions } from "@angular/http";
+import { Response } from "@angular/http";
 import { HttpClient } from "@angular/common/http";
 import { Subject, Observable } from "rxjs";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
-import { ITask } from "../task";
-import { debug } from "util";
+import { ITask } from "../task"; 
 import { CommonService } from "app/common/common-service";
 
 @Injectable()
@@ -23,7 +22,7 @@ export class TaskService extends CommonService<ITask> {
 
   findTask(id: number): Observable<ITask> {
     if (id === 0) {
-      let emptyTask = <ITask>{ _id: 0, id: 0 };
+      let emptyTask = <ITask>{  id: 0 };
       return Observable.of(emptyTask);
     }
 
@@ -37,12 +36,12 @@ export class TaskService extends CommonService<ITask> {
     var baseUrl = filterBy ? `${this.URL}?${filterBy}` : this.URL; 
     return this.http
       .get<ITask[]>(this.URL)
-      .map(res => res || [])
+      .map(res => res || [])    
       .catch(this.handleError);
   }
 
   saveTask(task: ITask): Observable<Response> {
-    return !task._id ? this.addTask(task) : this.updateTask(task);
+    return !task.id ? this.addTask(task) : this.updateTask(task);
   }
 
   addTask(task: ITask): Observable<Response> {
@@ -56,7 +55,7 @@ export class TaskService extends CommonService<ITask> {
 
   updateTask(body: ITask): Observable<Response> { 
     return this.http
-      .put(`${this.URL}/${body["_id"]}`, body, this.options) 
+      .put(`${this.URL}/${body["id"]}`, body, this.options) 
       .catch((error: any) =>
         Observable.throw(error.json().error || "Server error")
       );

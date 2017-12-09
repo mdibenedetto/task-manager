@@ -13,17 +13,16 @@ export class MockData implements InMemoryDbService, InMemoryBackendConfig {
     let startDate = new Date();
     let endDate = new Date();
 
-    for (let _id = 1; _id < 11; _id++) {
-      startDate.setDate(startDate.getDate() + _id);
-      endDate.setDate(endDate.getDate() + _id + 1);
+    for (let id = 1; id < 11; id++) {
+      startDate.setDate(startDate.getDate() + id);
+      endDate.setDate(endDate.getDate() + id + 1);
 
       let task: ITask = {
-        id: _id,
-        _id: _id,
-        title: "title test - " + _id,
-        description: "description test - " + _id,
-        startDate: startDate,
-        endDate: endDate,
+        id,
+        title: "title test - " + id,
+        description: "description test - " + id,
+        startDate,
+        endDate,
         category: null,
         assigneId: null
       };

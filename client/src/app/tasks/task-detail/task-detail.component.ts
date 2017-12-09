@@ -16,7 +16,7 @@ export class TaskDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.task = this.route.snapshot.data['task'];
-    if (!this.task._id) {
+    if (!this.task.id) {
       this.pageTitle = 'Add Task';
     } else {
       this.pageTitle = `Edit Task: ${this.task.title}`;
