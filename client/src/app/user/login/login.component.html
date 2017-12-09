@@ -11,7 +11,7 @@
                                                !userNameVar.valid }">
           <label class="col-md-2 control-label" for="userNameId">User Name</label>
 
-          <div class="col-md-8">
+          <div class="col-md-12">
             <input class="form-control" id="userNameId" type="text" placeholder="User Name (required) - (test user: admin)" required
               (ngModel)="userName" name="userName" #userNameVar="ngModel" />
             <span class="help-block" *ngIf="(userNameVar.touched ||
@@ -29,7 +29,7 @@
                                                !passwordVar.valid }">
           <label class="col-md-2 control-label" for="passwordId">Password</label>
 
-          <div class="col-md-8">
+          <div class="col-md-12">
             <input class="form-control" id="passwordId" type="password" placeholder="Password (required) - (test Password: admin)" required
               (ngModel)="password" name="password" #passwordVar="ngModel" value="admin" />
             <span class="help-block" *ngIf="(passwordVar.touched ||
