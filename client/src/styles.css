@@ -1,90 +1,48 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+mat-form-field .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+mat-form-field .mat-form-field-underline {
+  height: 0;
+}
+mat-form-field .mat-form-field-infix {
+  border-top: 0;
+}
+
+.mat-input-ripple.mat-form-field-ripple {
+  visibility: hidden !important;
+}
+
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #333;
-    background-color: #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
 }
 
 a {
-    color: #337ab7;
-    text-decoration: none;
+  color: #337ab7;
+  text-decoration: none;
 }
 
 .navbar {
-    margin-bottom: 20px;
-    border: 1px solid transparent;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
 }
 
-.navbar-light .navbar-nav>.active>a,
-.navbar-light .navbar-nav>.active>a:hover,
-.navbar-light .navbar-nav>.active>a:focus {
-    color: #555;
-    background-color: #e7e7e7;
+.navbar-light .navbar-nav > .active > a,
+.navbar-light .navbar-nav > .active > a:hover,
+.navbar-light .navbar-nav > .active > a:focus {
+  color: #555;
+  background-color: #e7e7e7;
 }
 
 .navbar-light {
-    border-color: #e7e7e7;
+  border-color: #e7e7e7;
 }
-
-.wizard a:last-child {
-    -webkit-border-radius: 0 8px 0px 0;
-    -moz-border-radius: 0 8px 0px 0;
-    border-radius: 0 8px 0px 0;
-}
-
-.wizard a {
-    background: #efefef;
-    display: inline-block;
-    margin-right: 5px;
-    min-width: 150px;
-    outline: none;
-    padding: 10px 40px 10px;
-    position: relative;
-    text-decoration: none;
-}
-
-.wizard .active {
-    background: #007ACC;
-    color: #fff;
-}
-
-.wizard .active:after {
-    border-left-color: #007ACC;
-}
-
-.wizard a:before {
-    width: 0;
-    height: 0;
-    border-top: 20px inset transparent;
-    border-bottom: 20px inset transparent;
-    border-left: 20px solid #fff;
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-}
-
-.wizard a:first-child:before,
-.wizard a:last-child:after {
-    border: none;
-}
-
-.wizard a:after {
-    width: 0;
-    height: 0;
-    border-top: 20px inset transparent;
-    border-bottom: 20px inset transparent;
-    border-left: 21px solid #efefef;
-    position: absolute;
-    content: "";
-    top: 0;
-    right: -20px;
-    z-index: 2;
-}
-
 
 /* Fade transition */
 /*app-root div {
@@ -107,10 +65,10 @@ a {
 
 /* Slide transition */
 app-root div.card.card-default {
-    animation-duration: .5s;
-    animation-name: slideIn;
-    animation-fill-mode: forwards;
-    transition: transform .5s ease;
+  animation-duration: 0.5s;
+  animation-name: slideIn;
+  animation-fill-mode: forwards;
+  transition: transform 0.5s ease;
 }
 
 @keyframes slideIn {
@@ -125,46 +83,34 @@ app-root div.card.card-default {
 
 /* Spinner */
 .spinner {
-  font-size:300%;
-  position:absolute;
+  font-size: 300%;
+  position: absolute;
   top: 50%;
   left: 50%;
-  z-index:10
+  z-index: 10;
 }
 
 .glyphicon-spin {
-    -webkit-animation: spin 1000ms infinite linear;
-    animation: spin 1000ms infinite linear; 
+  -webkit-animation: spin 1000ms infinite linear;
+  animation: spin 1000ms infinite linear;
 }
 @-webkit-keyframes spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(359deg);
-        transform: rotate(359deg);
-    }
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
 }
 @keyframes spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(359deg);
-        transform: rotate(359deg);
-    }
-}
-
-
-mat-form-field .mat-form-field-wrapper {
-    padding-bottom: 0; 
-}
- 
-mat-form-field .mat-form-field-underline{
-    height:0;
-}
-mat-form-field .mat-form-field-infix{
-    border-top:0;
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
 }

@@ -8,3 +8,9 @@ export interface ITask {
   assigneId: number;
 }
 
+
+export interface ITaskType {
+  id: number;  
+  description: string; 
+}
+

@@ -2,15 +2,23 @@
   <div class="container">
     <form name="task" #form="ngForm">
       <fieldset>
-        <legend>Task Search Tags</legend>
-        <div class="form-group row" [ngClass]="{'has-danger': category.invalid && category.touched && category.dirty}">
-          <label class="col-2 col-form-label">Category </label>
-          <input class="col-8 form-control" type="text" required [(ngModel)]="task.category" #category="ngModel" name="category" />
-          <span class="col-8 offset-2 form-text" *ngIf="category.invalid && category.touched && category.dirty">Category is required</span>
+        <legend>Task Search Tags</legend> 
+        <div class="form-group row" [ngClass]="{'has-danger': task.category==''}">
+          <label class="col-2 col-form-label">Category</label>
+          <mat-form-field class="col-4 form-control" required>
+            <mat-select name="category" [(ngModel)]="task.category">
+              <mat-option value="">None</mat-option>
+              <mat-option *ngFor="let item of categories" [value]="item.id">
+                {{ item.description }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> 
+          <span class="col-8 offset-2 form-text" *ngIf="task.category==''">Category is required</span>
         </div>
+
         <div class="form-group row">
           <label class="col-2 col-form-label">Search Tags </label>
-          <input class="col-8 form-control" type="text" name="tags" />
+          <input class="col-4 form-control" type="text" name="tags" />
           <button class="col-1 offset-1 btn btn-secondary">Add</button>
         </div>
       </fieldset>
