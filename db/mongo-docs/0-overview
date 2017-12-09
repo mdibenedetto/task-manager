@@ -25,7 +25,7 @@ Sample Document
 Following example shows the document structure of a blog site, which is simply a comma separated key value pair.
 
 {
-   _id: ObjectId(7df78ad8902c)
+   id: ObjectId(7df78ad8902c)
    title: 'MongoDB Overview', 
    description: 'MongoDB is no sql database',
    by: 'tutorials point',

@@ -29,23 +29,27 @@ function load(router) {
         })
         .get(function(req, res) {
             raiseErrorOnConnectionClosed(req, res);
-            Task.find(function(err, tasks) {
+
+          
+            Task.find(function (err, tasks) {
+                 console.log(tasks)
+                    
                 err && res.send(err);
                 res.json(tasks);
             });
         });
 
-    router.route('/tasks/:_id')
+    router.route('/tasks/:id')
         .get(function(req, res) {
             raiseErrorOnConnectionClosed(req, res);
-            Task.findById(req.params._id, function(err, task) {
+            Task.findById(req.params.id, function(err, task) {
                 err && res.send(err);
                 res.json(task);
             });
         })
         .put(function(req, res) {
             raiseErrorOnConnectionClosed(req, res);
-            Task.findById(req.params._id, function(err, task) {
+            Task.findById(req.params.id, function(err, task) {
                 err && res.send(err);
                 buildTask(req, task);
                 task.save(function(err) {
@@ -61,7 +65,7 @@ function load(router) {
         .delete(function(req, res) {
             raiseErrorOnConnectionClosed(req, res);
             Task.remove({
-                    _id: req.params._id
+                    id: req.params.id
                 },
                 function(err, task) {
                     err && res.send(err);

@@ -17,7 +17,7 @@ https://codeforgeek.com/2014/09/manage-session-using-node-js-express-4/
    
    - app/
     ----- models/
-    ---------- bear.js  // our bear model
+    ---------- task.js  // our task model
     - node_modules/     // created by npm. holds our dependencies/packages
     - package.json      // define all our node app and dependencies
     - server.js         // configure our application and create routes
@@ -25,15 +25,15 @@ https://codeforgeek.com/2014/09/manage-session-using-node-js-express-4/
     What do these packages do? express is the Node framework. 
     mongoose is the ORM we will use to communicate with our MongoDB database. 
     body-parser will let us pull POST content from our HTTP request 
-    so that we can do things like create a bear.
+    so that we can do things like create a task.
 
 
     Route	HTTP Verb	Description
-    /api/bears	GET	Get all the bears.
-    /api/bears	POST	Create a bear.
-    /api/bears/:bear_id	GET	Get a single bear.
-    /api/bears/:bear_id	PUT	Update a bear with new info.
-    /api/bears/:bear_id	DELETE	Delete a bear.
+    /api/tasks	GET	Get all the tasks.
+    /api/tasks	POST	Create a task.
+    /api/tasks/:task_id	GET	Get a single task.
+    /api/tasks/:task_id	PUT	Update a task with new info.
+    /api/tasks/:task_id	DELETE	Delete a task.
 
 
 
