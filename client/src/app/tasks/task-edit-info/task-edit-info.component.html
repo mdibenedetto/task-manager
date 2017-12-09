@@ -27,11 +27,19 @@
               <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
               <mat-datepicker #endDate></mat-datepicker>
             </mat-form-field>
-        </div>
+        </div> 
+
         <div class="form-group row">
-          <label class="col-2 col-form-label">Assigne</label>
-          <input class="col-10 form-control" type="number" [(ngModel)]="task.assigneId" name="assegne">
-        </div>
+            <label class="col-2 col-form-label">Assigne</label>
+            <mat-form-field class="col-4 form-control">
+              <mat-select name="category" [(ngModel)]="task.assigneId">
+                <mat-option value="0">None</mat-option>
+                <mat-option *ngFor="let item of assigneeUsers" [value]="item.id">
+                  {{ item.fullName }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+          </div>
       </fieldset>
     </form>
   </div>
