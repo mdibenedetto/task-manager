@@ -9,7 +9,7 @@
 
 //       task["description"] = "this is a test " + i;
 //       task["title"] = "Task-" + i;
-//       task["assigneId"] = 0;
+//       task["assigneeId"] = 0;
 //       task["startDate"] = new Date();
 //       task["endDate"] = null;
 

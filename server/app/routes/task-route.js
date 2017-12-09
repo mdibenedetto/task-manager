@@ -12,6 +12,7 @@ function load(router) {
         task.title = req.body.title;
         task.description = req.body.description;
         task.categoryId = req.body.categoryId;
+        task.assigneeId = req.body.assigneeId;
         task.endDate = req.body.endDate; 
         return task;
     };
@@ -29,12 +30,8 @@ function load(router) {
             });
         })
         .get(function(req, res) {
-            raiseErrorOnConnectionClosed(req, res);
-
-          
-            Task.find(function (err, tasks) {
-                 console.log(tasks)
-                    
+            raiseErrorOnConnectionClosed(req, res);          
+            Task.find(function (err, tasks) {                    
                 err && res.send(err);
                 res.json(tasks);
             });

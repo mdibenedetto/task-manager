@@ -24,7 +24,7 @@ export class MockData implements InMemoryDbService, InMemoryBackendConfig {
         startDate,
         endDate,
         categoryId: null,
-        assigneId: null
+        assigneeId: null
       };
       tasks.push(task);
     }

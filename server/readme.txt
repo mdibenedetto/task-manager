@@ -45,7 +45,7 @@ https://codeforgeek.com/2014/09/manage-session-using-node-js-express-4/
         - description
         - startDate
         - endDate
-        - assigneId
+        - assigneeId
     - User
         - id
         - name

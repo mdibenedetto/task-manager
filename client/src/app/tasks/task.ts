@@ -5,10 +5,8 @@ export interface ITask {
   startDate: Date;
   endDate: Date;
   categoryId:number;
-  assigneId: number;
+  assigneeId: number;
 }
-
-
 export interface ITaskType {
   id: number;  
   description: string; 

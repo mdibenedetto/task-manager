@@ -10,7 +10,7 @@ var TaskSchema = new Schema(
       default: Date.now
     },
     endDate: Date,
-    assigneId: {
+    assigneeId: {
       type: Number,
       default: 0
     },
