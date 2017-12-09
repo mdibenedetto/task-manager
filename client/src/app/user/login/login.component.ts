@@ -5,12 +5,12 @@ import { AuthService } from "../auth-service/auth.service";
 
 @Component({
   selector: "login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  templateUrl: "./login.component.html" 
 })
 export class LoginComponent {
   errorMessage: string;
   pageTitle = "Log In";
+  
   constructor(private authService: AuthService, private router: Router) {}
 
   login(loginForm: NgForm) {
@@ -27,14 +27,7 @@ export class LoginComponent {
           }
         },
         error => alert(error)
-      );
-
-      // this.authService.fakeLogin(userName, password);
-      // if (this.authService.redirectUrl) {
-      //   this.router.navigateByUrl(this.authService.redirectUrl)
-      // } else {
-      //   this.router.navigate(['/tasks']);
-      // }
+      ); 
     } else {
       this.errorMessage = "Please enter a user name and password.";
     }
