@@ -47,7 +47,8 @@ export class MockData implements InMemoryDbService, InMemoryBackendConfig {
       return array;
     };
 
-    let logout: any[] = [true];
+    let logout: any[] = [true]; 
+
     console.log(tasks);
     return { login, logout, tasks };
   }

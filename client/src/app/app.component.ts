@@ -17,13 +17,19 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.checkLoggedInStatus().subscribe(user => {
-      if (this.authService.redirectUrl) {
-        this.router.navigateByUrl(this.authService.redirectUrl)
-      } else {
-        this.router.navigate(['/welcome']);
-      }
-    });
+    if (this.authService.isLoggedIn() && this.authService.redirectUrl) {
+      this.router.navigateByUrl(this.authService.redirectUrl)
+    } else { 
+      this.router.navigate(['/welcome']);
+    }
+
+    // this.authService.checkLoggedInStatus().subscribe(user => { 
+    //   if (this.authService.redirectUrl) {
+    //     this.router.navigateByUrl(this.authService.redirectUrl)
+    //   } else { 
+    //     this.router.navigate(['/welcome']);
+    //   }
+    // });
   }
   checkRouterEvent(routerEvent: Event): void {
     if (routerEvent instanceof NavigationStart) {

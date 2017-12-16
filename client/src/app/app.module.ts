@@ -31,7 +31,7 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
-    // InMemoryWebApiModule.forRoot(MockData, { delay: 0 }),
+    InMemoryWebApiModule.forRoot(MockData, { delay: 0 }),
     // TasksModule,
     UserModule,
     MessagesModule,

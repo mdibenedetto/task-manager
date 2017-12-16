@@ -41,10 +41,10 @@ export class AuthService extends CommonService<IUser> {
     return !!this.currentUser;
   }
 
-  checkLoggedInStatus(): Observable<any> {
+  checkLoggedInStatus(): Observable<any> { 
     return this.http
-      .get(`${this.URL}/login`, this.options)
-      .map((res: Response) => {
+      .post(`${this.URL}/login`, this.options)
+      .map((res: Response) => { 
         this.currentUser = this.parseResponse(res, 'user');
         return  this.currentUser ;
       })

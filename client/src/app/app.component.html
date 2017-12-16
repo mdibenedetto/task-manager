@@ -20,7 +20,7 @@
         <a class="nav-link" routerLink="/tasks/0/edit">Add Task</a>
       </li>
     </ul>
-    <ul class="navbar-nav navbar-right">
+    <ul class="navbar-nav navbar-right"> 
       <li *ngIf="authService.isLoggedIn()" class="nav-item">
         <a class="nav-link">Welcome {{ authService.currentUser.userName }}</a>
       </li>
