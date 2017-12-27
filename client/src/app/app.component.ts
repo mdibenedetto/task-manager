@@ -10,7 +10,7 @@ import { MessageService } from './messages/message-service/message.service';
 })
 export class AppComponent implements OnInit {
   loading: boolean = true;
-  constructor(private authService: AuthService, private router: Router, private messageService: MessageService) {
+  constructor(public authService: AuthService, private router: Router, public messageService: MessageService) {
     router.events.subscribe((routerEvent: Event) => {
       this.checkRouterEvent(routerEvent);
     });

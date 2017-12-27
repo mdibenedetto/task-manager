@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class MessageService {
-    private messages: string[] = [];
+    public messages: string[] = [];
     isDisplayed = false;
 
     addMessage(message: string): void {
