@@ -19,8 +19,14 @@
       <li class="nav-item" [routerLinkActive]="['active']">
         <a class="nav-link" routerLink="/tasks/0/edit">Add Task</a>
       </li>
+      <li class="nav-item" [routerLinkActive]="['active']"  [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link" routerLink="/users">User List</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" routerLink="/users/0/edit">Add User</a>
+      </li>
     </ul>
-    <ul class="navbar-nav navbar-right"> 
+    <ul class="navbar-nav navbar-right">
       <li *ngIf="authService.isLoggedIn()" class="nav-item">
         <a class="nav-link">Welcome {{ authService.currentUser.userName }}</a>
       </li>
@@ -28,8 +34,8 @@
       <li class="nav-item" *ngIf="authService.isLoggedIn()">
         <a class="nav-link" *ngIf="!messageService.isDisplayed" (click)="displayMessages()" href="javascript:void(0)">Show Messages</a>
         <a class="nav-link" *ngIf="messageService.isDisplayed" (click)="hideMessages()" href="javascript:void(0)">Hide Messages</a>
-      </li> 
-      
+      </li>
+
       <li *ngIf="!authService.isLoggedIn()" class="nav-item">
         <a class="nav-link" [routerLinkActive]="['active']" routerLink="/login">Log In</a>
       </li>

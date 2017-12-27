@@ -1,37 +1,36 @@
 <div class="card card-default">
-    <div class="card-header">
-        {{ pageTitle + ": " + task.title}}
+  <div class="card-header">
+    {{ pageTitle + ": " + task.title}}
+  </div>
+  <div class="card-block">
+    <div class="row">
+      <div class="col-md-2">Title:</div>
+      <div class="col-md-6">{{task.title}}</div>
     </div>
-    <div class="card-block">
+    <div class="row">
+      <div class="col-md-2">Description:</div>
+      <div class="col-md-6">{{task.description}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">Start Date:</div>
+      <div class="col-md-6">{{task.startDate| date:'mediumDate'}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">End Date:</div>
+      <div class="col-md-6">{{task.endDate| date:'mediumDate'}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">Assigne:</div>
+      <div class="col-md-6">{{task.assegne}}</div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-2">Title:</div>
-            <div class="col-md-6">{{task.title}}</div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">Description:</div>
-            <div class="col-md-6">{{task.description}}</div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">Start Date:</div>
-            <div class="col-md-6">{{task.startDate| date:'mediumDate'}}</div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">End Date:</div>
-            <div class="col-md-6">{{task.endDate| date:'mediumDate'}}</div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">Assigne:</div>
-            <div class="col-md-6">{{task.assegne}}</div>
-        </div>
-
-    </div>
-    <div class="card-footer">
-        <a class="btn btn-secondary" queryParamsHandling="preserve" [routerLink]="['/tasks']">
-             <i class="fa fa-chevron-left"></i> Back
-        </a>
-        <a class="btn btn-primary" [routerLink]="['/tasks',task.id, 'edit']" style="width:80px;margin-left:10px">
-            Edit
-        </a>
-    </div>
+  </div>
+  <div class="card-footer">
+    <a class="btn btn-secondary" queryParamsHandling="preserve" [routerLink]="['/tasks']">
+      <i class="fa fa-chevron-left"></i> Back
+    </a>
+    <a class="btn btn-primary" [routerLink]="['/tasks',task.id, 'edit']" style="width:80px;margin-left:10px">
+      Edit
+    </a>
+  </div>
 </div>

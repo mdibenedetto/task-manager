@@ -16,12 +16,12 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    if (this.authService.isLoggedIn() && this.authService.redirectUrl) {
-      this.router.navigateByUrl(this.authService.redirectUrl)
-    } else { 
-      this.router.navigate(['/welcome']);
-    }
+  ngOnInit() { 
+    // if (this.authService.isLoggedIn() && this.authService.redirectUrl) {
+    //   this.router.navigateByUrl(this.authService.redirectUrl)
+    // } else { 
+    //   this.router.navigate(['/welcome']);
+    // }
 
     // this.authService.checkLoggedInStatus().subscribe(user => { 
     //   if (this.authService.redirectUrl) {
