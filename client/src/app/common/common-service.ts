@@ -1,7 +1,8 @@
+
+import {throwError as observableThrowError,  Observable } from 'rxjs';
 import { Injectable } from "@angular/core";
 import { Headers, RequestOptions } from "@angular/http";
 import { HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
 
 @Injectable()
 export class CommonService<T> {
@@ -20,12 +21,12 @@ export class CommonService<T> {
           "node server" in a commandline.
     `);
     console.error(message);
-    return Observable.throw(message);
+    return observableThrowError(message);
   }
 
   handleError(error): Observable<any> {
     console.error(error);
-    return Observable.throw(error || "Server error");
+    return observableThrowError(error || "Server error");
   }
 
   parseResponse(res, property?:string) {

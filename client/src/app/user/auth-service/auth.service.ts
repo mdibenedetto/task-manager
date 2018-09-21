@@ -1,6 +1,9 @@
+
+import {throwError as observableThrowError,  Subject, Observable } from 'rxjs';
+
+import {map, catchError} from 'rxjs/operators';
 import { Injectable } from "@angular/core";
 import { Response, Headers, RequestOptions } from "@angular/http";
-import { Subject, Observable } from "rxjs";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 
@@ -34,7 +37,7 @@ export class AuthService extends CommonService<IUser> {
       errorMessage =
         "Server error: The server might be stopped or your network might have problem.";
     }
-    return Observable.throw(errorMessage);
+    return observableThrowError(errorMessage);
   }
 
   isLoggedIn(): boolean {
@@ -43,12 +46,12 @@ export class AuthService extends CommonService<IUser> {
 
   checkLoggedInStatus(): Observable<any> { 
     return this.http
-      .post(`${this.URL}/login`, this.options)
-      .map((res: Response) => { 
+      .post(`${this.URL}/login`, this.options).pipe(
+      map((res: Response) => { 
         this.currentUser = this.parseResponse(res, 'user');
         return  this.currentUser ;
-      })
-      .catch((error: Response) => this.serverError(error));
+      }),
+      catchError((error: Response) => this.serverError(error)),);
   }
 
   login(userName: string, passWord: string): Observable<any> {
@@ -63,23 +66,23 @@ export class AuthService extends CommonService<IUser> {
     };
 
     return this.http
-      .post(`${this.URL}/login/`, user, this.options)
-      .map((res: Response) => { 
+      .post(`${this.URL}/login/`, user, this.options).pipe(
+      map((res: Response) => { 
         this.currentUser = this.parseResponse(res,'user');
         this.messageService.addMessage(
           `User: ${this.currentUser.userName} logged in`
         );
         return this.currentUser;
-      })
-      .catch((error: Response) => this.serverError(error));
+      }),
+      catchError((error: Response) => this.serverError(error)),);
   }
 
   logout() {
     return this.http
-      .get(`${this.URL}/logout`, this.options)
-      .map((res: Response) => {
+      .get(`${this.URL}/logout`, this.options).pipe(
+      map((res: Response) => {
         this.currentUser = null;
-      })
-      .catch((error: Response) => this.serverError(error));
+      }),
+      catchError((error: Response) => this.serverError(error)),);
   }
 }
