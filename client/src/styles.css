@@ -11,7 +11,7 @@ mat-form-field .mat-form-field-infix {
   border-top: 0;
 }
 
-.mat-input-ripple.mat-form-field-ripple {
+.mat-form-field-ripple.mat-form-field-ripple {
   visibility: hidden !important;
 }
 

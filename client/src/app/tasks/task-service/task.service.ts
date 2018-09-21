@@ -55,7 +55,7 @@ export class TaskService extends CommonService<ITask> {
 
   updateTask(body: ITask): Observable<Response> { 
     return this.http
-      .put(`${this.URL}/${body["id"]}`, body, this.options) 
+      .put<Response>(`${this.URL}/${body["id"]}`, body, this.options) 
       .catch((error: any) =>
         Observable.throw(error.json().error || "Server error")
       );
