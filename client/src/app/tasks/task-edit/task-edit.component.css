@@ -1,4 +1,8 @@
 
+form{
+    padding: 10px;
+}
+
 .wizard a:last-child {
     -webkit-border-radius: 0 8px 0px 0;
     -moz-border-radius: 0 8px 0px 0;
