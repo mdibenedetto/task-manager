@@ -1,0 +1,51 @@
+In this chapter, we will see how to create a collection using MongoDB.
+ 
+The createCollection() Method
+MongoDB db.createCollection(name, options) is used to create collection.
+
+Syntax
+Basic syntax of createCollection() command is as follows −
+
+db.createCollection(name, options)
+In the command, name is name of collection to be created. Options is a document and is used to specify configuration of collection.
+
+Parameter	Type	Description
+Name	String	Name of the collection to be created
+Options	Document	(Optional) Specify options about memory size and indexing
+Options parameter is optional, so you need to specify only the name of the collection. Following is the list of options you can use −
+
+Field	Type	Description
+capped	Boolean	(Optional) If true, enables a capped collection. Capped collection is a fixed size collection that automatically overwrites its oldest entries when it reaches its maximum size. If you specify true, you need to specify size parameter also.
+autoIndexId	Boolean	(Optional) If true, automatically create index on _id field.s Default value is false.
+size	number	(Optional) Specifies a maximum size in bytes for a capped collection. If capped is true, then you need to specify this field also.
+max	number	(Optional) Specifies the maximum number of documents allowed in the capped collection.
+While inserting the document, MongoDB first checks size field of capped collection, then it checks max field.
+
+Examples
+Basic syntax of createCollection() method without options is as follows −
+
+>use test
+switched to db test
+>db.createCollection("mycollection")
+{ "ok" : 1 }
+>
+You can check the created collection by using the command show collections.
+
+>show collections
+mycollection
+system.indexes
+The following example shows the syntax of createCollection() method with few important options −
+
+>db.createCollection("mycol", { capped : true, autoIndexId : true, size : 
+   6142800, max : 10000 } )
+{ "ok" : 1 }
+>
+In MongoDB, you don't need to create collection. MongoDB creates collection automatically, when you insert some document.
+
+>db.tutorialspoint.insert({"name" : "tutorialspoint"})
+>show collections
+mycol
+mycollection
+system.indexes
+tutorialspoint
+>

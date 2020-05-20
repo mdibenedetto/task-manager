@@ -1,0 +1,33 @@
+In this chapter, we will see how to drop a collection using MongoDB.
+
+The drop() Method
+MongoDB's db.collection.drop() is used to drop a collection from the database.
+
+Syntax
+Basic syntax of drop() command is as follows −
+
+db.COLLECTION_NAME.drop()
+Example
+First, check the available collections into your database mydb.
+
+>use mydb
+switched to db mydb
+>show collections
+mycol
+mycollection
+system.indexes
+tutorialspoint
+>
+Now drop the collection with the name mycollection.
+
+>db.mycollection.drop()
+true
+>
+Again check the list of collections into database.
+
+>show collections
+mycol
+system.indexes
+tutorialspoint
+>
+drop() method will return true, if the selected collection is dropped successfully, otherwise it will return false.

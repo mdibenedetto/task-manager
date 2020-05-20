@@ -1,0 +1,65 @@
+<div class="card card-default">
+  <div class="card-header">
+    <div class="container">
+      {{pageTitle}} - total tasks: {{tasks?.length}}
+    </div>
+  </div>
+  <div class="card-block">
+    <div class="card-block"> 
+      <div class="form-inline mb-2 mt-2">
+          <div class="col-2">
+            <button class="btn btn-primary"
+             (click)="searchTasks()">
+              Refresh
+            </button>
+          </div>
+          <div class="col-2">
+            <label class="col-form-label">Filter by:</label>
+          </div>
+          <div class="col-3">
+            <input type="text" class="form-control" [(ngModel)]="listFilter" placeholder="type task title">
+          </div>
+        </div>
+    </div>
+    <div class="container">
+      <table class="table table-hover table-striped">
+        <!--<colgroup>
+        <col class="col-md-1">
+        <col class="col-md-3">
+        <col class="col-md-4">
+        <col class="col-md-2">
+        <col class="col-md-2">
+    </colgroup>-->
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks | taskFilter:listFilter;let i = index;" (click)="setSelectedRow(i)" [class.active]="i == selectedRow">
+            <th scope="row">{{i+1}}</th>
+            <td>
+              <a [routerLink]="['/tasks',task.id]" [queryParams]="{filterBy:listFilter}">{{task.title}}</a>
+            </td>
+            <td>{{task.description}}</td>
+            <td>{{task.startDate| date: 'dd/MM/yyyy'}}</td>
+            <td>{{task.endDate| date: 'dd/MM/yyyy'}}</td>
+            <td>
+              <a class="btn btn-primary" href="#" role="button" [routerLink]="['/tasks',task.id,'edit']">Edit</a>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="removeTask(task.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer"> total tasks: {{tasks?.length}}</div>
+</div>

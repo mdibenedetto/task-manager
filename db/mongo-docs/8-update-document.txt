@@ -1,0 +1,49 @@
+MongoDB's update() and save() methods are used to update document into a collection. The update() method updates the values in the existing document while the save() method replaces the existing document with the document passed in save() method.
+
+MongoDB Update() Method
+The update() method updates the values in the existing document.
+
+Syntax
+The basic syntax of update() method is as follows −
+
+>db.COLLECTION_NAME.update(SELECTION_CRITERIA, UPDATED_DATA)
+Example
+Consider the mycol collection has the following data.
+
+{ "_id" : ObjectId(5983548781331adf45ec5), "title":"MongoDB Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec6), "title":"NoSQL Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec7), "title":"Tutorials Point Overview"}
+Following example will set the new title 'New MongoDB Tutorial' of the documents whose title is 'MongoDB Overview'.
+
+>db.mycol.update({'title':'MongoDB Overview'},{$set:{'title':'New MongoDB Tutorial'}})
+>db.mycol.find()
+{ "_id" : ObjectId(5983548781331adf45ec5), "title":"New MongoDB Tutorial"}
+{ "_id" : ObjectId(5983548781331adf45ec6), "title":"NoSQL Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec7), "title":"Tutorials Point Overview"}
+>
+By default, MongoDB will update only a single document. To update multiple documents, you need to set a parameter 'multi' to true.
+
+>db.mycol.update({'title':'MongoDB Overview'},
+   {$set:{'title':'New MongoDB Tutorial'}},{multi:true})
+MongoDB Save() Method
+The save() method replaces the existing document with the new document passed in the save() method.
+
+Syntax
+The basic syntax of MongoDB save() method is shown below −
+
+>db.COLLECTION_NAME.save({_id:ObjectId(),NEW_DATA})
+Example
+Following example will replace the document with the _id '5983548781331adf45ec7'.
+
+>db.mycol.save(
+   {
+      "_id" : ObjectId(5983548781331adf45ec7), "title":"Tutorials Point New Topic",
+         "by":"Tutorials Point"
+   }
+)
+>db.mycol.find()
+{ "_id" : ObjectId(5983548781331adf45ec5), "title":"Tutorials Point New Topic",
+   "by":"Tutorials Point"}
+{ "_id" : ObjectId(5983548781331adf45ec6), "title":"NoSQL Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec7), "title":"Tutorials Point Overview"}
+>

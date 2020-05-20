@@ -1,0 +1,119 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+mat-form-field .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+mat-form-field .mat-form-field-underline {
+  height: 0;
+}
+mat-form-field .mat-form-field-infix {
+  border-top: 0;
+}
+
+.mat-form-field-ripple.mat-form-field-ripple {
+  visibility: hidden !important;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+.navbar {
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+}
+
+.navbar-light .navbar-nav > .active > a,
+.navbar-light .navbar-nav > .active > a:hover,
+.navbar-light .navbar-nav > .active > a:focus {
+  color: #555;
+  background-color: #e7e7e7;
+}
+
+.navbar-light {
+  border-color: #e7e7e7;
+}
+
+/* Fade transition */
+/*app-root div {
+    animation-duration: .5s;
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-fill-mode: forwards;
+    transition: transform .5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}*/
+
+/* Slide transition */
+app-root div.card.card-default {
+  animation-duration: 0.5s;
+  animation-name: slideIn;
+  animation-fill-mode: forwards;
+  transition: transform 0.5s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translate(-200px);
+  }
+
+  to {
+    transform: translate(0px);
+  }
+}
+
+/* Spinner */
+.spinner {
+  font-size: 300%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+}
+
+.glyphicon-spin {
+  -webkit-animation: spin 1000ms infinite linear;
+  animation: spin 1000ms infinite linear;
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
