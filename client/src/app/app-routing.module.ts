@@ -1,12 +1,12 @@
-import { Route,Router, RouterModule, PreloadAllModules } from '@angular/router';
+import { Route, Router, RouterModule, PreloadAllModules } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { AuthGuardService } from './user/auth-guard/auth-guard.service';
+import { AuthGuardService } from './user/guards/auth-guard/auth-guard.service';
 
 
 export const RouteDefinitions: Route[] = [
-   
+
   {
     path: 'welcome',
     component: WelcomeComponent,
@@ -16,7 +16,7 @@ export const RouteDefinitions: Route[] = [
   },
   {
     path: 'tasks',
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule),
     data: {
       role: 'login-user'
@@ -49,7 +49,7 @@ export const RouteDefinitions: Route[] = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-    // constructor(private router:Router){
-    //      router.config.filter(x=>(x.data || {}).role==='myRoute')
-    // }
+  // constructor(private router:Router){
+  //      router.config.filter(x=>(x.data || {}).role==='myRoute')
+  // }
 }

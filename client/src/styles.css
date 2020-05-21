@@ -15,12 +15,23 @@ mat-form-field .mat-form-field-infix {
   visibility: hidden !important;
 }
 
+html,
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 100%;
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
   background-color: #fff;
+}
+
+form{
+  padding: 10px;
 }
 
 a {
@@ -114,6 +125,3 @@ app-root div.card.card-default {
     transform: rotate(359deg);
   }
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

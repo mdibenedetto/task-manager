@@ -26,7 +26,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
-  imports: [ 
+  imports: [
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
@@ -36,7 +36,7 @@ import { HttpClientModule } from "@angular/common/http";
     MessagesModule,
     NGMaterialModule,
     AppRoutingModule
-  ], 
+  ],
   declarations: [AppComponent, WelcomeComponent, PageNotFoundComponent],
   providers: [{ provide: LOCALE_ID, useValue: "it-IT" }],
   bootstrap: [AppComponent]
