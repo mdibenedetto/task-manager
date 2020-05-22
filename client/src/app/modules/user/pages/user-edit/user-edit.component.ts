@@ -8,13 +8,16 @@ import { AuthService } from '../../services/auth-service/auth.service';
   styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
-  user: IUser = {} as any;
+  user: IUser;
+   
 
-  constructor(authService: AuthService) {  
-    this.user = authService.currentUser || { }as any;
+  constructor(private authService: AuthService) {
+
+
   }
 
   ngOnInit() {
+    this.user = this.authService.currentUser || { } as IUser;
   }
 
 }

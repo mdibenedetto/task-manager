@@ -19,52 +19,47 @@ import { TaskListComponent } from './pages/task-list/task-list.component';
 import { TaskListItemComponent } from './pages/task-list-item/task-list-item.component';
 import { TaskDetailComponent } from './pages/task-detail/task-detail.component';
 
-
-// import { AuthGuardService } from '../user/auth-guard/auth-guard.service';
 import { NGMaterialModule } from '../../__shared__/ng-material.module';
 
+const RouteDefinitions =
+  [
+    {
+      path: '',
+      component: TaskListComponent
+    },
+    {
+      path: ':id',
+      component: TaskDetailComponent,
+      resolve: { task: TaskResolver }
+    },
+    {
+      path: ':id/edit',
+      component: TaskEditComponent,
+      canDeactivate: [TaskEditGuardService],
+      resolve: { task: TaskResolver },
+      children: [{
+        path: '',
+        redirectTo: 'info',
+        pathMatch: 'full'
+      },
+      {
+        path: 'info',
+        component: TaskEditInfoComponent
+      },
+      {
+        path: 'tags',
+        component: TaskEditTagsComponent
+      }]
+    }
+  ];
+  
 @NgModule({
   imports: [
     NGMaterialModule,
     RouterModule,
     FormsModule,
     CommonModule,
-    RouterModule.forChild([
-      // {
-      //   path: 'tasks',
-      //   canActivate:[AuthGuardService],
-      //   children: [
-      {
-        path: '',
-        component: TaskListComponent
-      },
-      {
-        path: ':id',
-        component: TaskDetailComponent,
-        resolve: { task: TaskResolver }
-      },
-      {
-        path: ':id/edit',
-        component: TaskEditComponent,
-        canDeactivate: [TaskEditGuardService],
-        resolve: { task: TaskResolver },
-        children: [{
-          path: '',
-          redirectTo: 'info',
-          pathMatch: 'full'
-        },
-        {
-          path: 'info',
-          component: TaskEditInfoComponent
-        },
-        {
-          path: 'tags',
-          component: TaskEditTagsComponent
-        }]
-      }
-      //   ]
-      // },
-    ])
+    RouterModule.forChild(RouteDefinitions)
   ],
   declarations: [
     TaskListToolbarComponent,

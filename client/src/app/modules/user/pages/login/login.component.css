@@ -1,4 +1,9 @@
-:host(){
-max-width: 450px;
-background: red;
+:host() {
+  max-width: 450px;
+  background: red;
 }
+/* 
+.login-header{
+    background-color: var(--primary);
+    color: white;
+} */

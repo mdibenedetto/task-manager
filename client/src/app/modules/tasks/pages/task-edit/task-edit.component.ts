@@ -27,13 +27,14 @@ export class TaskEditComponent implements OnInit {
     this.currentTask = value;
     this.originalTask = Object.assign({}, value);
   }
-  constructor(private taskService: TaskService,
+  constructor(
+    private taskService: TaskService,
     private messageService: MessageService,
     private route: ActivatedRoute,
-    private router: Router) {}
+    private router: Router) { }
 
   ngOnInit() {
-    this.route.data.subscribe(data => { 
+    this.route.data.subscribe(data => {
       this.onTaskRetrieved(data['task']);
     });
   }
@@ -71,7 +72,7 @@ export class TaskEditComponent implements OnInit {
       this.taskService.saveTask(this.task)
         .subscribe(
           () => this.onSaveComplete(`${this.task.title} was saved`),
-          (error: any) => this.errorMessage = < any > error
+          (error: any) => this.errorMessage = <any>error
         );
     } else {
       this.errorMessage = 'Please correct the validation errors.';
@@ -84,16 +85,16 @@ export class TaskEditComponent implements OnInit {
       this.onSaveComplete();
     } else {
       if (confirm(`Really delete the task: ${this.task.title}?`)) {
-        this.taskService.removeTask(this.task.id )
+        this.taskService.removeTask(this.task.id)
           .subscribe(
             () => this.onSaveComplete(`${this.task.title} was deleted`),
-            (error: any) => this.errorMessage = < any > error
+            (error: any) => this.errorMessage = <any>error
           );
       }
     }
   }
 
-  onSaveComplete(message ? : string): void {
+  onSaveComplete(message?: string): void {
     if (message) {
       this.messageService.addMessage(message);
     }
@@ -104,6 +105,6 @@ export class TaskEditComponent implements OnInit {
   validate(): void {
     this.dataIsValid = {};
     this.dataIsValid['info'] = this.task.title && (this.task.title !== '' && !this.task.title.startsWith(' '));
-    this.dataIsValid['tags'] = this.task.categoryId && this.task.categoryId >0;
+    this.dataIsValid['tags'] = this.task.categoryId && this.task.categoryId > 0;
   }
 }

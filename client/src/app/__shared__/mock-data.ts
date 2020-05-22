@@ -22,7 +22,7 @@ export class MockData implements InMemoryDbService, InMemoryBackendConfig {
   createDBUsers() {
     const users: IUser[] = [];
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 1; i < 5; i++) {
       users.push({
         id: i,
         fullName: "Dummy " + i,
