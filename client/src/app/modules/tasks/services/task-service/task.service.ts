@@ -7,7 +7,7 @@ import { HttpClient, HttpResponse } from "@angular/common/http";
 
 
 import { ITask } from "../../task"; 
-import { CommonService } from "../../../common/common-service";
+import { CommonService } from "../../../../__shared__/common-service";
 
 @Injectable()
 export class TaskService extends CommonService<ITask> {

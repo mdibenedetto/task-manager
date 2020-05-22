@@ -4,8 +4,8 @@ import {
   InMemoryBackendConfigArgs
 } from "angular-in-memory-web-api";
 
-import { ITask } from "../tasks/task";
-import { IUser } from "../user/user";
+import { ITask } from "../modules/tasks/task";
+import { IUser } from "../modules/user/user";
 
 export class MockData implements InMemoryDbService, InMemoryBackendConfig {
   createDb() {

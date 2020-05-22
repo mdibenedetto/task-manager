@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
-import { TaskEditComponent } from '../task-edit/task-edit.component';
+import { TaskEditComponent } from '../../pages/task-edit/task-edit.component';
 
 @Injectable()
 export class TaskEditGuardService implements CanDeactivate<TaskEditComponent> {

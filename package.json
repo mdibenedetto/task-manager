@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start-client": "cd ./client && ng s",
+    "start-client": "npm start --prefix ./client",
     "start-mongod": "sudo /X_Devs/mongodb/bin/mongod",
     "start-mongo": "sudo /X_Devs/mongodb/bin/mongo",
     "start": "cd ./server && node server"

@@ -1,8 +1,8 @@
-import { Route, Router, RouterModule, PreloadAllModules } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { AuthGuardService } from './user/guards/auth-guard/auth-guard.service';
+import { Route, Router, RouterModule, PreloadAllModules } from '@angular/router';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { AuthGuardService } from './modules/user/guards/auth-guard/auth-guard.service';
 
 
 export const RouteDefinitions: Route[] = [
@@ -17,7 +17,7 @@ export const RouteDefinitions: Route[] = [
   {
     path: 'tasks',
     // canActivate: [AuthGuardService],
-    loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule),
+    loadChildren: () => import('./modules/tasks/tasks.module').then(m => m.TasksModule),
     data: {
       role: 'login-user'
     }

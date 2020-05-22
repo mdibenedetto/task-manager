@@ -6,7 +6,7 @@ import { HttpClient } from "@angular/common/http";
 import { map, catchError } from 'rxjs/operators';
 
 import { MessageService } from "../../../messages/message-service/message.service";
-import { CommonService } from "../../../common/common-service";
+import { CommonService } from "../../../../__shared__/common-service";
 import { IUser } from "../../user";
 
 @Injectable()

@@ -1,7 +1,14 @@
 <span class="fa fa-refresh glyphicon-spin spinner" *ngIf="loading"></span>
 <nav class="navbar navbar-expand-lg navbar-light bg-faded">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button
+    class="navbar-toggler navbar-toggler-right"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand" href="#" onclick="return false">Task Manager</a>
@@ -9,17 +16,26 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="nav navbar-nav mr-auto">
       <li class="nav-item" [routerLinkActive]="['active']">
-        <a class="nav-link" routerLink="/welcome">Home
+        <a class="nav-link" routerLink="/welcome"
+          >Home
           <span class="sr-only">(current)</span>
         </a>
       </li>
-      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+      <li
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
         <a class="nav-link" routerLink="/tasks">Task list</a>
       </li>
       <li class="nav-item" [routerLinkActive]="['active']">
         <a class="nav-link" routerLink="/tasks/0/edit">Add Task</a>
       </li>
-      <li class="nav-item" [routerLinkActive]="['active']"  [routerLinkActiveOptions]="{ exact: true }">
+      <li
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
         <a class="nav-link" routerLink="/users">User List</a>
       </li>
       <li class="nav-item" [routerLinkActive]="['active']">
@@ -32,12 +48,26 @@
       </li>
 
       <li class="nav-item" *ngIf="authService.isLoggedIn()">
-        <a class="nav-link" *ngIf="!messageService.isDisplayed" (click)="displayMessages()" href="javascript:void(0)">Show Messages</a>
-        <a class="nav-link" *ngIf="messageService.isDisplayed" (click)="hideMessages()" href="javascript:void(0)">Hide Messages</a>
+        <a
+          class="nav-link"
+          *ngIf="!messageService.isDisplayed"
+          (click)="displayMessages()"
+          href="javascript:void(0)"
+          >Show Messages</a
+        >
+        <a
+          class="nav-link"
+          *ngIf="messageService.isDisplayed"
+          (click)="hideMessages()"
+          href="javascript:void(0)"
+          >Hide Messages</a
+        >
       </li>
 
       <li *ngIf="!authService.isLoggedIn()" class="nav-item">
-        <a class="nav-link" [routerLinkActive]="['active']" routerLink="/login">Log In</a>
+        <a class="nav-link" [routerLinkActive]="['active']" routerLink="/login"
+          >Log In</a
+        >
       </li>
 
       <li *ngIf="authService.isLoggedIn()" class="nav-item">
@@ -49,7 +79,12 @@
 
 <div class="container">
   <div class="row">
-    <div [ngClass]="{'col-10':messageService.isDisplayed,'col-12':!messageService.isDisplayed}">
+    <div
+      [ngClass]="{
+        'col-10': messageService.isDisplayed,
+        'col-12': !messageService.isDisplayed
+      }"
+    >
       <router-outlet></router-outlet>
     </div>
     <div class="col-2">

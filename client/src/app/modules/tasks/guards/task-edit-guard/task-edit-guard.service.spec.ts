@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { TaskEditGuardService } from './task-edit-guard.service';
+import { TaskEditGuardService } from '../../services/task-edit-guard/task-edit-guard.service';
 
 describe('TaskEditGuardService', () => {
   beforeEach(() => {

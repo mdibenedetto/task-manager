@@ -3,7 +3,7 @@
 
 import { Injectable } from '@angular/core';
 import { IUser } from '../../user';
-import { CommonService } from 'src/app/common/common-service';
+import { CommonService } from 'src/app/__shared__/common-service';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
