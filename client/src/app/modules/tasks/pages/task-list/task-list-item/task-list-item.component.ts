@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ITask } from '../../task';
-
+import { ITask } from '../../../task';
+ 
 @Component({
   selector: 'task-list-item',
   templateUrl: './task-list-item.component.html',

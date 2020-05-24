@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { NgForm } from "@angular/forms";
-import { ITask, ITaskType } from "../../task";
+import { ITask, ITaskType } from "../../../../task";
 
 @Component({
   selector: "task-edit-tags",

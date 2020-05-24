@@ -4,10 +4,14 @@ import {
   InMemoryBackendConfigArgs
 } from "angular-in-memory-web-api";
 
+import { getRandomInt } from './utilies';
+
 import { ITask } from "../modules/tasks/task";
 import { IUser } from "../modules/user/user";
 
 export class MockData implements InMemoryDbService, InMemoryBackendConfig {
+  MAX_USERS = 10;
+
   createDb() {
     const tasks = this.createDBTask();
     const users = this.createDBUsers();
@@ -44,7 +48,7 @@ export class MockData implements InMemoryDbService, InMemoryBackendConfig {
     ];
 
 
-    for (let i = users.length; i < 5; i++) {
+    for (let i = users.length; i < this.MAX_USERS; i++) {
       users.push({
         id: i,
         fullName: "Dummy " + i,
@@ -73,7 +77,7 @@ export class MockData implements InMemoryDbService, InMemoryBackendConfig {
         startDate,
         endDate,
         categoryId: null,
-        assigneeId: null
+        assigneeId: getRandomInt(1, this.MAX_USERS)
       };
       tasks.push(task);
     }

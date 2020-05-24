@@ -107,6 +107,6 @@ export class TaskEditComponent implements OnInit {
   validate(): void {
     this.dataIsValid = {};
     this.dataIsValid['info'] = this.task.title && (this.task.title !== '' && !this.task.title.startsWith(' '));
-    this.dataIsValid['tags'] = this.task.categoryId && this.task.categoryId > 0;
+    // this.dataIsValid['tags'] = this.task.categoryId && this.task.categoryId > 0;
   }
 }

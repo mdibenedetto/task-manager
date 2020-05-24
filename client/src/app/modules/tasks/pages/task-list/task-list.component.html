@@ -39,6 +39,7 @@
             <th>Description</th>
             <th>Start date</th>
             <th>End date</th>
+            <th>Assegnee Id</th>
             <th></th>
             <th></th>
           </tr>
@@ -52,7 +53,7 @@
             <th scope="row">{{ i + 1 }}</th>
             <td>
               <a
-                [routerLink]="['/tasks', task.id]"
+                [routerLink]="['/tasks', task.id, 'view']"
                 [queryParams]="{ filterBy: listFilter }"
                 >{{ task.title }}</a
               >
@@ -60,6 +61,7 @@
             <td>{{ task.description }}</td>
             <td>{{ task.startDate | date: "dd/MM/yyyy" }}</td>
             <td>{{ task.endDate | date: "dd/MM/yyyy" }}</td>
+            <td align="center">{{ task.assigneeId }}</td>
             <td>
               <a
                 class="btn btn-primary"
