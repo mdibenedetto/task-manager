@@ -9,7 +9,7 @@ import { Observable } from "rxjs";
   styleUrls: ["./task-list.component.css"]
 })
 export class TaskListComponent implements OnInit {
-  pageTitle: string = "Task List";
+ 
   tasks: ITask[];
   selectedRow: number = -1;
   selectedId: number = -1;
@@ -37,15 +37,15 @@ export class TaskListComponent implements OnInit {
   }
 
   removeTask(id) {
-    this.taskService.removeTask(id).subscribe(
-      data => {
-        console.log(data);
-        this.searchTasks();
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    this.taskService.removeTask(id)
+      .subscribe(
+        data => { 
+          this.searchTasks();
+        },
+        err => {
+          console.log(err);
+        }
+      );
   }
   setSelectedRow(index) {
     this.selectedId = this.tasks[index].id;

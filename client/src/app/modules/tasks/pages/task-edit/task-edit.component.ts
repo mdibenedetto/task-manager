@@ -14,9 +14,11 @@ import { MessageService } from '../../../messages/message-service/message.servic
 export class TaskEditComponent implements OnInit {
   pageTitle: string = 'Task Edit';
   errorMessage: string = '';
+
   private dataIsValid: {
     [key: string]: boolean
   } = {};
+  
   private currentTask: ITask;
   private originalTask: ITask;
 

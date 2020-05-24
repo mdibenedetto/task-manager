@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 // Task entities
 import { TaskService } from './services/task-service/task.service';
@@ -21,7 +21,7 @@ import { TaskDetailComponent } from './pages/task-detail/task-detail.component';
 
 import { NGMaterialModule } from '../../__shared__/ng-material.module';
 
-const RouteDefinitions =
+const RouteDefinitions: Routes =
   [
     {
       path: '',
@@ -32,27 +32,33 @@ const RouteDefinitions =
       component: TaskDetailComponent,
       resolve: { task: TaskResolver }
     },
-    {
+    // {
+    //   path: 'new',
+    //   redirectTo: ':id/edit',
+    // },
+
+    {      
       path: ':id/edit',
       component: TaskEditComponent,
       canDeactivate: [TaskEditGuardService],
       resolve: { task: TaskResolver },
-      children: [{
-        path: '',
-        redirectTo: 'info',
-        pathMatch: 'full'
-      },
-      {
-        path: 'info',
-        component: TaskEditInfoComponent
-      },
-      {
-        path: 'tags',
-        component: TaskEditTagsComponent
-      }]
+      children: [
+        {
+          path: '',
+          redirectTo: 'info',
+          pathMatch: 'full'
+        },
+        {
+          path: 'info',
+          component: TaskEditInfoComponent
+        },
+        {
+          path: 'tags',
+          component: TaskEditTagsComponent
+        }]
     }
   ];
-  
+
 @NgModule({
   imports: [
     NGMaterialModule,

@@ -2,7 +2,7 @@
 import { throwError as observableThrowError, Subject, Observable } from 'rxjs';
 
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { map, catchError } from 'rxjs/operators';
 
 import { MessageService } from "../../../messages/message-service/message.service";
@@ -49,38 +49,41 @@ export class AuthService extends CommonService<IUser> {
           this.currentUser = this.parseResponse(res, 'user');
           return this.currentUser;
         }),
-        catchError((error: Response) => this.serverError(error)));
+        catchError((error: Response) => this.serverError(error))
+      );
   }
 
-  login(userName: string, passWord: string): Observable<any> {
+  login(userName: string, passWord: string): Observable<IUser> {
     if (!userName || !passWord) {
       this.messageService.addMessage("Please enter your userName and password");
       return;
     }
-
-    let user = {
-      userName,
-      passWord
-    };
-
+ 
     return this.http
-      .post(`${this.URL}/login/`, user, this.options).pipe(
-        map((res: Response) => {
+      .post<IUser>(`${this.URL}/login/`, {
+        userName,
+        passWord
+      })
+      .pipe(
+        map((res: IUser) => {               
           this.currentUser = this.parseResponse(res, 'user');
           this.messageService.addMessage(
             `User: ${this.currentUser.userName} logged in`
           );
           return this.currentUser;
         }),
-        catchError((error: Response) => this.serverError(error)));
+        catchError((error: Response) => this.serverError(error))
+      );
   }
 
   logout() {
     return this.http
-      .get(`${this.URL}/logout`, this.options).pipe(
+      .get(`${this.URL}/logout`, this.options)
+      .pipe(
         map((res: Response) => {
           this.currentUser = null;
         }),
-        catchError((error: Response) => this.serverError(error)));
+        catchError((error: Response) => this.serverError(error))
+      );
   }
 }

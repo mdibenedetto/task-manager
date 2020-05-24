@@ -13,12 +13,21 @@ export class UserListComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.searchUsers();
+  }
+
+  searchUsers() {
     this.userService
       .findUsers()
-      .subscribe((users: IUser[]) => {
-        this.users = users;
-      });
+      .subscribe((users: IUser[]) => this.users = users);
   }
+
+  removeUser(id: String) {
+    this.userService
+      .removeUser(id)
+      .subscribe(_ => this.searchUsers());
+  }
+
 
 }

@@ -17,7 +17,8 @@ export const RouteDefinitions: Route[] = [
   {
     path: 'tasks',
     // canActivate: [AuthGuardService],
-    loadChildren: () => import('./modules/tasks/tasks.module').then(m => m.TasksModule),
+    loadChildren: () => import('./modules/tasks/tasks.module')
+      .then(m => m.TasksModule),
     data: {
       role: 'login-user'
     }

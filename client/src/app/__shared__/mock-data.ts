@@ -10,43 +10,51 @@ import { IUser } from "../modules/user/user";
 export class MockData implements InMemoryDbService, InMemoryBackendConfig {
   createDb() {
     const tasks = this.createDBTask();
-    const login = this.createDBLogin();
     const users = this.createDBUsers();
- 
+    const login = users;
+
     let logout: any[] = [true];
 
-    console.log(tasks);
     return { login, logout, tasks, users };
   }
 
   createDBUsers() {
-    const users: IUser[] = [];
+    const users: IUser[] = [
+      {
+        id: -1,
+        fullName: "Nick Fury",
+        userName: "admin",
+        passWord: "admin",
+        isAdmin: true
+      },
+      {
+        id: 1,
+        userName: "Tony",
+        fullName: "Tony stark",
+        passWord: "dummy",
+        isAdmin: false
+      },
+      {
+        id: 2,
+        userName: "Peter",
+        fullName: "Peter Parker",
+        passWord: "dummy",
+        isAdmin: false
+      }
+    ];
 
-    for (let i = 1; i < 5; i++) {
+
+    for (let i = users.length; i < 5; i++) {
       users.push({
         id: i,
         fullName: "Dummy " + i,
         userName: "dummyUser-" + i,
         passWord: "pwd-" + i,
-        isAdmin: i === 0
+        isAdmin: false
       })
     }
 
     return users;
-  }
-
-  createDBLogin(): any {
-    let login = [
-      { userName: "Mario", passWord: "m", id: 1, isAdmin: false },
-      { userName: "Marco", passWord: "m", id: 2, isAdmin: false },
-      {
-        userName: "admin",
-        passWord: "admin",
-        id: () => 0,
-        isAdmin: false
-      }
-    ];
-    return login;
   }
 
   createDBTask(): ITask[] {

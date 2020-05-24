@@ -24,8 +24,9 @@ export class CommonService<T> {
     return observableThrowError(message);
   }
 
-  handleError(error): Observable<any> {
+  handleError(error): Observable<any> { 
     console.error(error);
+    alert(error.body.error);
     return observableThrowError(error || "Server error");
   }
 

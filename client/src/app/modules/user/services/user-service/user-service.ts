@@ -5,23 +5,51 @@ import { Injectable } from '@angular/core';
 import { IUser } from '../../user';
 import { CommonService } from 'src/app/__shared__/common-service';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService extends CommonService<IUser>{
     URL = this.BASE_URL + "/users";
-    // URL =  "/users";
 
     constructor(private http: HttpClient) {
         super();
     }
 
     findUsers(): Observable<IUser[]> {
-        return this.http.get(`${this.URL}`).pipe(
-            map(this.extractData),
-            catchError(this.handleError)
-        );
+        return this.http.get(`${this.URL}`)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    findUser(id: String): Observable<IUser> {
+        return this.http.get(`${this.URL}/${id}`)
+            .pipe(
+                tap((res: IUser) => {
+                    debugger
+                }),
+                catchError(this.handleError)
+            );
+    }
+
+    saveUser(user: IUser): Observable<IUser> {
+        return !user.id ? this.addUser(user) : this.updateUser(user);
+    }
+
+    addUser(user: IUser): Observable<IUser> {
+        return this.http.post(`${this.URL}`, user)
+            .pipe(catchError(this.handleError));
+    }
+
+    updateUser(user: IUser): Observable<IUser> {
+        return this.http.put(`${this.URL}/${user.id}`, user)
+            .pipe(catchError(this.handleError));
+    }
+
+    removeUser(id: String | number): Observable<IUser> {
+        return this.http.delete(`${this.URL}/${id}`)
+            .pipe(catchError(this.handleError));
     }
 
 }

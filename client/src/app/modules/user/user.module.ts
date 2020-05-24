@@ -11,15 +11,21 @@ import { LoginComponent } from './pages/login/login.component';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { UserEditComponent } from './pages/user-edit/user-edit.component';
 
-const RouteDefinitions = [{
-  path: 'users',
-  component: UserListComponent
-}, {
-  path: 'users/:id/edit',
-  component: UserEditComponent
-}, {
-  path: 'login',
-  component: LoginComponent
+const RouteDefinitions = [
+  {
+    path: 'users',
+    component: UserListComponent
+  },
+  {
+    path: 'users/new',
+    component: UserEditComponent
+  },
+  {
+    path: 'users/:id/edit',
+    component: UserEditComponent
+  }, {
+    path: 'login',
+    component: LoginComponent
   }];
 
 @NgModule({
