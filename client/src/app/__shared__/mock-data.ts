@@ -6,8 +6,8 @@ import {
 
 import { getRandomInt } from './utilies';
 
-import { ITask } from "../modules/tasks/task";
-import { IUser } from "../modules/user/user";
+import { ITask } from "./model/task";
+import { IUser } from "./model/user";
 
 export class MockData implements InMemoryDbService, InMemoryBackendConfig {
   MAX_USERS = 10;

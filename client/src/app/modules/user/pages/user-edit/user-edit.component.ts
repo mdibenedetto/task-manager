@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { OpenMode } from 'src/app/__shared__/model/enums';
-import { IUser } from '../../user';
+import { IUser } from '../../../../__shared__/model/user';
 import { AuthService } from '../../services/auth-service/auth.service';
 import { UserService } from '../../services/user-service/user-service';
 
-import { MessageService } from 'src/app/modules/messages/message-service/message.service';
+import { MessageService } from 'src/app/__shared__/modules/messages/message-service/message.service';
 
 @Component({
   selector: 'user-edit',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
 import { AuthService } from './modules/user/services/auth-service/auth.service';
-import { MessageService } from './modules/messages/message-service/message.service';
+import { MessageService } from './__shared__/modules/messages/message-service/message.service';
 
 @Component({
   selector: 'app-root',

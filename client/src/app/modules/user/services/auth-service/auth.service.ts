@@ -5,9 +5,9 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { map, catchError } from 'rxjs/operators';
 
-import { MessageService } from "../../../messages/message-service/message.service";
+import { MessageService } from "../../../../__shared__/modules/messages/message-service/message.service";
 import { CommonService } from "../../../../__shared__/common-service";
-import { IUser } from "../../user";
+import { IUser } from "../../../../__shared__/model/user";
 
 @Injectable()
 export class AuthService extends CommonService<IUser> {

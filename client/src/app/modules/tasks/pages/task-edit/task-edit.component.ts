@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ITask } from '../../task';
+import { ITask } from '../../../../__shared__/model/task';
 import { TaskService } from '../../services/task-service/task.service';
-import { MessageService } from '../../../messages/message-service/message.service';
+import { MessageService } from '../../../../__shared__/modules/messages/message-service/message.service';
 
 @Component({
   selector: 'task-edit',

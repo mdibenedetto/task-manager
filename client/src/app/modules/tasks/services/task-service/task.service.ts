@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpResponse } from "@angular/common/http";
 
 
-import { ITask } from "../../task";
+import { ITask } from "../../../../__shared__/model/task";
 import { CommonService } from "../../../../__shared__/common-service";
 
 @Injectable()

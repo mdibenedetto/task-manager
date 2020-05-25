@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
-import { ITask } from '../../../../task';
-import { IUser } from '../../../../../user/user';
+import { ITask } from '../../../../../../__shared__/model/task';
+import { IUser } from '../../../../../../__shared__/model/user';
 import { UserService } from 'src/app/modules/user/services/user-service/user-service';
 @Component({
   selector: 'task-edit-info',

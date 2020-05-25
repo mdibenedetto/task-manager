@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { TaskService } from "../../services/task-service/task.service";
-import { ITask } from "../../task";
 import { Observable } from "rxjs";
+
+import { TaskService } from "../../services/task-service/task.service";
+import { ITask } from "../../../../__shared__/model/task";
 @Component({
   selector: "task-list",
   templateUrl: "./task-list.component.html",

@@ -2,7 +2,7 @@
 
 
 import { Injectable } from '@angular/core';
-import { IUser } from '../../user';
+import { IUser } from '../../../../__shared__/model/user';
 import { CommonService } from 'src/app/__shared__/common-service';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';

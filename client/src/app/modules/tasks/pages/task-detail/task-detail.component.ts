@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ITask } from '../../task';
+import { ITask } from '../../../../__shared__/model/task';
 
 @Component({
   selector: 'task-detail',
