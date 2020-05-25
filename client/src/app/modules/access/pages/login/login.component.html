@@ -43,7 +43,7 @@
               required
               autofocus
               name="userName"
-              (ngModel)="(userName)"
+              [ngModel]="userName"
               #refUserName="ngModel"
               #refUserNameElement
             />
@@ -72,12 +72,12 @@
           <div class="col-md-12">
             <input
               class="form-control"
-              id="txtPassword"
+              id="password"
               type="password"
               placeholder="Password (required) - (test Password: admin)"
               required
               name="password"
-              (ngModel)="(password)"
+              [ngModel]="password"
               #refPassword="ngModel"
             />
             <span

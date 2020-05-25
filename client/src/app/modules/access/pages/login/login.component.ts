@@ -16,6 +16,7 @@ export class LoginComponent implements AfterViewInit {
   errorMessage: string;
 
   pageTitle = "Log In";
+  
   userName = "admin";
   password = "admin";
 
