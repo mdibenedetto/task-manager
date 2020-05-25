@@ -1,5 +1,3 @@
-// import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { RouterModule, Routes } from "@angular/router";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, LOCALE_ID } from "@angular/core";
 import { registerLocaleData } from "@angular/common";
@@ -12,7 +10,7 @@ import { InMemoryWebApiModule } from "angular-in-memory-web-api";
 import { MockData } from "./__shared__/mock-data";
 import { NGMaterialModule } from './__shared__/ng-material.module';
 
-import { RouteDefinitions, AppRoutingModule } from "./app-routing.module";
+import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { WelcomeComponent } from "./pages/welcome/welcome.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
@@ -20,7 +18,7 @@ import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.com
 /* Feature Modules */
 // import { TasksModule } from './tasks/tasks.module';
 import { UserModule } from "./modules/user/user.module";
-import { MessagesModule } from "./modules/messages/messages.module";
+import { MessagesModule } from "./__shared__/modules/messages/messages.module";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
@@ -30,8 +28,7 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
-    InMemoryWebApiModule.forRoot(MockData, { delay: 0 }),
-    // TasksModule,
+    InMemoryWebApiModule.forRoot(MockData, { delay: 0 }), 
     UserModule,
     MessagesModule,
     NGMaterialModule,

@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Route, Router, RouterModule, PreloadAllModules } from '@angular/router';
+import { Routes, Route, Router, RouterModule, NoPreloading, PreloadAllModules } from '@angular/router';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { AuthGuardService } from './modules/user/guards/auth-guard/auth-guard.service';
 
-
-export const RouteDefinitions: Route[] = [
+const routes: Routes = [
 
   {
     path: 'welcome',
@@ -33,6 +32,8 @@ export const RouteDefinitions: Route[] = [
     redirectTo: 'welcome',
     pathMatch: 'full'
   },
+
+  // { path: 'access', loadChildren: () => import('./modules/access/access.module').then(m => m.AccessModule) }, 
   {
     path: '**',
     component: PageNotFoundComponent,
@@ -43,14 +44,11 @@ export const RouteDefinitions: Route[] = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(RouteDefinitions, {
+  imports: [RouterModule.forRoot(routes, {
     enableTracing: false,
-    preloadingStrategy: PreloadAllModules
+    preloadingStrategy: NoPreloading // PreloadAllModules
   })],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-  // constructor(private router:Router){
-  //      router.config.filter(x=>(x.data || {}).role==='myRoute')
-  // }
+export class AppRoutingModule { 
 }

@@ -60,7 +60,7 @@ const RouteDefinitions: Routes =
 
     {
       path: ':id/edit',
-      ...editRoute
+
     }
   ];
 
