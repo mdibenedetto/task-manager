@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 
 import { ITask } from '../../../../../../__shared__/model/task';
 import { IUser } from '../../../../../../__shared__/model/user';
-import { UserService } from 'src/app/modules/user/services/user-service/user-service';
+import { UserService } from 'src/app/modules/users/services/user-service/user-service';
 @Component({
   selector: 'task-edit-info',
   templateUrl: './task-edit-info.component.html',
@@ -12,32 +12,10 @@ import { UserService } from 'src/app/modules/user/services/user-service/user-ser
 })
 export class TaskEditInfoComponent implements OnInit {
 
-  @ViewChild(NgForm) taskForm: NgForm;
+  @ViewChild(NgForm)
+  taskForm: NgForm;
   task: ITask;
   assigneeUsers: IUser[];
-
-  // assigneeUsers: IUser[] = [
-  //   {
-  //     userName: "tstark@taskmanager.tax", fullName: "To Tester",
-  //     passWord: "", id: 1, isAdmin: true
-  //   },
-  //   {
-  //     userName: "pparker@taskmanager.tax", fullName: "Miguel Tester",
-  //     passWord: "", id: 2, isAdmin: false
-  //   },
-  //   {
-  //     userName: "nfury@taskmanager.tax", fullName: "Patrick Tester",
-  //     passWord: "", id: 3, isAdmin: false
-  //   },
-  //   {
-  //     userName: "aitor@taskmanager.tax", fullName: "Aitor Tester",
-  //     passWord: "", id: 4, isAdmin: false
-  //   },
-  //   {
-  //     userName: "gerard@taskmanager.tax", fullName: "Gerard Tester",
-  //     passWord: "", id: 5, isAdmin: false
-  //   },
-  // ];
 
   constructor(
     private route: ActivatedRoute,

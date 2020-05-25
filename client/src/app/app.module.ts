@@ -17,11 +17,12 @@ import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.com
 
 /* Feature Modules */
 // import { TasksModule } from './tasks/tasks.module';
-import { UserModule } from "./modules/user/user.module";
+import { UsersModule } from "./modules/users/users.module";
 import { MessagesModule } from "./__shared__/modules/messages/messages.module";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
+import { AccessModule } from './modules/access/access.module';
 
 @NgModule({
   imports: [
@@ -29,9 +30,9 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserModule,
     HttpClientModule,
     InMemoryWebApiModule.forRoot(MockData, { delay: 0 }), 
-    UserModule,
-    MessagesModule,
     NGMaterialModule,
+    AccessModule,
+    MessagesModule,
     AppRoutingModule
   ],
   declarations: [AppComponent, WelcomeComponent, PageNotFoundComponent],

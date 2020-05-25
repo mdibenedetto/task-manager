@@ -1,15 +1,15 @@
-
-import { throwError as observableThrowError, Subject, Observable } from 'rxjs';
-
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
+import { throwError as observableThrowError, Subject, Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { MessageService } from "../../../../__shared__/modules/messages/message-service/message.service";
-import { CommonService } from "../../../../__shared__/common-service";
-import { IUser } from "../../../../__shared__/model/user";
+import { MessageService } from "src/app/__shared__/modules/messages/message-service/message.service";
+import { CommonService } from "src/app/__shared__/common-service";
+import { IUser } from "src/app/__shared__/model/user";
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class AuthService extends CommonService<IUser> {
 
   constructor(
@@ -58,14 +58,14 @@ export class AuthService extends CommonService<IUser> {
       this.messageService.addMessage("Please enter your userName and password");
       return;
     }
- 
+
     return this.http
       .post<IUser>(`${this.URL}/login/`, {
         userName,
         passWord
       })
       .pipe(
-        map((res: IUser) => {               
+        map((res: IUser) => {
           this.currentUser = this.parseResponse(res, 'user');
           this.messageService.addMessage(
             `User: ${this.currentUser.userName} logged in`

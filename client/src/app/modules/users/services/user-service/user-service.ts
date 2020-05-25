@@ -2,11 +2,12 @@
 
 
 import { Injectable } from '@angular/core';
-import { IUser } from '../../../../__shared__/model/user';
-import { CommonService } from 'src/app/__shared__/common-service';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+
+import { CommonService } from 'src/app/__shared__/common-service';
+import { IUser } from 'src/app/__shared__/model/user';
 
 @Injectable({ providedIn: 'root' })
 export class UserService extends CommonService<IUser>{

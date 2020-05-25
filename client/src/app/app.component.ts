@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
-import { AuthService } from './modules/user/services/auth-service/auth.service';
 import { MessageService } from './__shared__/modules/messages/message-service/message.service';
+import { AuthService } from './modules/access/guards/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +10,18 @@ import { MessageService } from './__shared__/modules/messages/message-service/me
 })
 export class AppComponent implements OnInit {
   loading: boolean = true;
-  constructor(public authService: AuthService, private router: Router, public messageService: MessageService) {
+
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+    public messageService: MessageService) {
+    
     router.events.subscribe((routerEvent: Event) => {
       this.checkRouterEvent(routerEvent);
     });
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     // if (this.authService.isLoggedIn() && this.authService.redirectUrl) {
     //   this.router.navigateByUrl(this.authService.redirectUrl)
     // } else { 
@@ -64,7 +69,7 @@ export class AppComponent implements OnInit {
     this.router.navigate(['welcolme']);
   }
 
-  logOut(): void {   
+  logOut(): void {
     this.authService.logout().subscribe(
       () => this.router.navigateByUrl('/welcome'),
       (error) => alert(error));

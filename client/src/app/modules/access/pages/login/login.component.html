@@ -25,32 +25,32 @@
           class="form-group"
           [ngClass]="{
             'has-error':
-              (userNameVar.touched || userNameVar.dirty) && !userNameVar.valid
+              (txtUserName.touched || txtUserName.dirty) && !txtUserName.valid
           }"
         >
-          <label class="col-md-2 control-label" for="userNameId"
+          <label class="col-md-2 control-label" for="userName"
             >User Name</label
           >
 
           <div class="col-md-12">
             <input
               class="form-control"
-              id="userNameId"
+              id="userName"
               type="text"
               placeholder="User Name (required) - (test user: admin)"
               required
               autofocus
               (ngModel)="(userName)"
               name="userName"
-              #userNameVar="ngModel"
+              #txtUserName="ngModel"
             />
             <span
               class="help-block"
               *ngIf="
-                (userNameVar.touched || userNameVar.dirty) && userNameVar.errors
+                (txtUserName.touched || txtUserName.dirty) && txtUserName.errors
               "
             >
-              <span *ngIf="userNameVar.errors.required">
+              <span *ngIf="txtUserName.errors.required">
                 User name is required.
               </span>
             </span>
@@ -61,32 +61,32 @@
           class="form-group"
           [ngClass]="{
             'has-error':
-              (passwordVar.touched || passwordVar.dirty) && !passwordVar.valid
+              (txtPassword.touched || txtPassword.dirty) && !txtPassword.valid
           }"
         >
-          <label class="col-md-2 control-label" for="passwordId"
+          <label class="col-md-2 control-label" for="password"
             >Password</label
           >
 
           <div class="col-md-12">
             <input
               class="form-control"
-              id="passwordId"
+              id="password"
               type="password"
               placeholder="Password (required) - (test Password: admin)"
               required
               (ngModel)="(password)"
               name="password"
-              #passwordVar="ngModel"
+              #txtPassword="ngModel"
               value="admin"
             />
             <span
               class="help-block"
               *ngIf="
-                (passwordVar.touched || passwordVar.dirty) && passwordVar.errors
+                (txtPassword.touched || txtPassword.dirty) && txtPassword.errors
               "
             >
-              <span *ngIf="passwordVar.errors.required">
+              <span *ngIf="txtPassword.errors.required">
                 Password is required.
               </span>
             </span>

@@ -3,11 +3,10 @@ import { throwError as observableThrowError, of as observableOf, Subject, Observ
 
 import { catchError, map } from 'rxjs/operators';
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
-
-import { ITask } from "../../../../__shared__/model/task";
-import { CommonService } from "../../../../__shared__/common-service";
+import { ITask } from "src/app/__shared__/model/task";
+import { CommonService } from "src/app/__shared__/common-service";
 
 @Injectable()
 export class TaskService extends CommonService<ITask> {

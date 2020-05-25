@@ -9,7 +9,8 @@ import { ITask, ITaskType } from "../../../../../../__shared__/model/task";
   styleUrls: ["./task-edit-tags.component.css"]
 })
 export class TaskEditTagsComponent implements OnInit {
-  @ViewChild(NgForm) taskForm: NgForm;
+  @ViewChild(NgForm)
+  taskForm: NgForm;
   task: ITask;
   categories: ITaskType[] = [
     { id: 1, description: "Bug" },
