@@ -25,32 +25,35 @@
           class="form-group"
           [ngClass]="{
             'has-error':
-              (txtUserName.touched || txtUserName.dirty) && !txtUserName.valid
+              (refUserName.touched || refUserName.dirty) && !refUserName.valid
           }"
         >
-          <label class="col-md-2 control-label" for="userName"
-            >User Name</label
-          >
+          <label class="col-md-2 control-label" for="userName">User Name</label>
 
           <div class="col-md-12">
+            <!-- 
+              - we use  #refUserNameElement to reference it as ViewChild
+            #refUserName does not work becuase it is in binding with "ngModel"
+            -->
             <input
               class="form-control"
-              id="userName"
+              id="txtUserName"
               type="text"
               placeholder="User Name (required) - (test user: admin)"
               required
               autofocus
-              (ngModel)="(userName)"
               name="userName"
-              #txtUserName="ngModel"
+              (ngModel)="(userName)"
+              #refUserName="ngModel"
+              #refUserNameElement
             />
             <span
               class="help-block"
               *ngIf="
-                (txtUserName.touched || txtUserName.dirty) && txtUserName.errors
+                (refUserName.touched || refUserName.dirty) && refUserName.errors
               "
             >
-              <span *ngIf="txtUserName.errors.required">
+              <span *ngIf="refUserName.errors.required">
                 User name is required.
               </span>
             </span>
@@ -61,32 +64,29 @@
           class="form-group"
           [ngClass]="{
             'has-error':
-              (txtPassword.touched || txtPassword.dirty) && !txtPassword.valid
+              (refPassword.touched || refPassword.dirty) && !refPassword.valid
           }"
         >
-          <label class="col-md-2 control-label" for="password"
-            >Password</label
-          >
+          <label class="col-md-2 control-label" for="password">Password</label>
 
           <div class="col-md-12">
             <input
               class="form-control"
-              id="password"
+              id="txtPassword"
               type="password"
               placeholder="Password (required) - (test Password: admin)"
               required
-              (ngModel)="(password)"
               name="password"
-              #txtPassword="ngModel"
-              value="admin"
+              (ngModel)="(password)"
+              #refPassword="ngModel"
             />
             <span
               class="help-block"
               *ngIf="
-                (txtPassword.touched || txtPassword.dirty) && txtPassword.errors
+                (refPassword.touched || refPassword.dirty) && refPassword.errors
               "
             >
-              <span *ngIf="txtPassword.errors.required">
+              <span *ngIf="refPassword.errors.required">
                 Password is required.
               </span>
             </span>

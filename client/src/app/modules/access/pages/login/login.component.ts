@@ -9,8 +9,8 @@ import { AuthService } from "../../guards/auth.service";
   templateUrl: "./login.component.html"
 })
 export class LoginComponent implements AfterViewInit {
-  // TODO: RECHECK NEXT NG9 RELEASE
-  @ViewChild("txtUserName", { static: true})
+
+  @ViewChild("refUserNameElement")
   txtUserName: ElementRef<HTMLInputElement>;
 
   errorMessage: string;
@@ -25,14 +25,7 @@ export class LoginComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // TODO: RECHECK NEXT NG9 RELEASE
-    // currently    this.txtUserName.nativeElement is not working
-    console.warn(
-      this.txtUserName.nativeElement
-    )
-    // TODO - REMOVE THIS TEMP FIX    
-    const _txtUserName = document.querySelector('#userName') as HTMLInputElement;
-    _txtUserName.focus();
+    this.txtUserName.nativeElement.focus();
   }
 
   login(loginForm: NgForm) {
