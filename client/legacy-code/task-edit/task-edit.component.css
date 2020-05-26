@@ -18,7 +18,6 @@ form{
     padding: 10px 40px 10px;
     position: relative;
     text-decoration: none;
-    cursor: pointer;
 }
 
 .wizard .active {

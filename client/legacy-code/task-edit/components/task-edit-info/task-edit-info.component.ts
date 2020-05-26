@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core'; 
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import { ITask } from '../../../../../../__shared__/model/task';
@@ -13,24 +14,28 @@ export class TaskEditInfoComponent implements OnInit {
 
   @ViewChild(NgForm)
   taskForm: NgForm;
-
-  @Input()
   task: ITask;
-
   assigneeUsers: IUser[];
 
-  constructor( 
+  constructor(
+    private route: ActivatedRoute,
     private userService: UserService
   ) { }
 
- 
+  formValuesChage(e) {
+    console.warn(e);
+    console.warn(this.taskForm.invalid);
+  }
   ngOnInit() {
     this.loadForm();
     this.loadUsers();
   }
-   
+
   loadForm() {
-    this.taskForm && this.taskForm.reset();
+    this.route.parent.data.subscribe(data => {
+      this.task = data['task'];
+      this.taskForm && this.taskForm.reset();
+    });
   }
 
   loadUsers() {

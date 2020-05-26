@@ -1,15 +1,16 @@
 
-import { throwError as observableThrowError, of as observableOf, Subject, Observable } from 'rxjs';
-
-import { catchError, map } from 'rxjs/operators';
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
-import { ITask } from "src/app/__shared__/model/task";
+import { throwError as observableThrowError, of, Subject, Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+
+import { ITask, ITaskType } from "src/app/__shared__/model/task";
 import { CommonService } from "src/app/__shared__/common-service";
 
 @Injectable()
 export class TaskService extends CommonService<ITask> {
+
   task: Subject<ITask> = new Subject<ITask>();
   tasks: ITask[] = new Array<ITask>();
   URL = this.BASE_URL + "/tasks";
@@ -21,10 +22,16 @@ export class TaskService extends CommonService<ITask> {
     });
   }
 
+  findTaskTypes(): Observable<ITaskType[]> {
+    const url = this.BASE_URL + "/taskTypes";
+    return this.http
+      .get<ITaskType[]>(url);
+  }
+
   findTask(id: number): Observable<ITask> {
     if (id === 0) {
       let emptyTask = <ITask>{ id: 0 };
-      return observableOf(emptyTask);
+      return of(emptyTask);
     }
 
     return this.http

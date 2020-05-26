@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit, ViewChild, Input } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ITask, ITaskType } from "../../../../../../__shared__/model/task";
+import { TaskService } from 'src/app/modules/tasks/services/task-service/task.service';
 
 @Component({
   selector: "task-edit-tags",
@@ -11,26 +11,19 @@ import { ITask, ITaskType } from "../../../../../../__shared__/model/task";
 export class TaskEditTagsComponent implements OnInit {
   @ViewChild(NgForm)
   taskForm: NgForm;
+
+  @Input()
   task: ITask;
-  categories: ITaskType[] = [
-    { id: 1, description: "Bug" },
-    { id: 2, description: "Epic" },
-    { id: 3, description: "Story" },
-    { id: 4, description: "Improvement" }
-  ];
 
-  constructor(private route: ActivatedRoute) {}
+  categories: ITaskType[];
 
-  formValuesChage(e) {
-    console.warn(e);
-    console.warn(this.taskForm.invalid);
+  constructor(private taskService: TaskService) {
   }
-  ngOnInit() {
-    this.route.parent.data.subscribe(data => {
-      this.task = data["task"];
-      this.taskForm && this.taskForm.reset();
 
-      console.log(this.task)
-    });
+  ngOnInit(): void {
+    this.taskService
+      .findTaskTypes()
+      .subscribe(categories => this.categories = categories);
   }
+
 }

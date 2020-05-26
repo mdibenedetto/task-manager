@@ -4,11 +4,11 @@ export interface ITask {
   description: string;
   startDate: Date;
   endDate: Date;
-  categoryId:number;
+  categoryId: number;
   assigneeId: number;
 }
 export interface ITaskType {
-  id: number;  
+  id: number   | string;  
   description: string; 
 }
 

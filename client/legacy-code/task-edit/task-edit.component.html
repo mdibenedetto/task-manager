@@ -5,11 +5,7 @@
   <div class="card-block">
     <div class="wizard">
       <nav class="nav nav-pills">
-        <a
-          (click)="currentTab = 'info'"
-          class="nav-link"
-          [ngClass]="{ active: currentTab == 'info' }"
-        >
+        <a [routerLink]="['info']" class="nav-link" routerLinkActive="active">
           Basic Information
           <i
             [ngClass]="{
@@ -17,31 +13,24 @@
             }"
           ></i>
         </a>
-        <a
-          (click)="currentTab = 'tags'"
-          class="nav-link"
-          [ngClass]="{ active: currentTab == 'tags' }"
-        >
+        <a [routerLink]="['tags']" class="nav-link" routerLinkActive="active">
           Search Tags
-          <i></i>
+          <i
+            [ngClass]="{
+              'fa fa-exclamation-circle text-danger': !isValid('tags')
+            }"
+          ></i>
         </a>
       </nav>
     </div>
-
-    <div *ngIf="currentTab == 'info'">
-      <task-edit-info [task]="task"></task-edit-info>
-    </div>
-
-    <div *ngIf="currentTab == 'tags'">
-      <task-edit-tags [task]="task">></task-edit-tags>
-    </div>
+    <router-outlet></router-outlet>
   </div>
   <div class="card-footer">
     <div class="row">
       <div class="col-md-6 col-md-offset-2 footer-body">
         <button
           class="btn btn-primary"
-          type="button"
+          type="button"       
           (click)="save()"
           [disabled]="!isValid(null)"
         >

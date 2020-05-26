@@ -12,9 +12,7 @@ import { TaskFilterPipe } from './pages/task-list/components/task-filter/task-fi
 import { TaskListToolbarComponent } from './pages/task-list/components/task-list-toolbar/task-list-toolbar.component';
 
 import { TaskEditComponent } from './pages/task-edit/task-edit.component';
-import { TaskEditInfoComponent } from './pages/task-edit/components/task-edit-info/task-edit-info.component';
-import { TaskEditTagsComponent } from './pages/task-edit/components/task-edit-tags/task-edit-tags.component';
-
+import { TaskEditInfoComponent, TaskEditTagsComponent } from './pages/task-edit/components';
 import { TaskListComponent } from './pages/task-list/task-list.component';
 import { TaskListItemComponent } from './pages/task-list/components/task-list-item/task-list-item.component';
 import { TaskDetailComponent } from './pages/task-detail/task-detail.component';
@@ -24,22 +22,7 @@ import { NGMaterialModule } from '../../__shared__/ng-material.module';
 const editRoute = {
   component: TaskEditComponent,
   canDeactivate: [TaskEditGuardService],
-  resolve: { task: TaskResolver },
-  children: [
-    {
-      path: '',
-      redirectTo: 'info',
-      pathMatch: 'full'
-    },
-    {
-      path: 'info',
-      component: TaskEditInfoComponent
-    },
-    {
-      path: 'tags',
-      component: TaskEditTagsComponent
-    }
-  ]
+  resolve: { task: TaskResolver }
 };
 
 const RouteDefinitions: Routes =
@@ -75,12 +58,12 @@ const RouteDefinitions: Routes =
   declarations: [
     TaskListToolbarComponent,
     TaskEditComponent,
+    TaskEditInfoComponent,
+    TaskEditTagsComponent,
     TaskListComponent,
     TaskListItemComponent,
     TaskEditComponent,
     TaskDetailComponent,
-    TaskEditInfoComponent,
-    TaskEditTagsComponent,
     TaskFilterPipe],
   providers: [TaskService, TaskResolver, TaskEditGuardService]
 })

@@ -6,20 +6,23 @@ import {
 
 import { getRandomInt } from './utilies';
 
-import { ITask } from "./model/task";
+import { ITask, ITaskType } from "./model/task";
 import { IUser } from "./model/user";
 
-export class MockData implements InMemoryDbService, InMemoryBackendConfig {
+export class MockData
+  implements InMemoryDbService, InMemoryBackendConfig {
+
   MAX_USERS = 10;
 
   createDb() {
+    const taskTypes = this.createDBTaskTypes();
     const tasks = this.createDBTask();
     const users = this.createDBUsers();
     const login = users;
 
     let logout: any[] = [true];
 
-    return { login, logout, tasks, users };
+    return { login, logout, tasks, taskTypes, users };
   }
 
   createDBUsers() {
@@ -76,12 +79,21 @@ export class MockData implements InMemoryDbService, InMemoryBackendConfig {
         description: "description test - " + id,
         startDate,
         endDate,
-        categoryId: null,
+        categoryId: getRandomInt(0,4),
         assigneeId: getRandomInt(1, this.MAX_USERS)
       };
       tasks.push(task);
     }
 
     return tasks;
+  }
+
+  createDBTaskTypes(): ITaskType[] {
+    return [
+      { id: 1, description: "Bug" },
+      { id: 2, description: "Epic" },
+      { id: 3, description: "Story" },
+      { id: 4, description: "Improvement" }
+    ];
   }
 }
