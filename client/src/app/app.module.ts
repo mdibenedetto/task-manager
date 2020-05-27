@@ -21,8 +21,9 @@ import { UsersModule } from "./modules/users/users.module";
 import { MessagesModule } from "./__shared__/modules/messages/messages.module";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AccessModule } from './modules/access/access.module';
+import { ErrorHandlerInterceptor } from './__shared__/interceptors/error-handler.interceptor';
 
 @NgModule({
   imports: [
@@ -36,7 +37,10 @@ import { AccessModule } from './modules/access/access.module';
     AppRoutingModule
   ],
   declarations: [AppComponent, WelcomeComponent, PageNotFoundComponent],
-  providers: [{ provide: LOCALE_ID, useValue: "it-IT" }],
+  providers: [
+    { provide: LOCALE_ID, useValue: "it-IT" },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

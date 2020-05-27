@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
 import { MessageService } from './__shared__/modules/messages/message-service/message.service';
-import { AuthService } from './modules/access/guards/auth.service';
+import { AuthService } from './modules/access/services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   loading: boolean = true;
 
   constructor(
@@ -21,21 +21,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    // if (this.authService.isLoggedIn() && this.authService.redirectUrl) {
-    //   this.router.navigateByUrl(this.authService.redirectUrl)
-    // } else { 
-    //   this.router.navigate(['/welcome']);
-    // }
-
-    // this.authService.checkLoggedInStatus().subscribe(user => { 
-    //   if (this.authService.redirectUrl) {
-    //     this.router.navigateByUrl(this.authService.redirectUrl)
-    //   } else { 
-    //     this.router.navigate(['/welcome']);
-    //   }
-    // });
-  }
   checkRouterEvent(routerEvent: Event): void {
     if (routerEvent instanceof NavigationStart) {
       this.loading = true;

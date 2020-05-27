@@ -8,10 +8,6 @@ import { HttpHeaders } from "@angular/common/http";
 export class CommonService<T> {
   // BASE_URL = "/api";
   BASE_URL = "http://localhost:8081/api"; 
-  
-  options = {
-    headers: new HttpHeaders().set("Content-Type", "application/json")
-  };
 
   raiseServerError(error): any {
     var message = error || "Server error";

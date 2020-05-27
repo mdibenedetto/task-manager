@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
-import { AuthService } from "../../guards/auth.service";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: "login",

@@ -23,13 +23,14 @@ const routes: Routes = [
   },
   {
     path: 'users',
+    canActivate: [AuthGuardService],
     loadChildren: () => import('./modules/users/users.module')
       .then(m => m.UsersModule),
       data: { preload: true }
   },
   {
     path: 'tasks',
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     loadChildren: () => import('./modules/tasks/tasks.module')
       .then(m => m.TasksModule),
     data: {
