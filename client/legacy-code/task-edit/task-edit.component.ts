@@ -1,13 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
- 
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ITask } from '../../../../__shared__/model/task';
 import { TaskService } from '../../services/task-service/task.service';
 import { MessageService } from '../../../../__shared__/modules/messages/message-service/message.service';
-
-export { TaskEditInfoComponent, TaskEditTagsComponent } from './components';
 
 @Component({
   selector: 'task-edit',
@@ -18,24 +15,20 @@ export class TaskEditComponent implements OnInit {
   pageTitle: string = 'Task Edit';
   errorMessage: string = '';
 
-  currentTab: 'info' | 'tags' = 'info';
-
   private dataIsValid: {
     [key: string]: boolean
   } = {};
-
+  
   private currentTask: ITask;
   private originalTask: ITask;
 
   get task(): ITask {
     return this.currentTask;
   }
-
   set task(value: ITask) {
     this.currentTask = value;
     this.originalTask = Object.assign({}, value);
   }
-
   constructor(
     private taskService: TaskService,
     private messageService: MessageService,
@@ -63,7 +56,6 @@ export class TaskEditComponent implements OnInit {
 
   onTaskRetrieved(task: ITask) {
     this.task = this.route.snapshot.data['task'];
-
     if (this.task.id === 0) {
       this.pageTitle = 'Add Task';
     } else {

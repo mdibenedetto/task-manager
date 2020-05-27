@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start-client": "npm start --prefix ./client",
+    "start": "npm run client",
+    "client": "npm start --prefix ./client",
+    "server": "cd ./server && node server",
     "start-mongod": "sudo /X_Devs/mongodb/bin/mongod",
-    "start-mongo": "sudo /X_Devs/mongodb/bin/mongo",
-    "start": "cd ./server && node server"
+    "start-mongo": "sudo /X_Devs/mongodb/bin/mongo"
   },
   "dependencies": {
     "mongodb": "^2.2.26"
