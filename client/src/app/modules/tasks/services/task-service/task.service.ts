@@ -10,7 +10,7 @@ import { CommonService } from "src/app/__shared__/common-service";
 @Injectable()
 export class TaskService extends CommonService<ITask> {
 
-  URL = super.BASE_URL + "/tasks";
+  URL = this.BASE_URL + "/tasks";
 
   constructor(private http: HttpClient) {
     super();
