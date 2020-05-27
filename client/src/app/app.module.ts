@@ -15,9 +15,7 @@ import { AppComponent } from "./app.component";
 import { WelcomeComponent } from "./pages/welcome/welcome.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
 
-/* Feature Modules */
-// import { TasksModule } from './tasks/tasks.module';
-import { UsersModule } from "./modules/users/users.module";
+/* Feature Modules */ 
 import { MessagesModule } from "./__shared__/modules/messages/messages.module";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
