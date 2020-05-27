@@ -1,37 +1,62 @@
 import {
   InMemoryDbService,
   InMemoryBackendConfig,
-  InMemoryBackendConfigArgs
+  InMemoryBackendConfigArgs,
+  ParsedRequestUrl,
+  RequestInfoUtilities
 } from "angular-in-memory-web-api";
 
-import { getRandomInt } from './utilies';
+import { getRandomInt } from '../../utilies';
 
-import { ITask, ITaskType } from "./model/task";
-import { IUser } from "./model/user";
+import { ITask, ITaskType } from "../../model/task";
+import { IUser } from "../../model/user";
 
-export class MockData
-  implements InMemoryDbService, InMemoryBackendConfig {
-
+export class MockInMemoryDbService
+  implements InMemoryDbService {
   MAX_USERS = 10;
+
+  public parseRequestUrl(url: string, requestInfoUtils: RequestInfoUtilities): ParsedRequestUrl {
+
+    // {apiBase: "api/", collectionName: "access", id: "login", query: Map(0), resourceUrl: "api/access/"}
+
+    const req = requestInfoUtils.parseRequestUrl(url);
+
+    const parsedRequest = (collectionName) => (
+      {
+        apiBase: req.apiBase,
+        collectionName,
+        id: undefined,
+        query: undefined,
+        resourceUrl: req.apiBase + collectionName + "/"
+      }
+    )
+    
+    if (req.id === "login") {
+      return parsedRequest("login")
+    }
+    else if (req.id === "logout") {
+      return parsedRequest("logout")
+    }
+
+    return req;
+  }
+
 
   createDb() {
     const taskTypes = this.createDBTaskTypes();
     const tasks = this.createDBTask();
     const users = this.createDBUsers();
-    const access = this.createDBAccess(users);
+    const { login, logout } = this.createDBAccess(users);
 
-    return { access, tasks, taskTypes, users };
+    return { login, logout, tasks, taskTypes, users };
   }
+
   createDBAccess(users) {
-    return [
-      {
-        login: users
-      },
-      {
-        id: "logout",
-        logout: [true]
-      }
-    ]
+    const login = users;
+    return {
+      login: users,
+      logout: [true]
+    }
   }
 
   createDBUsers() {

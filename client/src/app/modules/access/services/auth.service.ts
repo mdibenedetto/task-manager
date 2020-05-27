@@ -4,7 +4,7 @@ import { throwError, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { MessageService } from "src/app/__shared__/modules/messages/message-service/message.service";
-import { CommonService } from "src/app/__shared__/common-service";
+import { CommonService } from "src/app/__shared__/common.service";
 import { IUser } from "src/app/__shared__/model/user";
 
 @Injectable({
@@ -47,13 +47,13 @@ export class AuthService {
     }
 
     return this.http
-      .post<IUser>(`${this.URL}/login/`, {
+      .post<IUser>(`${this.URL}/login`, {
         userName,
         passWord
       })
       .pipe(
-        map((user: IUser) => {
-          this.currentUser = user; //this.parseResponse(res, 'user');
+        map((user) => { 
+          this.currentUser = user;
           this.messageService.addMessage(
             `User: ${this.currentUser.userName} logged in`
           );

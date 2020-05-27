@@ -3,19 +3,18 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule, LOCALE_ID } from "@angular/core";
 import { registerLocaleData } from "@angular/common";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import lang from "@angular/common/locales/it";
-import { InMemoryWebApiModule } from "angular-in-memory-web-api";
+import lang from "@angular/common/locales/it"; 
 // import langExtra from '@angular/common/locales/extra/it';
 registerLocaleData(lang);
-// modules
-import { MockData } from "./__shared__/mock-data";
-import { NGMaterialModule, MessagesModule } from './__shared__/modules';
+// modules 
+import { NGMaterialModule, MessagesModule, MockDBModule } from './__shared__/modules';
 import { ErrorHandlerInterceptor, WebApiUrlInterceptor, HeaderInterceptor } from './__shared__/interceptors';
 import { AccessModule } from './modules/access/access.module';
 import { AppRoutingModule } from "./app-routing.module";
 // components
 import { AppComponent } from "./app.component";
 import { WelcomeComponent, PageNotFoundComponent } from "./pages";
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -23,10 +22,7 @@ import { WelcomeComponent, PageNotFoundComponent } from "./pages";
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
-    InMemoryWebApiModule.forRoot(MockData, {
-      apiBase: 'api/',
-      delay: 0
-    }),
+    environment.production ? [] : MockDBModule,
     NGMaterialModule,
     AccessModule,
     MessagesModule,
