@@ -16,7 +16,7 @@ export class LoginComponent implements AfterViewInit {
   errorMessage: string;
 
   pageTitle = "Log In";
-  
+
   userName = "admin";
   password = "admin";
 
@@ -42,9 +42,7 @@ export class LoginComponent implements AfterViewInit {
           } else {
             this.router.navigate(["/tasks"]);
           }
-        },
-          alert
-        );
+        });
     } else {
       this.errorMessage = "Please enter a user name and password.";
     }

@@ -59,6 +59,14 @@
             ]
           },
           "configurations": {
+            "gh-pages": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments//environment.gh-pages.ts"
+                }
+              ],
+            },
             "production": {
               "fileReplacements": [
                 {

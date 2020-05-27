@@ -10,17 +10,14 @@ import { IUser } from "src/app/__shared__/model/user";
 @Injectable({
   providedIn: "root"
 })
-export class AuthService extends CommonService<IUser> {
+export class AuthService {
 
-  constructor(
-    private messageService: MessageService,
-    private http: HttpClient) {
-    super();
-  }
+  constructor(private messageService: MessageService,
+               private http: HttpClient) { }
 
   currentUser: IUser;
   redirectUrl: string;
-  URL = this.BASE_URL;
+  URL = "/access";
 
   // TODO: CHECK IF STILL NEEDED
   serverError(error: any) {
@@ -55,8 +52,8 @@ export class AuthService extends CommonService<IUser> {
         passWord
       })
       .pipe(
-        map((res: IUser) => {
-          this.currentUser = this.parseResponse(res, 'user');
+        map((user: IUser) => {
+          this.currentUser = user; //this.parseResponse(res, 'user');
           this.messageService.addMessage(
             `User: ${this.currentUser.userName} logged in`
           );

@@ -1,29 +1,26 @@
 
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-
-import { of, Subject, Observable } from 'rxjs';
+import { of, Observable } from 'rxjs';
 
 import { ITask, ITaskType } from "src/app/__shared__/model/task";
-import { CommonService } from "src/app/__shared__/common-service";
-
+ 
 @Injectable()
-export class TaskService extends CommonService<ITask> {
+export class TaskService {
 
-  URL = this.BASE_URL + "/tasks";
+  URL = "/tasks";
 
-  constructor(private http: HttpClient) {
-    super();
-  }
+  constructor(private http: HttpClient) { }
 
   findTaskTypes(): Observable<ITaskType[]> {
-    const url = this.BASE_URL + "/taskTypes";
+    const url = "/taskTypes";
     return this.http.get<ITaskType[]>(url);
   }
 
   findTask(id: number): Observable<ITask> {
     // USE CASE - NEW TASK
-    if (id === 0) return of({ id: 0 } as ITask);
+    if (id === 0)
+      return of({ id: 0 } as ITask);
 
     return this.http.get<ITask>(`${this.URL}/${id}`);
   }

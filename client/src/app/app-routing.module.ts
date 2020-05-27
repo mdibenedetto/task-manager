@@ -13,7 +13,6 @@ export class CustomPreloadingService implements PreloadingStrategy {
 }
 
 const routes: Routes = [
-
   {
     path: 'welcome',
     component: WelcomeComponent,

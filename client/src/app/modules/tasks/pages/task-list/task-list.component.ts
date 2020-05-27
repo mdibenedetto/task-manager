@@ -30,9 +30,6 @@ export class TaskListComponent implements OnInit {
       tasks => {
         this.tasks = tasks;
         this.listFilter = this.route.snapshot.queryParams["filterBy"] || "";
-      },
-      error => {
-        console.error(`Error Server: ${error}`);
       }
     );
   }

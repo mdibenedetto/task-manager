@@ -18,11 +18,20 @@ export class MockData
     const taskTypes = this.createDBTaskTypes();
     const tasks = this.createDBTask();
     const users = this.createDBUsers();
-    const login = users;
+    const access = this.createDBAccess(users);
 
-    let logout: any[] = [true];
-
-    return { login, logout, tasks, taskTypes, users };
+    return { access, tasks, taskTypes, users };
+  }
+  createDBAccess(users) {
+    return [
+      {
+        login: users
+      },
+      {
+        id: "logout",
+        logout: [true]
+      }
+    ]
   }
 
   createDBUsers() {
@@ -79,7 +88,7 @@ export class MockData
         description: "description test - " + id,
         startDate,
         endDate,
-        categoryId: getRandomInt(0,4),
+        categoryId: getRandomInt(0, 4),
         assigneeId: getRandomInt(1, this.MAX_USERS)
       };
       tasks.push(task);

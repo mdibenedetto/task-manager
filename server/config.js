@@ -1,5 +1,5 @@
 module.exports = {
-    'port': process.env.PORT || 8081,
+    'port': process.env.PORT || 5000,
     // 'database': 'mongodb://localhost:27017/task-manager',
     'database': 'mongodb://node:node@ds131729.mlab.com:31729/node-db-test',
     'secret': 'myTaskManagerpasswordComingSoon',

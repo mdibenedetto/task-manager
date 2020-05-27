@@ -56,7 +56,8 @@ export class UserEditComponent implements OnInit {
   }
 
   save() {
-    this.userService.saveUser(this.user)
+    this.userService
+      .saveUser(this.user)
       .subscribe(
         () => this.onSaveCompleted(`${this.user.fullName} was saved`)
       );
@@ -75,7 +76,10 @@ export class UserEditComponent implements OnInit {
   }
 
   delete() {
-    this.userService.removeUser(this.user.id);
+    this.userService.removeUser(this.user.id)
+      .subscribe(_ =>
+        this.router.navigate(["/users"])
+      );
   }
 
 }

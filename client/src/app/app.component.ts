@@ -15,7 +15,7 @@ export class AppComponent {
     public authService: AuthService,
     private router: Router,
     public messageService: MessageService) {
-    
+
     router.events.subscribe((routerEvent: Event) => {
       this.checkRouterEvent(routerEvent);
     });
@@ -55,9 +55,9 @@ export class AppComponent {
   }
 
   logOut(): void {
-    this.authService.logout().subscribe(
-      () => this.router.navigateByUrl('/welcome'),
-      (error) => alert(error));
+    this.authService.logout()
+      .subscribe(
+        () => this.router.navigateByUrl('/welcome'))
   }
 
 }

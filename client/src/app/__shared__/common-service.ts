@@ -7,8 +7,10 @@ import { HttpHeaders } from "@angular/common/http";
 @Injectable()
 export class CommonService<T> {
   // BASE_URL = "/api";
-  BASE_URL = "http://localhost:8081/api"; 
-
+  // BASE_URL = "http://localhost:8081/api"; 
+  // BASE_URL = "api"; 
+  
+  // TODO: CHECK IF STILL NEEDED
   raiseServerError(error): any {
     var message = error || "Server error";
     alert(`${message}: 
