@@ -17,7 +17,7 @@ import { TaskListComponent } from './pages/task-list/task-list.component';
 import { TaskListItemComponent } from './pages/task-list/components/task-list-item/task-list-item.component';
 import { TaskDetailComponent } from './pages/task-detail/task-detail.component';
 
-import { NGMaterialModule } from '../../__shared__/ng-material.module';
+import { NGMaterialModule } from '../../__shared__/modules/ng-material.module';
 
 const editRoute = {
   component: TaskEditComponent,

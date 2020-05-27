@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { throwError as observableThrowError, Subject, Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { HttpClient } from "@angular/common/http";
+import { throwError, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { MessageService } from "src/app/__shared__/modules/messages/message-service/message.service";
 import { CommonService } from "src/app/__shared__/common-service";
@@ -10,19 +10,16 @@ import { IUser } from "src/app/__shared__/model/user";
 @Injectable({
   providedIn: "root"
 })
-export class AuthService extends CommonService<IUser> {
+export class AuthService {
 
-  constructor(
-    private messageService: MessageService,
-    private http: HttpClient
-  ) {
-    super();
-  }
+  constructor(private messageService: MessageService,
+               private http: HttpClient) { }
 
   currentUser: IUser;
   redirectUrl: string;
-  URL = this.BASE_URL;
+  URL = "/access";
 
+  // TODO: CHECK IF STILL NEEDED
   serverError(error: any) {
     let errorMessage;
     if (error.message) {
@@ -35,25 +32,15 @@ export class AuthService extends CommonService<IUser> {
       errorMessage =
         "Server error: The server might be stopped or your network might have problem.";
     }
-    return observableThrowError(errorMessage);
+    return throwError(errorMessage);
   }
 
   isLoggedIn(): boolean {
     return !!this.currentUser;
   }
 
-  checkLoggedInStatus(): Observable<any> {
-    return this.http
-      .post(`${this.URL}/login`, this.options).pipe(
-        map((res: Response) => {
-          this.currentUser = this.parseResponse(res, 'user');
-          return this.currentUser;
-        }),
-        catchError((error: Response) => this.serverError(error))
-      );
-  }
-
   login(userName: string, passWord: string): Observable<IUser> {
+
     if (!userName || !passWord) {
       this.messageService.addMessage("Please enter your userName and password");
       return;
@@ -65,25 +52,19 @@ export class AuthService extends CommonService<IUser> {
         passWord
       })
       .pipe(
-        map((res: IUser) => {
-          this.currentUser = this.parseResponse(res, 'user');
+        map((user: IUser) => {
+          this.currentUser = user; //this.parseResponse(res, 'user');
           this.messageService.addMessage(
             `User: ${this.currentUser.userName} logged in`
           );
           return this.currentUser;
-        }),
-        catchError((error: Response) => this.serverError(error))
+        })
       );
   }
 
   logout() {
     return this.http
-      .get(`${this.URL}/logout`, this.options)
-      .pipe(
-        map((res: Response) => {
-          this.currentUser = null;
-        }),
-        catchError((error: Response) => this.serverError(error))
-      );
+      .get(`${this.URL}/logout`)
+      .pipe(map(() => this.currentUser = null));
   }
 }

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { AuthService } from '../access/guards/auth.service';
+import { AuthService } from '../access/services/auth.service';
 import { AuthGuardService } from '../access/guards/auth-guard.service';
 
 import { UserListComponent } from './pages/user-list/user-list.component';

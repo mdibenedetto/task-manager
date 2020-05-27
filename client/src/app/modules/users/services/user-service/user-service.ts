@@ -2,55 +2,39 @@
 
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http'; 
 import { Observable } from 'rxjs';
-
-import { CommonService } from 'src/app/__shared__/common-service';
+ 
 import { IUser } from 'src/app/__shared__/model/user';
 
 @Injectable({ providedIn: 'root' })
-export class UserService extends CommonService<IUser>{
-    URL = this.BASE_URL + "/users";
+export class UserService{ 
+    URL ="/users";
 
-    constructor(private http: HttpClient) {
-        super();
-    }
+    constructor(private http: HttpClient) {   }
 
     findUsers(): Observable<IUser[]> {
-        return this.http.get(`${this.URL}`)
-            .pipe(
-                catchError(this.handleError)
-            );
+        return this.http.get<IUser[]>(`${this.URL}`);
     }
 
     findUser(id: String): Observable<IUser> {
-        return this.http.get(`${this.URL}/${id}`)
-            .pipe(
-                tap((res: IUser) => {
-                    debugger
-                }),
-                catchError(this.handleError)
-            );
+        return this.http.get<IUser>(`${this.URL}/${id}`);
     }
 
-    saveUser(user: IUser): Observable<IUser> {
+    saveUser(user: IUser): Observable<Response> {
         return !user.id ? this.addUser(user) : this.updateUser(user);
     }
 
-    addUser(user: IUser): Observable<IUser> {
-        return this.http.post(`${this.URL}`, user)
-            .pipe(catchError(this.handleError));
+    addUser(user: IUser): Observable<Response> {
+        return this.http.post<Response>(`${this.URL}`, user);
     }
 
-    updateUser(user: IUser): Observable<IUser> {
-        return this.http.put(`${this.URL}/${user.id}`, user)
-            .pipe(catchError(this.handleError));
+    updateUser(user: IUser): Observable<Response> {
+        return this.http.put<Response>(`${this.URL}/${user.id}`, user);
     }
 
-    removeUser(id: String | number): Observable<IUser> {
-        return this.http.delete(`${this.URL}/${id}`)
-            .pipe(catchError(this.handleError));
+    removeUser(id: String | number): Observable<Response> {
+        return this.http.delete<Response>(`${this.URL}/${id}`);
     }
 
 }

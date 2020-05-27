@@ -1,53 +1,33 @@
 
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-
-import { throwError as observableThrowError, of, Subject, Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { of, Observable } from 'rxjs';
 
 import { ITask, ITaskType } from "src/app/__shared__/model/task";
-import { CommonService } from "src/app/__shared__/common-service";
-
+ 
 @Injectable()
-export class TaskService extends CommonService<ITask> {
+export class TaskService {
 
-  task: Subject<ITask> = new Subject<ITask>();
-  tasks: ITask[] = new Array<ITask>();
-  URL = this.BASE_URL + "/tasks";
+  URL = "/tasks";
 
-  constructor(private http: HttpClient) {
-    super();
-    this.task.subscribe(t => {
-      this.tasks.push(t);
-    });
-  }
+  constructor(private http: HttpClient) { }
 
   findTaskTypes(): Observable<ITaskType[]> {
-    const url = this.BASE_URL + "/taskTypes";
-    return this.http
-      .get<ITaskType[]>(url);
+    const url = "/taskTypes";
+    return this.http.get<ITaskType[]>(url);
   }
 
   findTask(id: number): Observable<ITask> {
-    if (id === 0) {
-      let emptyTask = <ITask>{ id: 0 };
-      return of(emptyTask);
-    }
+    // USE CASE - NEW TASK
+    if (id === 0)
+      return of({ id: 0 } as ITask);
 
-    return this.http
-      .get(`${this.URL}/${id}`).pipe(
-        map(this.extractData),
-        catchError(this.handleError));
+    return this.http.get<ITask>(`${this.URL}/${id}`);
   }
 
   getTasks(filterBy?: string): Observable<ITask[]> {
-    var baseUrl = filterBy ? `${this.URL}?${filterBy}` : this.URL;
-
-    return this.http
-      .get<ITask[]>(this.URL)
-      .pipe(
-        map(res => res || []),
-        catchError(this.handleError));
+    var url = filterBy ? `${this.URL}?${filterBy}` : this.URL;
+    return this.http.get<ITask[]>(url)
   }
 
   saveTask(task: ITask): Observable<Response> {
@@ -55,28 +35,16 @@ export class TaskService extends CommonService<ITask> {
   }
 
   addTask(task: ITask): Observable<Response> {
-    return this.http
-      .post(this.URL, task, this.options)
-      .pipe(
-        map((res: Response) => res),
-        catchError((error: any) =>
-          observableThrowError(error.json().error || "Server error")
-        ));
+    return this.http.post<Response>(this.URL, task);
   }
 
-  updateTask(body: ITask): Observable<Response> {
-    return this.http
-      .put<Response>(`${this.URL}/${body["id"]}`, body, this.options)
-      .pipe(
-        catchError((error: any) =>
-          observableThrowError(error.json().error || "Server error")
-        ));
+  updateTask(task: ITask): Observable<Response> {
+    const url = `${this.URL}/${task.id}`;
+    return this.http.put<Response>(url, task);
   }
 
-  removeTask(id: string | number): Observable<Object> {
-    return this.http
-      .delete(`${this.URL}/${id}`, this.options)
-      .pipe(
-        catchError(this.raiseServerError));
+  removeTask(id: string | number): Observable<Response> {
+    const url = `${this.URL}/${id}`;
+    return this.http.delete<Response>(url);
   }
 }

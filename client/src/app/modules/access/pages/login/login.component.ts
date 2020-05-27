@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
-import { AuthService } from "../../guards/auth.service";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: "login",
@@ -16,7 +16,7 @@ export class LoginComponent implements AfterViewInit {
   errorMessage: string;
 
   pageTitle = "Log In";
-  
+
   userName = "admin";
   password = "admin";
 
@@ -42,9 +42,7 @@ export class LoginComponent implements AfterViewInit {
           } else {
             this.router.navigate(["/tasks"]);
           }
-        },
-          alert
-        );
+        });
     } else {
       this.errorMessage = "Please enter a user name and password.";
     }

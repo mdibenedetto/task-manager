@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { OpenMode } from 'src/app/__shared__/model/enums';
 import { IUser } from '../../../../__shared__/model/user';
-import { AuthService } from '../../../access/guards/auth.service';
+import { AuthService } from '../../../access/services/auth.service';
 import { UserService } from '../../services/user-service/user-service';
 
 import { MessageService } from 'src/app/__shared__/modules/messages/message-service/message.service';
@@ -56,7 +56,8 @@ export class UserEditComponent implements OnInit {
   }
 
   save() {
-    this.userService.saveUser(this.user)
+    this.userService
+      .saveUser(this.user)
       .subscribe(
         () => this.onSaveCompleted(`${this.user.fullName} was saved`)
       );
@@ -75,7 +76,10 @@ export class UserEditComponent implements OnInit {
   }
 
   delete() {
-    this.userService.removeUser(this.user.id);
+    this.userService.removeUser(this.user.id)
+      .subscribe(_ =>
+        this.router.navigate(["/users"])
+      );
   }
 
 }
