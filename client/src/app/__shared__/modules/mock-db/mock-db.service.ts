@@ -1,15 +1,7 @@
-import {
-  InMemoryDbService,
-  InMemoryBackendConfig,
-  InMemoryBackendConfigArgs,
-  ParsedRequestUrl,
-  RequestInfoUtilities
-} from 'angular-in-memory-web-api';
-
-import { getRandomInt } from '../../utilies';
-
+import { InMemoryDbService, ParsedRequestUrl, RequestInfoUtilities } from 'angular-in-memory-web-api';
 import { ITask, ITaskType } from '../../model/task';
 import { IUser } from '../../model/user';
+import { getRandomInt } from '../../utilies';
 
 export class MockInMemoryDbService
   implements InMemoryDbService {
@@ -52,7 +44,6 @@ export class MockInMemoryDbService
   }
 
   createDBAccess(users) {
-    const login = users;
     return {
       login: users,
       logout: [true]

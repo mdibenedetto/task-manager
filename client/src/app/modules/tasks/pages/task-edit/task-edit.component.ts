@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-
+import { ActivatedRoute, Router } from '@angular/router';
 import { ITask } from '../../../../__shared__/model/task';
-import { TaskService } from '../../services/task-service/task.service';
 import { MessageService } from '../../../../__shared__/modules/messages/message-service/message.service';
+import { TaskService } from '../../services/task-service/task.service';
 
 export { TaskEditInfoComponent, TaskEditTagsComponent } from './components';
 
@@ -43,8 +40,10 @@ export class TaskEditComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.route.data.subscribe(data => {
-      this.onTaskRetrieved(data.task);
+    this.route.data.subscribe(() => {
+      // todo - check if param "data" is still needed
+      //(data) => this.onTaskRetrieved(data.task);
+      this.onTaskRetrieved();
     });
   }
 
@@ -61,7 +60,7 @@ export class TaskEditComponent implements OnInit {
       Object.keys(this.dataIsValid).every(d => this.dataIsValid[d] === true));
   }
 
-  onTaskRetrieved(task: ITask) {
+  onTaskRetrieved() {
     this.task = this.route.snapshot.data.task;
 
     if (this.task.id === 0) {

@@ -1,23 +1,23 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-
+import { NGMaterialModule } from '../../__shared__/modules/ng-material.module';
+import { TaskEditGuardService } from './guards/task-edit-guard/task-edit-guard.service';
+import { TaskDetailComponent } from './pages/task-detail/task-detail.component';
+import { TaskEditInfoComponent, TaskEditTagsComponent } from './pages/task-edit/components';
+import { TaskEditComponent } from './pages/task-edit/task-edit.component';
+import { TaskListItemComponent } from './pages/task-list/components/task-list-item/task-list-item.component';
+import { TaskListToolbarComponent } from './pages/task-list/components/task-list-toolbar/task-list-toolbar.component';
+import { TaskListComponent } from './pages/task-list/task-list.component';
+import { TaskFilterPipe } from './pipes/task-filter.pipe';
+import { TaskResolver } from './resolvers/task-resolver/task-resolver.service';
 // Task entities
 import { TaskService } from './services/task-service/task.service';
-import { TaskEditGuardService } from './guards/task-edit-guard/task-edit-guard.service';
-import { TaskResolver } from './resolvers/task-resolver/task-resolver.service';
 
-import { TaskFilterPipe } from './pages/task-list/components/task-filter/task-filter.pipe';
-import { TaskListToolbarComponent } from './pages/task-list/components/task-list-toolbar/task-list-toolbar.component';
 
-import { TaskEditComponent } from './pages/task-edit/task-edit.component';
-import { TaskEditInfoComponent, TaskEditTagsComponent } from './pages/task-edit/components';
-import { TaskListComponent } from './pages/task-list/task-list.component';
-import { TaskListItemComponent } from './pages/task-list/components/task-list-item/task-list-item.component';
-import { TaskDetailComponent } from './pages/task-detail/task-detail.component';
 
-import { NGMaterialModule } from '../../__shared__/modules/ng-material.module';
+
 
 const editRoute = {
   component: TaskEditComponent,
