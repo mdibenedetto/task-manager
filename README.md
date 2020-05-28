@@ -1,8 +1,12 @@
-[Demo link](https://mdibenedetto.github.io/task-manager/welcome)
+[Task Manager - Demo link](https://mdibenedetto.github.io/task-manager/welcome)
 
 [![Home-Page](./client/docs/home.png)](https://mdibenedetto.github.io/task-manager/welcome)
 
-This repo showes some of the most import Angular features such as:
+# Description
+
+This repo is playground to test and experiment Angular 9+:
+
+## Angular features
 
 - Modoules
 - Services and providers
