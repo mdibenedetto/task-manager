@@ -3,5 +3,10 @@
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
         "source.organizeImports": true
-    }
+    },
+    "search.exclude": {
+        "**/deploy": true,
+        "**/dist": true,
+        "legacy-code": true
+    },
 }
