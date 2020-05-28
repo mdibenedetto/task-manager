@@ -8,12 +8,13 @@ This repo is playground to test and experiment Angular 9+:
 
 ## Angular features
 
-- Modoules
+- Feature Modules
 - Services and providers
-- Module Lazy loading
 - Interceptors
 - Pipes
 - Routing
+  - Lazy loading
+  - Preload strategy
   - queryParams
   - Child Routes
   - Resolvers

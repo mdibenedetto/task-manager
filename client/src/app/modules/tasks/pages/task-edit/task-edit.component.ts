@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ITask } from '../../../../__shared__/model/task';
-import { MessageService } from '../../../../__shared__/modules/messages/message-service/message.service';
+import { ITask } from 'src/app/__shared__/model/task';
+import { MessageService } from 'src/app/__shared__/modules/messages/message-service/message.service';
 import { TaskService } from '../../services/task-service/task.service';
 
 export { TaskEditInfoComponent, TaskEditTagsComponent } from './components';

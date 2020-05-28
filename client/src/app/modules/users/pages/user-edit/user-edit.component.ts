@@ -2,8 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OpenMode } from 'src/app/__shared__/model/enums';
+import { IUser } from 'src/app/__shared__/model/user';
 import { MessageService } from 'src/app/__shared__/modules/messages/message-service/message.service';
-import { IUser } from '../../../../__shared__/model/user';
 import { AuthService } from '../../../access/services/auth.service';
 import { UserService } from '../../services/user-service/user-service';
 

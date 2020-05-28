@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ITask, ITaskType } from '../../../../../../__shared__/model/task';
 import { TaskService } from 'src/app/modules/tasks/services/task-service/task.service';
+import { ITask, ITaskType } from 'src/app/__shared__/model/task';
 
 @Component({
   selector: 'task-edit-tags',

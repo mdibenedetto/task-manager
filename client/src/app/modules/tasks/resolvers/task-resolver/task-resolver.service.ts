@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { ITask } from 'src/app/__shared__/model/task';
 import { MessageService } from 'src/app/__shared__/modules/messages/message-service/message.service';
-import { ITask } from '../../../../__shared__/model/task';
 import { TaskService } from '../../services/task-service/task.service';
 
 
