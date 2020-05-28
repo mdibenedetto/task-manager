@@ -8,14 +8,14 @@ import { ITask } from '../../../../__shared__/model/task';
   styleUrls: ['./task-detail.component.css']
 })
 export class TaskDetailComponent implements OnInit {
-  pageTitle: string = 'Task Detail';
+  pageTitle = 'Task Detail';
   task: ITask;
 
   constructor(
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.task = this.route.snapshot.data['task'];
+    this.task = this.route.snapshot.data.task;
     if (!this.task.id) {
       this.pageTitle = 'Add Task';
     } else {

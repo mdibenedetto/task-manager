@@ -9,7 +9,7 @@ import { Component, Output, Input, EventEmitter } from '@angular/core';
 export class TaskListToolbarComponent {
   @Output() onDelete = new EventEmitter();
   @Output() onSearch = new EventEmitter();
-  @Input() selectedId: number = -1;
+  @Input() selectedId = -1;
   delete() {
     this.onDelete.emit();
   }

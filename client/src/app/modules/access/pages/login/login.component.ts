@@ -1,24 +1,24 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { Router } from "@angular/router";
-import { AuthService } from "../../services/auth.service";
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: "login",
+  selector: 'login',
   styleUrls: ['./login.component.css'],
-  templateUrl: "./login.component.html"
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements AfterViewInit {
 
-  @ViewChild("refUserNameElement")
+  @ViewChild('refUserNameElement')
   txtUserName: ElementRef<HTMLInputElement>;
 
   errorMessage: string;
 
-  pageTitle = "Log In";
+  pageTitle = 'Log In';
 
-  userName = "admin";
-  password = "admin";
+  userName = 'admin';
+  password = 'admin';
 
   constructor(
     private authService: AuthService,
@@ -33,18 +33,18 @@ export class LoginComponent implements AfterViewInit {
 
     if (loginForm && loginForm.valid) {
 
-      let { userName, password } = loginForm.form.value;
+      const { userName, password } = loginForm.form.value;
 
       this.authService.login(userName, password)
         .subscribe(_ => {
           if (this.authService.redirectUrl) {
             this.router.navigateByUrl(this.authService.redirectUrl);
           } else {
-            this.router.navigate(["/tasks"]);
+            this.router.navigate(['/tasks']);
           }
         });
     } else {
-      this.errorMessage = "Please enter a user name and password.";
+      this.errorMessage = 'Please enter a user name and password.';
     }
   }
 }

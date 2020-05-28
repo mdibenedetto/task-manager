@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core'; 
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
-import { ITask } from '../../../../../../__shared__/model/task';
-import { IUser } from '../../../../../../__shared__/model/user';
 import { UserService } from 'src/app/modules/users/services/user-service/user-service';
+import { ITask } from 'src/app/__shared__/model/task';
+import { IUser } from 'src/app/__shared__/model/user';
+
 @Component({
   selector: 'task-edit-info',
   templateUrl: './task-edit-info.component.html',
@@ -19,16 +19,16 @@ export class TaskEditInfoComponent implements OnInit {
 
   assigneeUsers: IUser[];
 
-  constructor( 
+  constructor(
     private userService: UserService
   ) { }
 
- 
+
   ngOnInit() {
     this.loadForm();
     this.loadUsers();
   }
-   
+
   loadForm() {
     this.taskForm && this.taskForm.reset();
   }
@@ -38,6 +38,6 @@ export class TaskEditInfoComponent implements OnInit {
       .findUsers()
       .subscribe((users: IUser[]) => {
         this.assigneeUsers = users;
-      })
+      });
   }
 }

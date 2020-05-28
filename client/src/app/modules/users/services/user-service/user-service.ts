@@ -1,23 +1,22 @@
 
 
 
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; 
 import { Observable } from 'rxjs';
- 
 import { IUser } from 'src/app/__shared__/model/user';
 
 @Injectable({ providedIn: 'root' })
-export class UserService{ 
-    URL ="/users";
+export class UserService {
+    URL = '/users';
 
-    constructor(private http: HttpClient) {   }
+    constructor(private http: HttpClient) { }
 
     findUsers(): Observable<IUser[]> {
         return this.http.get<IUser[]>(`${this.URL}`);
     }
 
-    findUser(id: String): Observable<IUser> {
+    findUser(id: string): Observable<IUser> {
         return this.http.get<IUser>(`${this.URL}/${id}`);
     }
 
@@ -33,7 +32,7 @@ export class UserService{
         return this.http.put<Response>(`${this.URL}/${user.id}`, user);
     }
 
-    removeUser(id: String | number): Observable<Response> {
+    removeUser(id: string | number): Observable<Response> {
         return this.http.delete<Response>(`${this.URL}/${id}`);
     }
 

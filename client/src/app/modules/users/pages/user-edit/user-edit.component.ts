@@ -1,13 +1,13 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { OpenMode } from 'src/app/__shared__/model/enums';
+import { MessageService } from 'src/app/__shared__/modules/messages/message-service/message.service';
 import { IUser } from '../../../../__shared__/model/user';
 import { AuthService } from '../../../access/services/auth.service';
 import { UserService } from '../../services/user-service/user-service';
 
-import { MessageService } from 'src/app/__shared__/modules/messages/message-service/message.service';
+
 
 @Component({
   selector: 'user-edit',
@@ -28,7 +28,8 @@ export class UserEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const id: String = this.route.snapshot.params["id"];
+    const id: string = this.route.snapshot.params.id;
+
     if (id) {
       this.mode = OpenMode.UPDATE;
       this.loadUser(id);
@@ -38,7 +39,7 @@ export class UserEditComponent implements OnInit {
     }
   }
 
-  loadUser(id: String) {
+  loadUser(id: string) {
     if (this.authService.currentUser) {
       this.user = this.authService.currentUser;
     }
@@ -51,7 +52,7 @@ export class UserEditComponent implements OnInit {
     }
   }
 
-  isValid(path: string): boolean {
+  isValid(): boolean {
     return true;
   }
 
@@ -72,13 +73,14 @@ export class UserEditComponent implements OnInit {
   }
 
   reset() {
-    console.warn("reset()  - Method not implemented.");
+    // TODO = REFACTORING
+    // console.warn("reset()  - Method not implemented.");
   }
 
   delete() {
     this.userService.removeUser(this.user.id)
       .subscribe(_ =>
-        this.router.navigate(["/users"])
+        this.router.navigate(['/users'])
       );
   }
 

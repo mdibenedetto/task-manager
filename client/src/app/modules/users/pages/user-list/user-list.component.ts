@@ -23,11 +23,10 @@ export class UserListComponent implements OnInit {
       .subscribe((users: IUser[]) => this.users = users);
   }
 
-  removeUser(id: String) {
+  removeUser(id: string) {
     this.userService
       .removeUser(id)
       .subscribe(_ => this.searchUsers());
   }
-
 
 }

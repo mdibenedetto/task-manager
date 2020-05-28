@@ -4,12 +4,12 @@ import {
   InMemoryBackendConfigArgs,
   ParsedRequestUrl,
   RequestInfoUtilities
-} from "angular-in-memory-web-api";
+} from 'angular-in-memory-web-api';
 
 import { getRandomInt } from '../../utilies';
 
-import { ITask, ITaskType } from "../../model/task";
-import { IUser } from "../../model/user";
+import { ITask, ITaskType } from '../../model/task';
+import { IUser } from '../../model/user';
 
 export class MockInMemoryDbService
   implements InMemoryDbService {
@@ -27,15 +27,15 @@ export class MockInMemoryDbService
         collectionName,
         id: undefined,
         query: undefined,
-        resourceUrl: req.apiBase + collectionName + "/"
+        resourceUrl: req.apiBase + collectionName + '/'
       }
-    )
-    
-    if (req.id === "login") {
-      return parsedRequest("login")
+    );
+
+    if (req.id === 'login') {
+      return parsedRequest('login');
     }
-    else if (req.id === "logout") {
-      return parsedRequest("logout")
+    else if (req.id === 'logout') {
+      return parsedRequest('logout');
     }
 
     return req;
@@ -56,30 +56,30 @@ export class MockInMemoryDbService
     return {
       login: users,
       logout: [true]
-    }
+    };
   }
 
   createDBUsers() {
     const users: IUser[] = [
       {
         id: -1,
-        fullName: "Nick Fury",
-        userName: "admin",
-        passWord: "admin",
+        fullName: 'Nick Fury',
+        userName: 'admin',
+        passWord: 'admin',
         isAdmin: true
       },
       {
         id: 1,
-        userName: "Tony",
-        fullName: "Tony stark",
-        passWord: "dummy",
+        userName: 'Tony',
+        fullName: 'Tony stark',
+        passWord: 'dummy',
         isAdmin: false
       },
       {
         id: 2,
-        userName: "Peter",
-        fullName: "Peter Parker",
-        passWord: "dummy",
+        userName: 'Peter',
+        fullName: 'Peter Parker',
+        passWord: 'dummy',
         isAdmin: false
       }
     ];
@@ -88,29 +88,29 @@ export class MockInMemoryDbService
     for (let i = users.length; i < this.MAX_USERS; i++) {
       users.push({
         id: i,
-        fullName: "Dummy " + i,
-        userName: "dummyUser-" + i,
-        passWord: "pwd-" + i,
+        fullName: 'Dummy ' + i,
+        userName: 'dummyUser-' + i,
+        passWord: 'pwd-' + i,
         isAdmin: false
-      })
+      });
     }
 
     return users;
   }
 
   createDBTask(): ITask[] {
-    let tasks: ITask[] = [];
-    let startDate = new Date();
-    let endDate = new Date();
+    const tasks: ITask[] = [];
+    const startDate = new Date();
+    const endDate = new Date();
 
     for (let id = 1; id < 11; id++) {
       startDate.setDate(startDate.getDate() + id);
       endDate.setDate(endDate.getDate() + id + 1);
 
-      let task: ITask = {
+      const task: ITask = {
         id,
-        title: "title test - " + id,
-        description: "description test - " + id,
+        title: 'title test - ' + id,
+        description: 'description test - ' + id,
         startDate,
         endDate,
         categoryId: getRandomInt(0, 4),
@@ -124,10 +124,10 @@ export class MockInMemoryDbService
 
   createDBTaskTypes(): ITaskType[] {
     return [
-      { id: 1, description: "Bug" },
-      { id: 2, description: "Epic" },
-      { id: 3, description: "Story" },
-      { id: 4, description: "Improvement" }
+      { id: 1, description: 'Bug' },
+      { id: 2, description: 'Epic' },
+      { id: 3, description: 'Story' },
+      { id: 4, description: 'Improvement' }
     ];
   }
 }

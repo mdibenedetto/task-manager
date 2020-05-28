@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { MockInMemoryDbService } from "./mock-db.service";
+import { MockInMemoryDbService } from './mock-db.service';
 
 @NgModule({
     imports: [

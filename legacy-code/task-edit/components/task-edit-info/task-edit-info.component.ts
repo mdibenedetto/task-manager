@@ -33,7 +33,7 @@ export class TaskEditInfoComponent implements OnInit {
 
   loadForm() {
     this.route.parent.data.subscribe(data => {
-      this.task = data['task'];
+      this.task = data.task;
       this.taskForm && this.taskForm.reset();
     });
   }

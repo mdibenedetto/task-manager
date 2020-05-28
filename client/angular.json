@@ -65,7 +65,7 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments//environment.gh-pages.ts"
                 }
-              ],
+              ]
             },
             "production": {
               "fileReplacements": [
@@ -137,7 +137,7 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "legacy-code"]
           }
         },
         "e2e": {

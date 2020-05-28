@@ -18,7 +18,7 @@ export class TaskEditComponent implements OnInit {
   private dataIsValid: {
     [key: string]: boolean
   } = {};
-  
+
   private currentTask: ITask;
   private originalTask: ITask;
 
@@ -37,7 +37,7 @@ export class TaskEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.onTaskRetrieved(data['task']);
+      this.onTaskRetrieved(data.task);
     });
   }
 
@@ -55,7 +55,7 @@ export class TaskEditComponent implements OnInit {
   }
 
   onTaskRetrieved(task: ITask) {
-    this.task = this.route.snapshot.data['task'];
+    this.task = this.route.snapshot.data.task;
     if (this.task.id === 0) {
       this.pageTitle = 'Add Task';
     } else {
@@ -74,7 +74,7 @@ export class TaskEditComponent implements OnInit {
       this.taskService.saveTask(this.task)
         .subscribe(
           () => this.onSaveComplete(`${this.task.title} was saved`),
-          (error: any) => this.errorMessage = <any>error
+          (error: any) => this.errorMessage = (error as any)
         );
     } else {
       this.errorMessage = 'Please correct the validation errors.';
@@ -90,7 +90,7 @@ export class TaskEditComponent implements OnInit {
         this.taskService.removeTask(this.task.id)
           .subscribe(
             () => this.onSaveComplete(`${this.task.title} was deleted`),
-            (error: any) => this.errorMessage = <any>error
+            (error: any) => this.errorMessage = (error as any)
           );
       }
     }
@@ -106,7 +106,7 @@ export class TaskEditComponent implements OnInit {
 
   validate(): void {
     this.dataIsValid = {};
-    this.dataIsValid['info'] = this.task.title && (this.task.title !== '' && !this.task.title.startsWith(' '));
+    this.dataIsValid.info = this.task.title && (this.task.title !== '' && !this.task.title.startsWith(' '));
     // this.dataIsValid['tags'] = this.task.categoryId && this.task.categoryId > 0;
   }
 }

@@ -1,20 +1,19 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { Observable } from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ITask } from '../../../../__shared__/model/task';
+import { TaskService } from '../../services/task-service/task.service';
 
-import { TaskService } from "../../services/task-service/task.service";
-import { ITask } from "../../../../__shared__/model/task";
 @Component({
-  selector: "task-list",
-  templateUrl: "./task-list.component.html",
-  styleUrls: ["./task-list.component.css"]
+  selector: 'task-list',
+  templateUrl: './task-list.component.html',
+  styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
- 
+
   tasks: ITask[];
-  selectedRow: number = -1;
-  selectedId: number = -1;
-  listFilter: string = "";
+  selectedRow = -1;
+  selectedId = -1;
+  listFilter = '';
 
   constructor(
     private taskService: TaskService,
@@ -29,22 +28,16 @@ export class TaskListComponent implements OnInit {
     this.taskService.getTasks().subscribe(
       tasks => {
         this.tasks = tasks;
-        this.listFilter = this.route.snapshot.queryParams["filterBy"] || "";
+        this.listFilter = this.route.snapshot.queryParams.filterBy || '';
       }
     );
   }
 
   removeTask(id) {
     this.taskService.removeTask(id)
-      .subscribe(
-        data => { 
-          this.searchTasks();
-        },
-        err => {
-          console.log(err);
-        }
-      );
+      .subscribe(_ => this.searchTasks);
   }
+
   setSelectedRow(index) {
     this.selectedId = this.tasks[index].id;
     this.selectedRow = index === this.selectedRow ? -1 : index;

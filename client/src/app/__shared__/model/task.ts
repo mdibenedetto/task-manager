@@ -1,5 +1,5 @@
 export interface ITask {
-  id: number; 
+  id: number;
   title: string;
   description: string;
   startDate: Date;
@@ -8,7 +8,7 @@ export interface ITask {
   assigneeId: number;
 }
 export interface ITaskType {
-  id: number   | string;  
-  description: string; 
+  id: number   | string;
+  description: string;
 }
 

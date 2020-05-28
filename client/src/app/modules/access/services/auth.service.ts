@@ -1,23 +1,22 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { MessageService } from "src/app/__shared__/modules/messages/message-service/message.service";
-import { CommonService } from "src/app/__shared__/common.service";
-import { IUser } from "src/app/__shared__/model/user";
+import { MessageService } from 'src/app/__shared__/modules/messages/message-service/message.service';
+import { IUser } from 'src/app/__shared__/model/user';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class AuthService {
 
   constructor(private messageService: MessageService,
-               private http: HttpClient) { }
+              private http: HttpClient) { }
 
   currentUser: IUser;
   redirectUrl: string;
-  URL = "/access";
+  URL = '/access';
 
   // TODO: CHECK IF STILL NEEDED
   serverError(error: any) {
@@ -30,7 +29,7 @@ export class AuthService {
       errorMessage = `Server error: ${error.json().error}`;
     } else {
       errorMessage =
-        "Server error: The server might be stopped or your network might have problem.";
+        'Server error: The server might be stopped or your network might have problem.';
     }
     return throwError(errorMessage);
   }
@@ -42,7 +41,7 @@ export class AuthService {
   login(userName: string, passWord: string): Observable<IUser> {
 
     if (!userName || !passWord) {
-      this.messageService.addMessage("Please enter your userName and password");
+      this.messageService.addMessage('Please enter your userName and password');
       return;
     }
 
@@ -52,7 +51,7 @@ export class AuthService {
         passWord
       })
       .pipe(
-        map((user) => { 
+        map((user) => {
           this.currentUser = user;
           this.messageService.addMessage(
             `User: ${this.currentUser.userName} logged in`

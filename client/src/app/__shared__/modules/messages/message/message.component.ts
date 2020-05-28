@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MessageService } from '../message-service/message.service';
 
 @Component({
-    templateUrl:'./message.component.html',
+    templateUrl: './message.component.html',
     styles: [
         '.message-row { margin-bottom: 10px }'
     ]
@@ -12,9 +12,9 @@ import { MessageService } from '../message-service/message.service';
 export class MessageComponent {
 
     constructor(public messageService: MessageService,
-        private router: Router) { }
+                private router: Router) { }
 
-    close(): void { 
+    close(): void {
         this.router.navigate([{ outlets: { popup: null } }]);
         this.messageService.isDisplayed = false;
     }

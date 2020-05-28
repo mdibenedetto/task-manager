@@ -9,7 +9,7 @@ import { AuthService } from './modules/access/services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  loading: boolean = true;
+  loading = true;
 
   constructor(
     public authService: AuthService,
@@ -57,7 +57,7 @@ export class AppComponent {
   logOut(): void {
     this.authService.logout()
       .subscribe(
-        () => this.router.navigateByUrl('/welcome'))
+        () => this.router.navigateByUrl('/welcome'));
   }
 
 }

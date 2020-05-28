@@ -5,11 +5,9 @@ import { TaskEditComponent } from '../../pages/task-edit/task-edit.component';
 @Injectable()
 export class TaskEditGuardService implements CanDeactivate<TaskEditComponent> {
 
-  constructor() { }
-
   canDeactivate(component: TaskEditComponent): boolean {
     if (component.isDirty) {
-      let taskTitle = component.task.title || 'New Task';
+      const taskTitle = component.task.title || 'New Task';
       return confirm
         (`Navigate away and lose all changes to ${taskTitle}`);
     }

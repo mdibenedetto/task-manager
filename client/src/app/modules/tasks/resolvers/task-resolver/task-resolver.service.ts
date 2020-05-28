@@ -1,30 +1,31 @@
 
-import { of, Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-
+import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { MessageService } from 'src/app/__shared__/modules/messages/message-service/message.service';
 import { ITask } from '../../../../__shared__/model/task';
 import { TaskService } from '../../services/task-service/task.service';
+
 
 @Injectable()
 export class TaskResolver implements Resolve<ITask> {
 
   constructor(
     private taskService: TaskService,
+    private messageService: MessageService,
     private router: Router) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ITask> {
-    let id = route.params['id'];
+  resolve(route: ActivatedRouteSnapshot): Observable<ITask> {
+    let id = route.params.id;
 
-    if (!id || id==="new") {
-      let emptyTask = <ITask>{ id: 0 };
+    if (!id || id === 'new') {
       id = 0;
     }
 
     if (isNaN(id)) {
-      console.warn(`Task id is not a number:${id}`);
+      this.messageService.addMessage(`Task id is not a number:${id}`);
       this.router.navigate(['/tasks']);
       return of(null);
     }
@@ -35,13 +36,13 @@ export class TaskResolver implements Resolve<ITask> {
           if (task) {
             return task;
           }
-          console.log(`task was not found ${id}`);
+          this.messageService.addMessage(`task was not found ${id}`);
           this.router.navigate(['/tasks']);
           return null;
         }),
-
+        // TODO - NEED REFACTORING ??
         catchError(error => {
-          console.warn(`Server erro retriving ${error}`);
+          this.messageService.addMessage(`Server erro retriving ${error}`);
           this.router.navigate(['/tasks']);
           return of(null);
         }));

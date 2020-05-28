@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, NoPreloading, PreloadAllModules, Route, PreloadingStrategy } from '@angular/router';
+import { PreloadingStrategy, Route, RouterModule, Routes } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { AuthGuardService } from './modules/access/guards/auth-guard.service';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
-import { AuthGuardService } from './modules/access/guards/auth-guard.service';
-import { Observable, of } from 'rxjs';
 
 
-export class CustomPreloadingService implements PreloadingStrategy {
-  preload(route: Route, load: Function): Observable<any> {
+class CustomPreloadingService implements PreloadingStrategy {
+  preload(route: Route, load: () => Observable<any>): Observable<any> {
     return route.data && route.data.preload ? load() : of(null);
   }
 }
@@ -25,7 +25,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     loadChildren: () => import('./modules/users/users.module')
       .then(m => m.UsersModule),
-      data: { preload: true }
+    data: { preload: true }
   },
   {
     path: 'tasks',
@@ -58,7 +58,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     enableTracing: false,
-    preloadingStrategy: NoPreloading //CustomPreloadingService//NoPreloading // PreloadAllModules
+    preloadingStrategy: CustomPreloadingService// NoPreloading // PreloadAllModules
   })],
   exports: [RouterModule]
 })

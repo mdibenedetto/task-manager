@@ -1,33 +1,33 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { ITask, ITaskType } from 'src/app/__shared__/model/task';
 
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { of, Observable } from 'rxjs';
 
-import { ITask, ITaskType } from "src/app/__shared__/model/task";
- 
 @Injectable()
 export class TaskService {
 
-  URL = "/tasks";
+  URL = '/tasks';
 
   constructor(private http: HttpClient) { }
 
   findTaskTypes(): Observable<ITaskType[]> {
-    const url = "/taskTypes";
+    const url = '/taskTypes';
     return this.http.get<ITaskType[]>(url);
   }
 
   findTask(id: number): Observable<ITask> {
     // USE CASE - NEW TASK
-    if (id === 0)
+    if (id === 0) {
       return of({ id: 0 } as ITask);
+    }
 
     return this.http.get<ITask>(`${this.URL}/${id}`);
   }
 
   getTasks(filterBy?: string): Observable<ITask[]> {
-    var url = filterBy ? `${this.URL}?${filterBy}` : this.URL;
-    return this.http.get<ITask[]>(url)
+    const url = filterBy ? `${this.URL}?${filterBy}` : this.URL;
+    return this.http.get<ITask[]>(url);
   }
 
   saveTask(task: ITask): Observable<Response> {

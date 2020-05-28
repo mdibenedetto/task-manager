@@ -33,7 +33,7 @@ const RouteDefinitions = [
   ],
   declarations: [
     UserEditComponent,
-    UserListComponent, 
+    UserListComponent,
     UserDetailComponent],
   providers: [AuthService, AuthGuardService]
 })
