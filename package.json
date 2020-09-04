@@ -10,7 +10,7 @@
     "start-mongo": "sudo /X_Devs/mongodb/bin/mongo"
   },
   "dependencies": {
-    "mongodb": "^2.2.26"
+    "mongodb": "^3.6.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
