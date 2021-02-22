@@ -1,2 +1,3 @@
-client/src/**/.css linguist-vendored
+client/src/**/*.css linguist-vendored
 client/src/**/*.scss linguist-vendored
+client/src/**/*.less linguist-vendored
