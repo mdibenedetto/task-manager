@@ -1,2 +1,2 @@
-clinet/src/** -linguist-vendored
-clinet/src/**/*.scss -linguist-detectable
+client/src/**/.css linguist-vendored
+client/src/**/*.scss linguist-vendored
