@@ -1,2 +1,2 @@
-clinet/src/** linguist-vendored=false
+clinet/src/** -linguist-vendored
 clinet/src/**/*.scss=false
