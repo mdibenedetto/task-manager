@@ -1,1 +1,2 @@
-clinet/src/assets/** linguist-vendored=false
+clinet/src/** linguist-vendored=false
+clinet/src/**/*.scss=false
