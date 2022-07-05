@@ -1,5 +1,5 @@
 {
-  "name": "node-api",
+  "name": "task-manager-server",
   "main": "server.js",
   "version": "1.0.0",
   "description": "",
