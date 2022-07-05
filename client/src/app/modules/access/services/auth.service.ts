@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { throwError, Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { EMPTY, Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { MessageService } from 'src/app/__shared__/modules/messages/message-service/message.service';
 import { IUser } from 'src/app/__shared__/model/user';
+import { MessageService } from 'src/app/__shared__/modules/messages/message-service/message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,18 +12,17 @@ import { IUser } from 'src/app/__shared__/model/user';
 export class AuthService {
 
   constructor(private messageService: MessageService,
-              private http: HttpClient) { }
+    private http: HttpClient) { }
 
-  currentUser: IUser;
-  redirectUrl: string;
+  currentUser?= {} as IUser;
+  redirectUrl = {} as string;
   URL = '/access';
 
   // TODO: CHECK IF STILL NEEDED
   serverError(error: any) {
     let errorMessage;
     if (error.message) {
-      errorMessage = `Application Error - Messsage:${error.message}, stack:${
-        error.stack
+      errorMessage = `Application Error - Messsage:${error.message}, stack:${error.stack
         }`;
     } else if (error.json()) {
       errorMessage = `Server error: ${error.json().error}`;
@@ -42,7 +41,7 @@ export class AuthService {
 
     if (!userName || !passWord) {
       this.messageService.addMessage('Please enter your userName and password');
-      return;
+      return EMPTY;
     }
 
     return this.http
@@ -64,6 +63,6 @@ export class AuthService {
   logout() {
     return this.http
       .get(`${this.URL}/logout`)
-      .pipe(map(() => this.currentUser = null));
+      .pipe(map(() => this.currentUser = undefined));
   }
 }

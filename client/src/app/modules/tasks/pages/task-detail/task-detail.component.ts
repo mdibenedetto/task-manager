@@ -9,13 +9,13 @@ import { ITask } from 'src/app/__shared__/model/task';
 })
 export class TaskDetailComponent implements OnInit {
   pageTitle = 'Task Detail';
-  task: ITask;
+  task = {} as ITask;
 
   constructor(
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.task = this.route.snapshot.data.task;
+    this.task = this.route.snapshot.data['task'];
     if (!this.task.id) {
       this.pageTitle = 'Add Task';
     } else {

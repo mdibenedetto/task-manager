@@ -21,11 +21,11 @@ export class TaskEditComponent implements OnInit {
     [key: string]: boolean
   } = {};
 
-  private currentTask: ITask;
-  private originalTask: ITask;
+  private currentTask?: ITask | null;
+  private originalTask?: ITask | null;
 
   get task(): ITask {
-    return this.currentTask;
+    return this.currentTask || {} as ITask;
   }
 
   set task(value: ITask) {
@@ -51,17 +51,18 @@ export class TaskEditComponent implements OnInit {
     return JSON.stringify(this.originalTask) !== JSON.stringify(this.currentTask);
   }
 
-  isValid(path: string): boolean {
+  isValid(path?: string): boolean {
     this.validate();
-    if (path) {
+
+    if (path && this.dataIsValid) {
       return this.dataIsValid[path];
     }
-    return (this.dataIsValid &&
-      Object.keys(this.dataIsValid).every(d => this.dataIsValid[d] === true));
+
+    return Object.keys(this.dataIsValid).every(d => this.dataIsValid[d] === true);
   }
 
   onTaskRetrieved() {
-    this.task = this.route.snapshot.data.task;
+    this.task = this.route.snapshot.data['task'];
 
     if (this.task.id === 0) {
       this.pageTitle = 'Add Task';
@@ -71,13 +72,13 @@ export class TaskEditComponent implements OnInit {
   }
 
   reset(): void {
-    this.dataIsValid = null;
+    this.dataIsValid = {};
     this.currentTask = null;
     this.originalTask = null;
   }
 
   save(): void {
-    if (this.isValid(null)) {
+    if (this.isValid()) {
       this.taskService.saveTask(this.task)
         .subscribe(
           () => this.onSaveComplete(`${this.task.title} was saved`),
@@ -112,8 +113,10 @@ export class TaskEditComponent implements OnInit {
   }
 
   validate(): void {
-    this.dataIsValid = {};
-    this.dataIsValid.info = this.task.title && (this.task.title !== '' && !this.task.title.startsWith(' '));
+    this.dataIsValid = {
+      info: this.task.title ? (this.task.title !== '' && !this.task.title.startsWith(' ')) : false
+    };
+
     // this.dataIsValid['tags'] = this.task.categoryId && this.task.categoryId > 0;
   }
 }

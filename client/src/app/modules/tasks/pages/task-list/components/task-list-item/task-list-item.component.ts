@@ -7,7 +7,7 @@ import { ITask } from 'src/app/__shared__/model/task';
   styleUrls: ['./task-list-item.component.css']
 })
 export class TaskListItemComponent implements OnInit {
-  @Input() task: ITask;
+  @Input() task?: ITask;
   constructor() { }
   ngOnInit() { }
 }

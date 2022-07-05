@@ -9,7 +9,7 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
 })
 class CustomPreloadingService implements PreloadingStrategy {
   preload(route: Route, load: () => Observable<any>): Observable<any> {
-    return route.data && route.data.preload ? load() : of(null);
+    return route.data && route.data['preload'] ? load() : of(null);
   }
 }
 

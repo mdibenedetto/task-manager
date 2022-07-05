@@ -6,9 +6,9 @@ import { ITask } from 'src/app/__shared__/model/task';
 export class TaskFilterPipe implements PipeTransform {
 
   transform(value: ITask[], filterBy: string): ITask[] {
-    filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;
-    return filterBy ? value.filter((task: ITask) =>
-      (task.title || '').toLocaleLowerCase().indexOf(filterBy) !== -1) : value;
+    const filterValue = filterBy ? filterBy.toLocaleLowerCase() : null
+    return filterValue ? value.filter((task: ITask) =>
+      (task.title || '').toLocaleLowerCase().indexOf(filterValue) !== -1) : value;
   }
 
 }

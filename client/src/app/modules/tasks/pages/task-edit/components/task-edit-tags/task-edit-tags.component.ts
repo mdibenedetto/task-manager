@@ -10,12 +10,12 @@ import { ITask, ITaskType } from 'src/app/__shared__/model/task';
 })
 export class TaskEditTagsComponent implements OnInit {
   @ViewChild(NgForm)
-  taskForm: NgForm;
+  taskForm = {} as NgForm;
 
   @Input()
-  task: ITask;
+  task = {} as ITask;
 
-  categories: ITaskType[];
+  categories = [] as ITaskType[];
 
   constructor(private taskService: TaskService) {
   }

@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import {
+  Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router
+} from '@angular/router';
 import { AuthService } from './modules/access/services/auth.service';
 import { MessageService } from './__shared__/modules/messages/message-service/message.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   loading = true;

@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ITask } from 'src/app/__shared__/model/task';
 import { MessageService } from 'src/app/__shared__/modules/messages/message-service/message.service';
@@ -18,7 +18,7 @@ export class TaskResolver implements Resolve<ITask> {
   }
 
   resolve(route: ActivatedRouteSnapshot): Observable<ITask> {
-    let id = route.params.id;
+    let id = route.params['id'];
 
     if (!id || id === 'new') {
       id = 0;
@@ -27,7 +27,7 @@ export class TaskResolver implements Resolve<ITask> {
     if (isNaN(id)) {
       this.messageService.addMessage(`Task id is not a number:${id}`);
       this.router.navigate(['/tasks']);
-      return of(null);
+      return EMPTY;
     }
 
     return this.taskService.findTask(+id)
@@ -38,13 +38,13 @@ export class TaskResolver implements Resolve<ITask> {
           }
           this.messageService.addMessage(`task was not found ${id}`);
           this.router.navigate(['/tasks']);
-          return null;
+          return {} as ITask;
         }),
         // TODO - NEED REFACTORING ??
         catchError(error => {
           this.messageService.addMessage(`Server erro retriving ${error}`);
           this.router.navigate(['/tasks']);
-          return of(null);
+          return EMPTY;
         }));
 
   }

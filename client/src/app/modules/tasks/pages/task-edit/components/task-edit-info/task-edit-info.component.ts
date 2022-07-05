@@ -12,12 +12,12 @@ import { IUser } from 'src/app/__shared__/model/user';
 export class TaskEditInfoComponent implements OnInit {
 
   @ViewChild(NgForm)
-  taskForm: NgForm;
+  taskForm = {} as NgForm;
 
   @Input()
-  task: ITask;
+  task = {} as ITask;
 
-  assigneeUsers: IUser[];
+  assigneeUsers = [] as IUser[];
 
   constructor(
     private userService: UserService

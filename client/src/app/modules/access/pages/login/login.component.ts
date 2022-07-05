@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -11,9 +11,9 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements AfterViewInit {
 
   @ViewChild('refUserNameElement')
-  txtUserName: ElementRef<HTMLInputElement>;
+  txtUserName = {} as ElementRef<HTMLInputElement>;
 
-  errorMessage: string;
+  errorMessage = "";
 
   pageTitle = 'Log In';
 

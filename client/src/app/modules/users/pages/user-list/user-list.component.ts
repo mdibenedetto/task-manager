@@ -9,7 +9,7 @@ import { UserService } from '../../services/user-service/user-service';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  users: IUser[];
+  users = [] as IUser[];
 
   constructor(private userService: UserService) { }
 
@@ -23,7 +23,7 @@ export class UserListComponent implements OnInit {
       .subscribe((users: IUser[]) => this.users = users);
   }
 
-  removeUser(id: string) {
+  removeUser(id: string | number) {
     this.userService
       .removeUser(id)
       .subscribe(_ => this.searchUsers());

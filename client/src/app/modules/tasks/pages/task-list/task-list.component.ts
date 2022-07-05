@@ -10,7 +10,7 @@ import { TaskService } from '../../services/task-service/task.service';
 })
 export class TaskListComponent implements OnInit {
 
-  tasks: ITask[];
+  tasks = [] as ITask[];
   selectedRow = -1;
   selectedId = -1;
   listFilter = '';
@@ -28,17 +28,17 @@ export class TaskListComponent implements OnInit {
     this.taskService.getTasks().subscribe(
       tasks => {
         this.tasks = tasks;
-        this.listFilter = this.route.snapshot.queryParams.filterBy || '';
+        this.listFilter = this.route.snapshot.queryParams['filterBy'] || '';
       }
     );
   }
 
-  removeTask(id) {
+  removeTask(id: string | number) {
     this.taskService.removeTask(id)
       .subscribe(_ => this.searchTasks);
   }
 
-  setSelectedRow(index) {
+  setSelectedRow(index: number) {
     this.selectedId = this.tasks[index].id;
     this.selectedRow = index === this.selectedRow ? -1 : index;
   }

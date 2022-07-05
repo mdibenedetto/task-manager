@@ -15,7 +15,7 @@ import { UserService } from '../../services/user-service/user-service';
   styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
-  mode: OpenMode;
+  mode: OpenMode = OpenMode.ADD;
   user: IUser = {} as IUser;
 
   constructor(
@@ -28,7 +28,7 @@ export class UserEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const id: string = this.route.snapshot.params.id;
+    const id: string = this.route.snapshot.params['id'];
 
     if (id) {
       this.mode = OpenMode.UPDATE;

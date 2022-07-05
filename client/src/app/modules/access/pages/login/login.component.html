@@ -1,9 +1,7 @@
 <div class="alert alert-info" role="alert">
   For this demo you can use as test user:
   <strong>
-    <em>
-      user: admin, password: admin
-    </em>
+    <em> user: admin, password: admin </em>
   </strong>
 </div>
 
@@ -53,7 +51,7 @@
                 (refUserName.touched || refUserName.dirty) && refUserName.errors
               "
             >
-              <span *ngIf="refUserName.errors.required">
+              <span *ngIf="refUserName.errors['required']">
                 User name is required.
               </span>
             </span>
@@ -86,7 +84,7 @@
                 (refPassword.touched || refPassword.dirty) && refPassword.errors
               "
             >
-              <span *ngIf="refPassword.errors.required">
+              <span *ngIf="refPassword.errors['required']">
                 Password is required.
               </span>
             </span>
@@ -99,7 +97,7 @@
               <button
                 class="btn btn-primary"
                 type="submit"
-                style="width: 80px; margin-right: 10px;"
+                style="width: 80px; margin-right: 10px"
                 [disabled]="!loginForm.valid"
               >
                 Log In

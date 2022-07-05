@@ -37,5 +37,5 @@ registerLocaleData(lang);
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  p: number;
+
 }

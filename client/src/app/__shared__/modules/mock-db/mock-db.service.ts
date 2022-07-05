@@ -13,14 +13,14 @@ export class MockInMemoryDbService
 
     const req = requestInfoUtils.parseRequestUrl(url);
 
-    const parsedRequest = (collectionName) => (
+    const parsedRequest = (collectionName: string) => (
       {
         apiBase: req.apiBase,
         collectionName,
         id: undefined,
         query: undefined,
         resourceUrl: req.apiBase + collectionName + '/'
-      }
+      } as unknown as ParsedRequestUrl
     );
 
     if (req.id === 'login') {
@@ -43,7 +43,7 @@ export class MockInMemoryDbService
     return { login, logout, tasks, taskTypes, users };
   }
 
-  createDBAccess(users) {
+  createDBAccess(users: IUser[]) {
     return {
       login: users,
       logout: [true]
