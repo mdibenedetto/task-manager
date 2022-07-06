@@ -1,3 +1,20 @@
 :host() {
-  max-width: 450px; 
+  max-width: 450px;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.has-error .form-control:invalid {
+  border-color: #dc3545;
+}
+
+.invalid-feedback {
+  display: block;
 }

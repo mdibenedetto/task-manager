@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { NGMaterialModule } from 'src/app/__shared__/modules/ng-material.module';
+import { NGMaterialModule } from '../../__shared__/modules/ng-material.module';
 import { TaskEditGuardService } from './guards/task-edit-guard/task-edit-guard.service';
 import { TaskDetailComponent } from './pages/task-detail/task-detail.component';
 import { TaskEditInfoComponent, TaskEditTagsComponent } from './pages/task-edit/components';
@@ -12,12 +12,10 @@ import { TaskListToolbarComponent } from './pages/task-list/components/task-list
 import { TaskListComponent } from './pages/task-list/task-list.component';
 import { TaskFilterPipe } from './pipes/task-filter.pipe';
 import { TaskResolver } from './resolvers/task-resolver/task-resolver.service';
-// Task entities
 import { TaskService } from './services/task-service/task.service';
 
 
-
-
+// Task entities
 
 const editRoute = {
   component: TaskEditComponent,

@@ -1,23 +1,21 @@
-
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { ITask } from 'src/app/__shared__/model/task';
-import { MessageService } from 'src/app/__shared__/modules/messages/message-service/message.service';
+import { ITask } from '../../../../__shared__/model/task';
+import { MessageService } from '../../../../__shared__/modules/messages';
 import { TaskService } from '../../services/task-service/task.service';
 
-
 @Injectable()
-export class TaskResolver implements Resolve<ITask> {
+export class TaskResolver implements Resolve<ITask | null> {
 
   constructor(
     private taskService: TaskService,
     private messageService: MessageService,
-    private router: Router) {
-  }
+    private router: Router
+  ) { }
 
-  resolve(route: ActivatedRouteSnapshot): Observable<ITask> {
+  resolve(route: ActivatedRouteSnapshot): Observable<ITask | null> {
     let id = route.params['id'];
 
     if (!id || id === 'new') {
@@ -38,9 +36,8 @@ export class TaskResolver implements Resolve<ITask> {
           }
           this.messageService.addMessage(`task was not found ${id}`);
           this.router.navigate(['/tasks']);
-          return {} as ITask;
+          return null;
         }),
-        // TODO - NEED REFACTORING ??
         catchError(error => {
           this.messageService.addMessage(`Server erro retriving ${error}`);
           this.router.navigate(['/tasks']);

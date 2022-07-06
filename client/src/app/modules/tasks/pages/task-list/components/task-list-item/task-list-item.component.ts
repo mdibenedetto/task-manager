@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ITask } from 'src/app/__shared__/model/task';
+import { ITask } from 'src/app/__shared__/model';
 
 @Component({
   selector: 'task-list-item',
@@ -8,6 +8,8 @@ import { ITask } from 'src/app/__shared__/model/task';
 })
 export class TaskListItemComponent implements OnInit {
   @Input() task?: ITask;
+
   constructor() { }
+
   ngOnInit() { }
 }

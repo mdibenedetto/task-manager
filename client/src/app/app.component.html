@@ -1,83 +1,13 @@
-<span class="fa fa-refresh glyphicon-spin spinner" *ngIf="loading"></span>
-<nav class="navbar navbar-expand-lg navbar-light bg-faded">
-  <button
-    class="navbar-toggler navbar-toggler-right"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="#" onclick="return false">Task Manager</a>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="nav navbar-nav mr-auto">
-      <li class="nav-item" [routerLinkActive]="['active']">
-        <a class="nav-link" routerLink="/welcome"
-          >Home
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li
-        class="nav-item"
-        [routerLinkActive]="['active']"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <a class="nav-link" routerLink="/tasks">Task list</a>
-      </li>
-      <li class="nav-item" [routerLinkActive]="['active']">
-        <a class="nav-link" routerLink="/tasks/new">Add Task</a>
-      </li>
-      <li
-        class="nav-item"
-        [routerLinkActive]="['active']"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <a class="nav-link" routerLink="/users">User List</a>
-      </li>
-      <li class="nav-item" [routerLinkActive]="['active']">
-        <a class="nav-link" routerLink="/users/new">Add User</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav navbar-right">
-      <li *ngIf="authService.isLoggedIn()" class="nav-item">
-        <a class="nav-link">Welcome {{ authService.currentUser?.userName }}</a>
-      </li>
-
-      <li class="nav-item" *ngIf="authService.isLoggedIn()">
-        <a
-          class="nav-link"
-          *ngIf="!messageService.isDisplayed"
-          (click)="displayMessages()"
-          href="javascript:void(0)"
-          >Show Messages</a
-        >
-        <a
-          class="nav-link"
-          *ngIf="messageService.isDisplayed"
-          (click)="hideMessages()"
-          href="javascript:void(0)"
-          >Hide Messages</a
-        >
-      </li>
-
-      <li *ngIf="!authService.isLoggedIn()" class="nav-item">
-        <a class="nav-link" [routerLinkActive]="['active']" routerLink="/login"
-          >Log In</a
-        >
-      </li>
-
-      <li *ngIf="authService.isLoggedIn()" class="nav-item">
-        <a class="nav-link" (click)="logOut()">Log Out</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<div class="container">
+<div class="fa fa-refresh glyphicon-spin spinner" *ngIf="loading"></div>
+<navbar
+  [userName]="authService.currentUser?.userName"
+  [isLoggedIn]="authService.isLoggedIn()"
+  [isDisplayed]="messageService.isDisplayed"
+  (displayMessages)="displayMessages()"
+  (hideMessages)="hideMessages()"
+  (logout)="logOut()"
+></navbar>
+<main class="container">
   <div class="row">
     <div
       [ngClass]="{
@@ -87,8 +17,9 @@
     >
       <router-outlet></router-outlet>
     </div>
+
     <div class="col-2">
       <router-outlet name="popup"></router-outlet>
     </div>
   </div>
-</div>
+</main>

@@ -19,13 +19,13 @@ export class TaskEditComponent implements OnInit {
 
   private dataIsValid: {
     [key: string]: boolean
-  } = {};
+  } | null = {};
 
   private currentTask?: ITask | null;
   private originalTask?: ITask | null;
 
   get task(): ITask {
-    return this.currentTask || {} as ITask;
+    return this.currentTask as ITask;
   }
 
   set task(value: ITask) {
@@ -37,7 +37,8 @@ export class TaskEditComponent implements OnInit {
     private taskService: TaskService,
     private messageService: MessageService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.route.data.subscribe(() => {
@@ -58,7 +59,9 @@ export class TaskEditComponent implements OnInit {
       return this.dataIsValid[path];
     }
 
-    return Object.keys(this.dataIsValid).every(d => this.dataIsValid[d] === true);
+    const data = this.dataIsValid || {}
+
+    return Object.keys(data).every(d => data[d] === true);
   }
 
   onTaskRetrieved() {
@@ -72,7 +75,7 @@ export class TaskEditComponent implements OnInit {
   }
 
   reset(): void {
-    this.dataIsValid = {};
+    this.dataIsValid = null;
     this.currentTask = null;
     this.originalTask = null;
   }
@@ -80,10 +83,10 @@ export class TaskEditComponent implements OnInit {
   save(): void {
     if (this.isValid()) {
       this.taskService.saveTask(this.task)
-        .subscribe(
-          () => this.onSaveComplete(`${this.task.title} was saved`),
-          (error: any) => this.errorMessage = (error as any)
-        );
+        .subscribe({
+          next: () => this.onSaveComplete(`${this.task.title} was saved`),
+          error: (error: any) => this.errorMessage = (error as string)
+        });
     } else {
       this.errorMessage = 'Please correct the validation errors.';
     }
@@ -97,8 +100,10 @@ export class TaskEditComponent implements OnInit {
       if (confirm(`Really delete the task: ${this.task.title}?`)) {
         this.taskService.removeTask(this.task.id)
           .subscribe(
-            () => this.onSaveComplete(`${this.task.title} was deleted`),
-            (error: any) => this.errorMessage = (error as any)
+            {
+              next: () => this.onSaveComplete(`${this.task.title} was deleted`),
+              error: (error: any) => this.errorMessage = (error as string)
+            }
           );
       }
     }

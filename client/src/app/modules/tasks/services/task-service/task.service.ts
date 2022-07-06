@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { ITask, ITaskType } from 'src/app/__shared__/model/task';
-
+import { ITask, ITaskType } from '../../../../__shared__/model';
 
 @Injectable()
 export class TaskService {

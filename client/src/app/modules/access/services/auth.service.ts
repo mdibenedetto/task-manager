@@ -1,40 +1,42 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { EMPTY, map, Observable } from 'rxjs';
 
-import { IUser } from 'src/app/__shared__/model/user';
-import { MessageService } from 'src/app/__shared__/modules/messages/message-service/message.service';
+import { IUser } from '../../../__shared__/model';
+import { MessageService } from '../../../__shared__/modules/messages';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private messageService: MessageService,
-    private http: HttpClient) { }
+  constructor(
+    private messageService: MessageService,
+    private http: HttpClient
+  ) { }
 
-  currentUser?= {} as IUser;
-  redirectUrl = {} as string;
+  currentUser?: IUser;
+  redirectUrl?: string;
   URL = '/access';
 
   // TODO: CHECK IF STILL NEEDED
-  serverError(error: any) {
-    let errorMessage;
-    if (error.message) {
-      errorMessage = `Application Error - Messsage:${error.message}, stack:${error.stack
-        }`;
-    } else if (error.json()) {
-      errorMessage = `Server error: ${error.json().error}`;
-    } else {
-      errorMessage =
-        'Server error: The server might be stopped or your network might have problem.';
-    }
-    return throwError(errorMessage);
-  }
+  // serverError(error: any) {
+  //   let errorMessage;
+  //   if (error.message) {
+  //     errorMessage = `Application Error - Messsage:${error.message}, stack:${error.stack
+  //       }`;
+  //   } else if (error.json()) {
+  //     errorMessage = `Server error: ${error.json().error}`;
+  //   } else {
+  //     errorMessage =
+  //       'Server error: The server might be stopped or your network might have problem.';
+  //   }
+  //   return throwError(errorMessage);
+  // }
 
   isLoggedIn(): boolean {
-    return !!this.currentUser;
+    return true
+    // return !!this.currentUser;
   }
 
   login(userName: string, passWord: string): Observable<IUser> {
@@ -60,7 +62,7 @@ export class AuthService {
       );
   }
 
-  logout() {
+  logout(): Observable<void> {
     return this.http
       .get(`${this.URL}/logout`)
       .pipe(map(() => this.currentUser = undefined));

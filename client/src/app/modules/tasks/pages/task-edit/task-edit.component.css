@@ -1,66 +1,62 @@
-
-form{
-    padding: 10px;
+form {
+  padding: 10px;
 }
 
 .wizard a:last-child {
-    -webkit-border-radius: 0 8px 0px 0;
-    -moz-border-radius: 0 8px 0px 0;
-    border-radius: 0 8px 0px 0;
+  border-radius: 0 8px 0px 0;
 }
 
 .wizard a {
-    background: #efefef;
-    display: inline-block;
-    margin-right: 5px;
-    min-width: 150px;
-    outline: none;
-    padding: 10px 40px 10px;
-    position: relative;
-    text-decoration: none;
-    cursor: pointer;
+  background: #efefef;
+  display: inline-block;
+  margin-right: 5px;
+  min-width: 150px;
+  outline: none;
+  padding: 10px 40px 10px;
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .wizard .active {
-    background: #007ACC;
-    color: #fff;
+  background: #007acc;
+  color: #fff;
 }
 
 .wizard .active:after {
-    border-left-color: #007ACC;
+  border-left-color: #007acc;
 }
 
 .wizard a:before {
-    width: 0;
-    height: 0;
-    border-top: 20px inset transparent;
-    border-bottom: 20px inset transparent;
-    border-left: 20px solid #fff;
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
+  width: 0;
+  height: 0;
+  border-top: 20px inset transparent;
+  border-bottom: 20px inset transparent;
+  border-left: 20px solid #fff;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
 }
 
 .wizard a:first-child:before,
 .wizard a:last-child:after {
-    border: none;
+  border: none;
 }
 
 .wizard a:after {
-    width: 0;
-    height: 0;
-    border-top: 20px inset transparent;
-    border-bottom: 20px inset transparent;
-    border-left: 21px solid #efefef;
-    position: absolute;
-    content: "";
-    top: 0;
-    right: -20px;
-    z-index: 2;
+  width: 0;
+  height: 0;
+  border-top: 20px inset transparent;
+  border-bottom: 20px inset transparent;
+  border-left: 21px solid #efefef;
+  position: absolute;
+  content: "";
+  top: 0;
+  right: -20px;
+  z-index: 2;
 }
 
-
-.footer-body > *{
-    margin-right: 5px;
+.footer-body > * {
+  margin-right: 5px;
 }

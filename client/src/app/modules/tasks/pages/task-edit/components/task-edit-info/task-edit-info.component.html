@@ -1,95 +1,90 @@
-<div class="card-block">
-  <div class="container">
-    <form name="task" #taskForm="ngForm">
-      <fieldset>
-        <legend>Basic Task Information</legend>
-        <div
-          class="form-group row"
-          [ngClass]="{
-            'has-danger': title.invalid && title.touched && title.dirty
-          }"
+<div class="container">
+  <form name="task" #taskForm="ngForm">
+    <fieldset>
+      <legend>Basic Task Information</legend>
+      <div
+        class="form-group row mb-2"
+        [ngClass]="{
+          'has-danger': title.invalid && title.touched && title.dirty
+        }"
+      >
+        <label class="col-2 col-form-label">Title </label>
+        <div class="col-10">
+          <input
+            class="form-control"
+            type="text"
+            required
+            [(ngModel)]="task.title"
+            #title="ngModel"
+            name="title"
+          />
+        </div>
+        <span
+          class="col-10 offset-2 form-text"
+          *ngIf="title.invalid && title.touched && title.dirty"
+          >Title is required</span
         >
-          <label class="col-2 col-form-label">Title </label>
-          <div class="col-10">
+      </div>
+      <div class="form-group row mb-2">
+        <label class="col-2 col-form-label">Description </label>
+        <div class="col-10">
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="task.description"
+            name="description"
+          />
+        </div>
+      </div>
+      <div class="form-group row mb-2">
+        <label class="col-2 col-form-label">Start Date </label>
+        <div class="col-10">
+          <mat-form-field class="col-2 form-control">
             <input
-              class="form-control"
-              type="text"
-              required
-              [(ngModel)]="task.title"
-              #title="ngModel"
-              name="title"
+              name="startDate"
+              matInput
+              [matDatepicker]="startDate"
+              [(ngModel)]="task.startDate"
             />
-          </div>
-          <span
-            class="col-10 offset-2 form-text"
-            *ngIf="title.invalid && title.touched && title.dirty"
-            >Title is required</span
-          >
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="startDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #startDate></mat-datepicker>
+          </mat-form-field>
         </div>
-        <div class="form-group row">
-          <label class="col-2 col-form-label">Description </label>
-          <div class="col-10">
+      </div>
+      <div class="form-group row mb-2">
+        <label class="col-2 col-form-label">End Date</label>
+        <div class="col-10">
+          <mat-form-field class="col-2 form-control">
             <input
-              class="form-control"
-              type="text"
-              [(ngModel)]="task.description"
-              name="description"
+              name="endDate"
+              matInput
+              [matDatepicker]="endDate"
+              [(ngModel)]="task.endDate"
             />
-          </div>
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="endDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #endDate></mat-datepicker>
+          </mat-form-field>
         </div>
-        <div class="form-group row">
-          <label class="col-2 col-form-label">Start Date </label>
-          <div class="col-10">
-            <mat-form-field class="col-2 form-control">
-              <input
-                name="startDate"
-                matInput
-                [matDatepicker]="startDate"
-                [(ngModel)]="task.startDate"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="startDate"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #startDate></mat-datepicker>
-            </mat-form-field>
-          </div>
+      </div>
+      <div class="form-group row mb-2">
+        <label class="col-2 col-form-label">Assignee</label>
+        <div class="col-10">
+          <mat-form-field class="col-4 form-control">
+            <mat-select name="category" [(ngModel)]="task.assigneeId">
+              <mat-option value="0">None</mat-option>
+              <mat-option *ngFor="let item of assigneeUsers" [value]="item.id">
+                {{ item.fullName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-        <div class="form-group row">
-          <label class="col-2 col-form-label">End Date</label>
-          <div class="col-10">
-            <mat-form-field class="col-2 form-control">
-              <input
-                name="endDate"
-                matInput
-                [matDatepicker]="endDate"
-                [(ngModel)]="task.endDate"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="endDate"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #endDate></mat-datepicker>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-2 col-form-label">Assignee</label>
-          <div class="col-10">
-            <mat-form-field class="col-4 form-control">
-              <mat-select name="category" [(ngModel)]="task.assigneeId">
-                <mat-option value="0">None</mat-option>
-                <mat-option
-                  *ngFor="let item of assigneeUsers"
-                  [value]="item.id"
-                >
-                  {{ item.fullName }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-      </fieldset>
-    </form>
-  </div>
+      </div>
+    </fieldset>
+  </form>
 </div>

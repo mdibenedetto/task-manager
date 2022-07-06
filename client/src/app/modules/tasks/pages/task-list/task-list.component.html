@@ -1,29 +1,26 @@
-<div class="card card-default">
+<section class="card">
   <div class="card-header">
     <div class="container">Task List - total tasks: {{ tasks?.length }}</div>
   </div>
-  <div class="card-block">
-    <div class="card-block">
-      <div class="form-inline mb-2 mt-2">
-        <div class="col-2">
-          <button class="btn btn-primary" (click)="searchTasks()">
-            Refresh
-          </button>
-        </div>
-        <div class="col-2">
-          <label class="col-form-label">Filter by:</label>
-        </div>
-        <div class="col-3">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="listFilter"
-            placeholder="type task title"
-          />
-        </div>
+
+  <div class="card-body">
+    <section class="container col-12 d-flex justify-content-between my-2">
+      <div class="d-flex col-5">
+        <label class="col-form-label col-2">Filter by:</label>
+        <input
+          type="text"
+          class="form-control col-4"
+          [(ngModel)]="listFilter"
+          placeholder="type task title"
+        />
       </div>
-    </div>
-    <div class="container">
+
+      <div class="col-6 d-flex justify-content-end">
+        <button class="btn btn-primary" (click)="searchTasks()">Refresh</button>
+      </div>
+    </section>
+
+    <section class="container">
       <table class="table table-hover table-striped">
         <!--<colgroup>
         <col class="col-md-1">
@@ -61,8 +58,8 @@
             <td>{{ task.description }}</td>
             <td>{{ task.startDate | date: "dd/MM/yyyy" }}</td>
             <td>{{ task.endDate | date: "dd/MM/yyyy" }}</td>
-            <td align="center">{{ task.assigneeId }}</td>
-            <td>
+            <td class="text-center">{{ task.assigneeId }}</td>
+            <td class="text-right">
               <a
                 class="btn btn-primary"
                 href="#"
@@ -71,7 +68,7 @@
                 >Edit</a
               >
             </td>
-            <td>
+            <td class="text-right">
               <button class="btn btn-danger" (click)="removeTask(task.id)">
                 Delete
               </button>
@@ -79,7 +76,7 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    </section>
   </div>
   <div class="card-footer">total tasks: {{ tasks?.length }}</div>
-</div>
+</section>

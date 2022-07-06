@@ -26,4 +26,8 @@ export class TaskEditTagsComponent implements OnInit {
       .subscribe(categories => this.categories = categories);
   }
 
+  addTag(): void {
+    alert('Not implemented yet :( ')
+  }
+
 }

@@ -1,19 +1,22 @@
-import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'task-list-toolbar',
   templateUrl: './task-list-toolbar.component.html',
   styleUrls: ['./task-list-toolbar.component.css'],
-  styles: [':host{display:block}']
+  styles: [':host{ display:block }']
 })
 export class TaskListToolbarComponent {
+
   @Output() onDelete = new EventEmitter();
   @Output() onSearch = new EventEmitter();
   @Input() selectedId = -1;
-  delete() {
+
+  delete(): void {
     this.onDelete.emit();
   }
-  search() {
+
+  search(): void {
     this.onSearch.emit();
   }
 }

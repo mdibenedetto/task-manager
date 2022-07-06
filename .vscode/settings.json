@@ -1,12 +1,36 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-    },
-    "search.exclude": {
-        "**/deploy": true,
-        "**/dist": true,
-        "legacy-code": true
-    },
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "search.exclude": {
+    "**/deploy": true,
+    "**/dist": true,
+    "legacy-code": true
+  },
+  "editor.rulers": [
+    80
+  ],
+  "editor.wordWrapColumn": 80,
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.git": true
+  },
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#0b7b57",
+    "titleBar.activeBackground": "#0b7b57",
+    "titleBar.activeForeground": "#FFFBFE"
+  },
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "$(capture).ts, $(capture).html, $(capture).css, $(capture).scss, $(capture).spec.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, .npmrc, yarn.lock, .yarnrc"
+  },
+  "explorer.fileNesting.expand": true,
 }

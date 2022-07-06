@@ -20,11 +20,11 @@ export class TaskListComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.searchTasks();
   }
 
-  searchTasks() {
+  searchTasks(): void {
     this.taskService.getTasks().subscribe(
       tasks => {
         this.tasks = tasks;
@@ -33,12 +33,12 @@ export class TaskListComponent implements OnInit {
     );
   }
 
-  removeTask(id: string | number) {
+  removeTask(id: string | number): void {
     this.taskService.removeTask(id)
       .subscribe(_ => this.searchTasks);
   }
 
-  setSelectedRow(index: number) {
+  setSelectedRow(index: number): void {
     this.selectedId = this.tasks[index].id;
     this.selectedRow = index === this.selectedRow ? -1 : index;
   }
