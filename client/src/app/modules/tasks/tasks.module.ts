@@ -14,9 +14,10 @@ import { TaskFilterPipe } from './pipes/task-filter.pipe';
 import { TaskResolver } from './resolvers/task-resolver/task-resolver.service';
 import { TaskService } from './services/task-service/task.service';
 
+import { CoreDirectivesModule } from 'src/app/core/components/directives/core-directives.module';
+// import { PowerButtonDirective } from 'src/app/core/components/directives/power-button.directive';
 
 // Task entities
-
 const editRoute = {
   component: TaskEditComponent,
   canDeactivate: [TaskEditGuardService],
@@ -51,6 +52,7 @@ const RouteDefinitions: Routes =
     RouterModule,
     FormsModule,
     CommonModule,
+    CoreDirectivesModule,
     RouterModule.forChild(RouteDefinitions)
   ],
   declarations: [
@@ -62,7 +64,9 @@ const RouteDefinitions: Routes =
     TaskListItemComponent,
     TaskEditComponent,
     TaskDetailComponent,
-    TaskFilterPipe],
+    TaskFilterPipe,
+    // PowerButtonDirective,
+  ],
   providers: [TaskService, TaskResolver, TaskEditGuardService]
 })
 export class TasksModule { }

@@ -11,8 +11,7 @@ export class TaskDetailComponent implements OnInit {
   pageTitle = 'Task Detail';
   task = {} as ITask;
 
-  constructor(
-    private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.task = this.route.snapshot.data['task'];

@@ -37,7 +37,7 @@ export class TaskEditComponent implements OnInit {
     private taskService: TaskService,
     private messageService: MessageService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {

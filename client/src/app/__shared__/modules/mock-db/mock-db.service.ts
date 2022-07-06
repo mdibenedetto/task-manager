@@ -1,6 +1,5 @@
 import { InMemoryDbService, ParsedRequestUrl, RequestInfoUtilities } from 'angular-in-memory-web-api';
-import { ITask, ITaskType } from '../../model/task';
-import { IUser } from '../../model/user';
+import { ITask, ITaskType, IUser } from '../../model';
 import { getRandomInt } from '../../utilies';
 
 export class MockInMemoryDbService

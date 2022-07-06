@@ -15,8 +15,9 @@ export class AppComponent {
 
   constructor(
     public authService: AuthService,
+    public messageService: MessageService,
     private router: Router,
-    public messageService: MessageService) {
+  ) {
 
     router.events.subscribe((routerEvent: Event) => {
       this.checkRouterEvent(routerEvent);

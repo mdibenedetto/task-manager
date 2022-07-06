@@ -1,4 +1,4 @@
 export enum OpenMode {
-    ADD = 0,
-    UPDATE
+  ADD = 0,
+  UPDATE
 }

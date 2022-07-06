@@ -1,9 +1,4 @@
-import { NGMaterialModule } from './ng-material.module';
-import { MessagesModule } from './messages/messages.module';
-import { MockDBModule } from './mock-db/mock-db.module';
+export * from './messages/messages.module';
+export * from './mock-db/mock-db.module';
+export * from './ng-material.module';
 
-export {
-    NGMaterialModule,
-    MessagesModule,
-    MockDBModule
-};

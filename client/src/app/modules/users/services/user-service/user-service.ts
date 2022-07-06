@@ -8,32 +8,32 @@ import { IUser } from 'src/app/__shared__/model/user';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-    URL = '/users';
+  URL = '/users';
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-    findUsers(): Observable<IUser[]> {
-        return this.http.get<IUser[]>(`${this.URL}`);
-    }
+  findUsers(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(`${this.URL}`);
+  }
 
-    findUser(id: string): Observable<IUser> {
-        return this.http.get<IUser>(`${this.URL}/${id}`);
-    }
+  findUser(id: string): Observable<IUser> {
+    return this.http.get<IUser>(`${this.URL}/${id}`);
+  }
 
-    saveUser(user: IUser): Observable<Response> {
-        return !user.id ? this.addUser(user) : this.updateUser(user);
-    }
+  saveUser(user: IUser): Observable<Response> {
+    return !user.id ? this.addUser(user) : this.updateUser(user);
+  }
 
-    addUser(user: IUser): Observable<Response> {
-        return this.http.post<Response>(`${this.URL}`, user);
-    }
+  addUser(user: IUser): Observable<Response> {
+    return this.http.post<Response>(`${this.URL}`, user);
+  }
 
-    updateUser(user: IUser): Observable<Response> {
-        return this.http.put<Response>(`${this.URL}/${user.id}`, user);
-    }
+  updateUser(user: IUser): Observable<Response> {
+    return this.http.put<Response>(`${this.URL}/${user.id}`, user);
+  }
 
-    removeUser(id: string | number): Observable<Response> {
-        return this.http.delete<Response>(`${this.URL}/${id}`);
-    }
+  removeUser(id: string | number): Observable<Response> {
+    return this.http.delete<Response>(`${this.URL}/${id}`);
+  }
 
 }

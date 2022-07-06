@@ -1,9 +1,4 @@
-import { ErrorHandlerInterceptor } from './error-handler.interceptor';
-import { WebApiUrlInterceptor } from './web-api-url.interceptor';
-import { HeaderInterceptor } from './headers.interceptor';
+export * from './error-handler.interceptor';
+export * from './headers.interceptor';
+export * from './web-api-url.interceptor';
 
-export {
-    ErrorHandlerInterceptor,
-    WebApiUrlInterceptor,
-    HeaderInterceptor
-};

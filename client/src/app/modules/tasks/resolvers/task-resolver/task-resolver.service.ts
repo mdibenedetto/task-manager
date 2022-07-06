@@ -12,7 +12,7 @@ export class TaskResolver implements Resolve<ITask | null> {
   constructor(
     private taskService: TaskService,
     private messageService: MessageService,
-    private router: Router
+    private router: Router,
   ) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<ITask | null> {
